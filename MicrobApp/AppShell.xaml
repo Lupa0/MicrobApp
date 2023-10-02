@@ -3,12 +3,30 @@
     x:Class="MicrobApp.AppShell"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:local="clr-namespace:MicrobApp"
+    xmlns:local="clr-namespace:MicrobApp.Views"
     Shell.FlyoutBehavior="Disabled">
 
-    <ShellContent
-        Title="Home"
-        ContentTemplate="{DataTemplate local:MainPage}"
-        Route="MainPage" />
+    <!--<ShellContent
+    Route="LoginPage"
+    ContentTemplate="{DataTemplate local:LoginPage}"
+    />-->
+
+    <TabBar Route="HomePage">
+        <Tab Icon="home_icon.svg">
+            <ShellContent ContentTemplate="{DataTemplate local:HomePage}"/>
+        </Tab>
+
+        <Tab Icon="notifications_icon.svg">
+            <ShellContent ContentTemplate="{DataTemplate local:NotificationPage}"/>
+        </Tab>
+
+        <Tab Icon="search_icon.svg">
+            <ShellContent ContentTemplate="{DataTemplate local:SearchPage}"/>
+        </Tab>
+
+        <Tab Icon="account_icon.svg">
+            <ShellContent ContentTemplate="{DataTemplate local:ProfilePage}"/>
+        </Tab>
+    </TabBar>
 
 </Shell>
