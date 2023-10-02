@@ -49,7 +49,17 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <MauiXaml Update="Views\Home.xaml">
+	  <None Remove="Resources\Images\account_icon.svg" />
+	  <None Remove="Resources\Images\help_icon.svg" />
+	  <None Remove="Resources\Images\home_icon.svg" />
+	  <None Remove="Resources\Images\logout_icon.svg" />
+	  <None Remove="Resources\Images\notifications_icon.svg" />
+	  <None Remove="Resources\Images\search_icon.svg" />
+	  <None Remove="Resources\Images\settings_icon.svg" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <MauiXaml Update="Views\HomePage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	</ItemGroup>
