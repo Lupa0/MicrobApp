@@ -1,11 +1,26 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:toolkit="clr-namespace:CommunityToolkit.Maui.Views;assembly=CommunityToolkit.Maui"
              x:Class="MicrobApp.Views.ProfilePage">
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
+    <Grid RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto" Padding="10,0">
+        <!--Timeline -->
+        <Frame Grid.Row="0" VerticalOptions="Start" HeightRequest="160" CornerRadius="10" Margin="0,10,0,0" Padding="0">
+            <Image Source="timeline" Aspect="AspectFill"/>
+        </Frame>
+        
+        <Grid Grid.Row="1" Margin="10,-70,0,0" HorizontalOptions="Start">
+            <toolkit:AvatarView
+                ImageSource="modelprofile"
+                BorderColor="White"
+                BorderWidth="10"
+                CornerRadius="70"
+                HeightRequest="140"
+                WidthRequest="140"/>
+        </Grid>
+
+        <Label Grid.Row="2" Text="Nombre Apellido" FontAttributes="Bold" TextColor="#383b67" HorizontalTextAlignment="Start" Margin="10,0,0,0" FontSize="22"/>
+        <Label Grid.Row="3" Text="@persona@marciano" TextColor="#687684" HorizontalTextAlignment="Start" Margin="10,2,0,0" FontSize="16"/>
+
+    </Grid>
 </ContentPage>
