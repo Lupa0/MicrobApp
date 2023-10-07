@@ -3,9 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:toolkit="clr-namespace:CommunityToolkit.Maui.Views;assembly=CommunityToolkit.Maui"
              x:Class="MicrobApp.Views.ProfilePage">
-    <Grid RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto" Padding="10,0">
-        <!--Timeline -->
-        <Frame Grid.Row="0" VerticalOptions="Start" HeightRequest="160" CornerRadius="10" Margin="0,10,0,0" Padding="0">
+    <Grid RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto">
+        <Frame Grid.Row="0" VerticalOptions="Start" HeightRequest="160" Padding="0">
             <Image Source="timeline" Aspect="AspectFill"/>
         </Frame>
         
@@ -19,8 +18,33 @@
                 WidthRequest="140"/>
         </Grid>
 
-        <Label Grid.Row="2" Text="Nombre Apellido" FontAttributes="Bold" TextColor="#383b67" HorizontalTextAlignment="Start" Margin="10,0,0,0" FontSize="22"/>
-        <Label Grid.Row="3" Text="@persona@marciano" TextColor="#687684" HorizontalTextAlignment="Start" Margin="10,2,0,0" FontSize="16"/>
+        <Label Grid.Row="2" Text="Nombre Apellido" FontAttributes="Bold" TextColor="#141619" HorizontalTextAlignment="Start" Margin="15,0,0,0" FontSize="22"/>
+        <Label Grid.Row="3" Text="@persona@marciano" TextColor="#687684" HorizontalTextAlignment="Start" Margin="15,0,0,0" FontSize="16"/>
+        <Label Grid.Row="4" Text="Digital Goodies Team - Web u Mobile UI/UX development; Graphics; Illustrations" FontSize="15" TextColor="#141619" LineBreakMode="WordWrap" Margin="15,10,0,0" HorizontalOptions="StartAndExpand"/>
 
+        <Grid Grid.Row="5" ColumnDefinitions="Auto,Auto" HorizontalOptions="Start" Margin="15,10,0,0">
+            <Image Grid.Column="0" Source="calendar_icon.svg" WidthRequest="18" HeightRequest="18" HorizontalOptions="Center" />
+            <Label Grid.Column="1" Text=" Se unió abril 2021" FontSize="15" TextColor="#687684"/>
+        </Grid>
+
+        <Grid Grid.Row="6" ColumnDefinitions="Auto,Auto" HorizontalOptions="Start" Margin="15,10,0,0">
+            <Label Grid.Column="0" Margin="0,0,10,0">
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span Text="10" FontAttributes="Bold" FontSize="15" TextColor="#141619" />
+                        <Span Text=" Seguidores" FontSize="15" TextColor="#687684" />
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
+            <Label Grid.Column="1" Margin="10,0,0,0">
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span Text="10" FontAttributes="Bold" FontSize="15" TextColor="#141619" />
+                        <Span Text=" Siguiendo" FontSize="15" TextColor="#687684" />
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
+        </Grid>
+        <BoxView Grid.Row="7" HorizontalOptions="FillAndExpand" HeightRequest="1"  Margin="-20,13,0,12" Color="#CED5DC"/>
     </Grid>
 </ContentPage>
