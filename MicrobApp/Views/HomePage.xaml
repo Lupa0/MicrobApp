@@ -3,9 +3,14 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MicrobApp.Views.HomePage">
     <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
+        <Grid BackgroundColor="White">
+                <ImageButton Source="post.svg"
+                    
+                    HorizontalOptions="End"
+                    VerticalOptions="Fill"
+                    Clicked="OnImageButtonClicked"         
+                    />
+        </Grid>
     </VerticalStackLayout>
+    
 </ContentPage>

@@ -6,4 +6,10 @@ public partial class HomePage : ContentPage
 	{
 		InitializeComponent();
 	}
+
+    private void OnImageButtonClicked(object sender, EventArgs e)
+    {
+        // Navegar a la segunda página (SecondPage)
+        Navigation.PushAsync(new PostPage());
+    }
 }
