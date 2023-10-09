@@ -1,16 +1,19 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:models="clr-namespace:MicrobApp.Models"
              xmlns:toolkit="clr-namespace:CommunityToolkit.Maui.Views;assembly=CommunityToolkit.Maui"
-             x:Class="MicrobApp.Views.ProfilePage">
+             x:Class="MicrobApp.Views.ProfilePage"
+             x:DataType="{x:Type models:UserProfile}">
+
     <Grid RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto">
         <Frame Grid.Row="0" VerticalOptions="Start" HeightRequest="160" Padding="0">
-            <Image Source="timeline" Aspect="AspectFill"/>
+            <Image Source="{Binding CoverImage}" Aspect="AspectFill"/>
         </Frame>
         
         <Grid Grid.Row="1" Margin="10,-70,0,0" HorizontalOptions="Start">
             <toolkit:AvatarView
-                ImageSource="modelprofile"
+                ImageSource="{Binding ProfileImage}"
                 BorderColor="White"
                 BorderWidth="10"
                 CornerRadius="70"
@@ -18,20 +21,27 @@
                 WidthRequest="140"/>
         </Grid>
 
-        <Label Grid.Row="2" Text="Nombre Apellido" FontAttributes="Bold" TextColor="#141619" HorizontalTextAlignment="Start" Margin="15,0,0,0" FontSize="22"/>
-        <Label Grid.Row="3" Text="@persona@marciano" TextColor="#687684" HorizontalTextAlignment="Start" Margin="15,0,0,0" FontSize="16"/>
-        <Label Grid.Row="4" Text="Digital Goodies Team - Web u Mobile UI/UX development; Graphics; Illustrations" FontSize="15" TextColor="#141619" LineBreakMode="WordWrap" Margin="15,10,0,0" HorizontalOptions="StartAndExpand"/>
+        <Label Grid.Row="2" Text="{Binding Name}" FontAttributes="Bold" TextColor="#141619" HorizontalTextAlignment="Start" Margin="15,0,0,0" FontSize="22"/>
+        <Label Grid.Row="3" Text="{Binding Username}" TextColor="#687684" HorizontalTextAlignment="Start" Margin="15,0,0,0" FontSize="16"/>
+        <Label Grid.Row="4" Text="{Binding Biography}" FontSize="15" TextColor="#141619" LineBreakMode="WordWrap" Margin="15,10,0,0" HorizontalOptions="StartAndExpand"/>
 
         <Grid Grid.Row="5" ColumnDefinitions="Auto,Auto" HorizontalOptions="Start" Margin="15,10,0,0">
             <Image Grid.Column="0" Source="calendar_icon.svg" WidthRequest="18" HeightRequest="18" HorizontalOptions="Center" />
-            <Label Grid.Column="1" Text=" Se unió abril 2021" FontSize="15" TextColor="#687684"/>
+            <Label Grid.Column="1">
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span Text=" Se unió " FontSize="15" TextColor="#687684" />
+                        <Span Text="{Binding JoinDate}" FontSize="15" TextColor="#687684" />
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
         </Grid>
 
         <Grid Grid.Row="6" ColumnDefinitions="Auto,Auto" HorizontalOptions="Start" Margin="15,10,0,0">
             <Label Grid.Column="0" Margin="0,0,10,0">
                 <Label.FormattedText>
                     <FormattedString>
-                        <Span Text="10" FontAttributes="Bold" FontSize="15" TextColor="#141619" />
+                        <Span Text="{Binding Followers}" FontAttributes="Bold" FontSize="15" TextColor="#141619" />
                         <Span Text=" Seguidores" FontSize="15" TextColor="#687684" />
                     </FormattedString>
                 </Label.FormattedText>
@@ -39,7 +49,7 @@
             <Label Grid.Column="1" Margin="10,0,0,0">
                 <Label.FormattedText>
                     <FormattedString>
-                        <Span Text="10" FontAttributes="Bold" FontSize="15" TextColor="#141619" />
+                        <Span Text="{Binding Following}" FontAttributes="Bold" FontSize="15" TextColor="#141619" />
                         <Span Text=" Siguiendo" FontSize="15" TextColor="#687684" />
                     </FormattedString>
                 </Label.FormattedText>
