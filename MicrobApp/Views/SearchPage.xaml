@@ -3,9 +3,18 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MicrobApp.Views.SearchPage">
     <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
+        <Frame CornerRadius="55" 
+               Padding="0" 
+               Margin="12,15,12,0"
+               Background="#E7ECF0"
+               BorderColor="#E7ECF0">
+            <SearchBar 
+                HorizontalOptions="Center" 
+                Placeholder="Buscar"
+                Background="#E7ECF0"
+                TextChanged="Handle_TextChange"
+                />
+        </Frame>
+
     </VerticalStackLayout>
 </ContentPage>

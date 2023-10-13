@@ -6,4 +6,9 @@ public partial class SearchPage : ContentPage
 	{
 		InitializeComponent();
 	}
+
+    void Handle_TextChange(object sender, System.EventArgs e)
+    {
+
+    }
 }
