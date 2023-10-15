@@ -1,16 +1,23 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="MicrobApp.Views.HomePage">
-    <VerticalStackLayout>
-        <Grid BackgroundColor="White">
-                <ImageButton Source="post.svg"
-                    
-                    HorizontalOptions="End"
-                    VerticalOptions="Fill"
-                    Clicked="OnImageButtonClicked"         
-                    />
-        </Grid>
-    </VerticalStackLayout>
+             x:Class="MicrobApp.Views.HomePage"
+             BackgroundColor="Gray">
     
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Add" Clicked="Add_Clicked" IconImageSource="{FontImage Glyph='+', Color=Aqua, Size=22}"> </ToolbarItem>
+    </ContentPage.ToolbarItems>
+    <ListView x:Name="postListView">
+        <ListView.ItemTemplate>
+            <DataTemplate>
+                <ViewCell>
+                    <StackLayout>
+                        <Label Text="{Binding Title}" TextColor="Black" />
+                        <Label Text="{Binding Message}" TextColor="Black" />
+                    </StackLayout>
+                </ViewCell>
+            </DataTemplate>
+        </ListView.ItemTemplate>
+    </ListView>
+
 </ContentPage>
