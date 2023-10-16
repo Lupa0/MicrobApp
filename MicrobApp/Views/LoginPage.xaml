@@ -4,6 +4,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:MicrobApp.Views.Controls"
     xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    Shell.NavBarIsVisible="False"
     >
     
     <Grid>
@@ -60,7 +61,10 @@
                             >
 
                             <VerticalStackLayout>
-                                <local:TextField x:Name="UsernameEntry" Placeholder="Usuario" PrefixIcon="icon_user_dark.png" />
+                                <local:TextField 
+                                    x:Name="UsernameEntry" 
+                                    Placeholder="Usuario" 
+                                    PrefixIcon="icon_user_dark.png" />
 
 
                                 <Line Stroke="#919191" X1="{Binding Width, Source={x:Reference border}}" />

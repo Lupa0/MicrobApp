@@ -11,6 +11,16 @@ public partial class TextField : ContentView
     public static readonly BindableProperty IsPasswordProperty =
         BindableProperty.Create(nameof(IsPassword), typeof(bool), typeof(TextField));
 
+    public static readonly BindableProperty TextProperty =
+    BindableProperty.Create(nameof(Text), typeof(string), typeof(TextField));
+
+    public string Text
+    {
+        get => (string)GetValue(TextProperty);
+        set => SetValue(TextProperty, value);
+    }
+
+
     public ImageSource PrefixIcon
     {
         get => (ImageSource)GetValue(PrefixIconProperty);

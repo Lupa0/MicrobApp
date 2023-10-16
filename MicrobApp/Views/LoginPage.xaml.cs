@@ -33,18 +33,6 @@ public partial class LoginPage : ContentPage
     {
         string username = UsernameEntry.Text;
         string password = PasswordEntry.Text;
-
-        // Realizar la lógica para consumir el endpoint con los datos ingresados
-        /*HttpClient client = new HttpClient();
-        HttpResponseMessage response = await client.GetAsync($"tu_endpoint?username={username}&password={password}");
-
-        if (response.IsSuccessStatusCode)
-        {
-            // La solicitud fue exitosa, maneja la respuesta aquí
-        }
-        else
-        {
-            // La solicitud no fue exitosa, maneja los errores aquí
-        }*/
+        await Shell.Current.GoToAsync("//HomePage");
     }
 }
