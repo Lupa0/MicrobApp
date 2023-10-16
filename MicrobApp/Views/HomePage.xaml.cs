@@ -2,7 +2,8 @@ using MicrobApp.Models;
 using System.Text.Json;
 using System;
 using System.IO;
-using Newtonsoft.Json;
+using System.Text.Json.Serialization;
+//using Newtonsoft.Json;
 
 namespace MicrobApp.Views;
 
@@ -16,14 +17,15 @@ public partial class HomePage : ContentPage
     protected override void OnAppearing()
     {
         base.OnAppearing();
-        string fileName = "posts.json";
+        string fileName;
         List<Post> posts = new List<Post>();
 
-        if (File.Exists(fileName))
-        {
-            string jsonData = File.ReadAllText(fileName);
-            posts = JsonConvert.DeserializeObject<List<Post>>(jsonData);
-        }
+        string folderPath = FileSystem.AppDataDirectory;
+        fileName = Path.Combine(folderPath, "post.json");
+        string jsonData = File.ReadAllText(fileName);
+
+        posts = JsonSerializer.Deserialize<List<Post>>(jsonData);
+        
         // Configura la ListView para mostrar los posts
         postListView.ItemsSource = posts;
     }
