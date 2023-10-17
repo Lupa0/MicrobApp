@@ -1,6 +1,6 @@
 using System.IO.Enumeration;
 using System.Text.Json;
-using System.Text.Json.Serialization;
+//using System.Text.Json.Serialization;
 
 using MicrobApp.Models;
 using System;
@@ -39,6 +39,8 @@ public partial class PostPage : ContentPage
             
             var post = new Post()
             {
+                Author = "Ana Chi",
+                AuthorId = "ana_chi@perrito",
                 Message = message,
                 Title = title
             };

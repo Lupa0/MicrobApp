@@ -20,6 +20,7 @@ public partial class HomePage : ContentPage
         string fileName;
         List<Post> posts = new List<Post>();
 
+
         string folderPath = FileSystem.AppDataDirectory;
         fileName = Path.Combine(folderPath, "post.json");
         string jsonData = File.ReadAllText(fileName);
@@ -41,5 +42,9 @@ public partial class HomePage : ContentPage
         Navigation.PushAsync(new PostPage());
     }
 
-
+    private void GoToUserPerfil(object sender, EventArgs e)
+    {
+        //Debe ir al perfil del usuario perteneciente a dichho post
+        Navigation.PushAsync(new ProfilePage());
+    }
 }
