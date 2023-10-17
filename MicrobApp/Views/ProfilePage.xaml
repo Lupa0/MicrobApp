@@ -1,11 +1,60 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="MicrobApp.Views.ProfilePage">
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
+             xmlns:models="clr-namespace:MicrobApp.Models"
+             xmlns:toolkit="clr-namespace:CommunityToolkit.Maui.Views;assembly=CommunityToolkit.Maui"
+             x:Class="MicrobApp.Views.ProfilePage"
+             x:DataType="{x:Type models:UserProfile}">
+
+    <Grid RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto">
+        <Frame Grid.Row="0" VerticalOptions="Start" HeightRequest="160" Padding="0">
+            <Image Source="{Binding CoverImage}" Aspect="AspectFill"/>
+        </Frame>
+        
+        <Grid Grid.Row="1" Margin="10,-70,0,0" HorizontalOptions="Start">
+            <toolkit:AvatarView
+                ImageSource="{Binding ProfileImage}"
+                BorderColor="White"
+                BorderWidth="10"
+                CornerRadius="70"
+                HeightRequest="140"
+                WidthRequest="140"/>
+        </Grid>
+
+        <Label Grid.Row="2" Text="{Binding Name}" FontAttributes="Bold" TextColor="#141619" HorizontalTextAlignment="Start" Margin="15,0,0,0" FontSize="22"/>
+        <Label Grid.Row="3" Text="{Binding Username}" TextColor="#687684" HorizontalTextAlignment="Start" Margin="15,0,0,0" FontSize="16"/>
+        <Label Grid.Row="4" Text="{Binding Biography}" FontSize="15" TextColor="#141619" LineBreakMode="WordWrap" Margin="15,10,0,0" HorizontalOptions="StartAndExpand"/>
+
+        <Grid Grid.Row="5" ColumnDefinitions="Auto,Auto" HorizontalOptions="Start" Margin="15,10,0,0">
+            <Image Grid.Column="0" Source="calendar_icon.svg" WidthRequest="18" HeightRequest="18" HorizontalOptions="Center" />
+            <Label Grid.Column="1">
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span Text=" Se unió " FontSize="15" TextColor="#687684" />
+                        <Span Text="{Binding JoinDate}" FontSize="15" TextColor="#687684" />
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
+        </Grid>
+
+        <Grid Grid.Row="6" ColumnDefinitions="Auto,Auto" HorizontalOptions="Start" Margin="15,10,0,0">
+            <Label Grid.Column="0" Margin="0,0,10,0">
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span Text="{Binding Followers}" FontAttributes="Bold" FontSize="15" TextColor="#141619" />
+                        <Span Text=" Seguidores" FontSize="15" TextColor="#687684" />
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
+            <Label Grid.Column="1" Margin="10,0,0,0">
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span Text="{Binding Following}" FontAttributes="Bold" FontSize="15" TextColor="#141619" />
+                        <Span Text=" Siguiendo" FontSize="15" TextColor="#687684" />
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
+        </Grid>
+        <BoxView Grid.Row="7" HorizontalOptions="FillAndExpand" HeightRequest="1"  Margin="-20,13,0,12" Color="#CED5DC"/>
+    </Grid>
 </ContentPage>
