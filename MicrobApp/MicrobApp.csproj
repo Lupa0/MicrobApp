@@ -53,6 +53,8 @@
 	  <None Remove="Resources\Images\calendar_icon.svg" />
 	  <None Remove="Resources\Images\help_icon.svg" />
 	  <None Remove="Resources\Images\home_icon.svg" />
+	  <None Remove="Resources\Images\icon_password_dark.png" />
+	  <None Remove="Resources\Images\icon_user_dark.png" />
 	  <None Remove="Resources\Images\logout_icon.svg" />
 	  <None Remove="Resources\Images\modelprofile.png" />
 	  <None Remove="Resources\Images\notifications_icon.svg" />
@@ -70,6 +72,11 @@
 	  <MauiXaml Update="Views\HomePage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <PackageReference Include="CommunityToolkit.Maui" Version="6.0.0" />
+	  <PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.1" />
 	</ItemGroup>
 
 </Project>

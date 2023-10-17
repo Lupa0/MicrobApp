@@ -1,11 +1,116 @@
-<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="MicrobApp.Views.LoginPage">
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
+<ContentPage
+    x:Class="MicrobApp.Views.LoginPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:MicrobApp.Views.Controls"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    Shell.NavBarIsVisible="False"
+    >
+    
+    <Grid>
+        <Grid.Background>
+            <LinearGradientBrush StartPoint="1,0"
+                 EndPoint="0,0.45">
+                <GradientStop Color="#2E4159" Offset="0.0" />
+                <GradientStop Color="#0F1926" Offset="0.75" />
+            </LinearGradientBrush>
+        </Grid.Background>
+        <ScrollView>
+            <StackLayout x:Name="stackParentOfAll" Opacity="0">
+                <VerticalStackLayout
+                    BackgroundColor="Transparent"
+                    MaximumWidthRequest="300"
+                    Spacing="10"
+                    >
+
+                    <VerticalStackLayout x:Name="stackTop">
+                        <Image
+                            Margin="0,20,0,20"
+                            MinimumHeightRequest="250"
+                            HorizontalOptions="Center"
+                            SemanticProperties.Description="Logo Microb!"
+                            Source="astronauta.png"
+                            />
+
+                        <Label
+                            HorizontalOptions="Center"
+                            SemanticProperties.HeadingLevel="Level1"
+                            FontFamily="InterBold"
+                            FontSize="45"
+                            TextColor="White"
+                            Text="Microb"
+                            />
+
+                        <Label
+                            SemanticProperties.Description="Una red diferente"
+                            SemanticProperties.HeadingLevel="Level2"
+                            FontFamily="InterRegular"
+                            FontSize="25"
+                            TextColor="White"
+                            HorizontalTextAlignment="Center"
+                            Text="Una red diferente"
+                            />
+
+
+                        <Border
+                            x:Name="border"
+                            Margin="0,40,0,0"
+                            Stroke="#919191"
+                            StrokeShape="RoundRectangle 15"
+                            StrokeThickness="1"
+                            >
+
+                            <VerticalStackLayout>
+                                <local:TextField 
+                                    x:Name="UsernameEntry" 
+                                    Placeholder="Usuario" 
+                                    PrefixIcon="icon_user_dark.png" />
+
+
+                                <Line Stroke="#919191" X1="{Binding Width, Source={x:Reference border}}" />
+
+
+                                <local:TextField
+                                    x:Name="PasswordEntry"
+                                    IsPassword="True"
+                                    Placeholder="Contraseña"
+                                    PrefixIcon="icon_password_dark.png"
+                                    />
+                            </VerticalStackLayout>
+                        </Border>
+                    </VerticalStackLayout>
+                    <VerticalStackLayout x:Name="stackBottom">
+                        <Button
+                            Margin="0,20"
+                            TextColor="White"
+                            FontFamily="InterBold"
+                            HeightRequest="48"
+                            Text="Entrar"
+                            Clicked="OnLoginButtonClicked"
+                            >
+                            <Button.Background>
+                                <LinearGradientBrush
+                                StartPoint="0,0"
+                                EndPoint="0.75,0.75">
+                                    <GradientStop Color="#566D8C" Offset="0.1" />
+                                    <GradientStop Color="#9A4DFF" Offset="0.75" />
+                                </LinearGradientBrush>
+                            </Button.Background>
+                        </Button>
+
+
+                        <Line
+                            HorizontalOptions="CenterAndExpand"
+                            Stroke="#919191"
+                            X1="150"
+                            />
+                    </VerticalStackLayout>
+
+
+                </VerticalStackLayout>
+            </StackLayout>
+        </ScrollView>
+    </Grid>
+
+
 </ContentPage>

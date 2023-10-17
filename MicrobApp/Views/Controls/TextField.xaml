@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView
+    x:Class="MicrobApp.Views.Controls.TextField"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:MicrobApp.Views.Controls"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    x:Name="this"
+    x:DataType="local:TextField"
+    >
+
+    <Grid
+        Margin="15,5"
+        ColumnDefinitions="20,*,20"
+        ColumnSpacing="15"
+        HeightRequest="50"
+        >
+
+        <Image
+            x:Name="prefixImage"
+            HeightRequest="20"
+            HorizontalOptions="Center"
+            Source="{Binding PrefixIcon, Source={x:Reference this}}"
+            VerticalOptions="Center"
+            WidthRequest="20"
+            >
+            <Image.Behaviors>
+                <toolkit:IconTintColorBehavior TintColor="Black" />
+            </Image.Behaviors>
+        </Image>
+
+        <Entry
+            Grid.Column="1"
+            IsPassword="{Binding IsPassword, Source={x:Reference this}}"
+            Placeholder="{Binding Placeholder, Source={x:Reference this}}"
+            Text="{Binding Text, Source={x:Reference this}}"
+            VerticalOptions="Center"
+            />
+    </Grid>
+</ContentView>
