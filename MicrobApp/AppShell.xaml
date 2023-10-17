@@ -6,11 +6,11 @@
     xmlns:local="clr-namespace:MicrobApp.Views"
     Shell.FlyoutBehavior="Disabled">
 
-    <!--<ShellContent
-    Route="LoginPage"
-    ContentTemplate="{DataTemplate local:LoginPage}"
-    />-->
-    
+    <ShellContent
+        Route="LoginPage"
+        ContentTemplate="{DataTemplate local:LoginPage}"
+        />
+
     <TabBar Route="HomePage">
         <Tab Icon="home_icon.svg">
             <ShellContent ContentTemplate="{DataTemplate local:HomePage}"/>
