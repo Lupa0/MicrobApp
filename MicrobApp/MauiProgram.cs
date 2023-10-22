@@ -1,4 +1,6 @@
 ﻿using CommunityToolkit.Maui;
+using MicrobApp.Services;
+using MicrobApp.Views;
 
 namespace MicrobApp;
 
@@ -17,6 +19,13 @@ public static class MauiProgram
 
 			});
 
-		return builder.Build();
+        //Inyeccion de dependencias
+        builder.Services.AddTransient<LoginPage>();
+
+
+        //Se agregan servicios
+        builder.Services.AddSingleton<AuthenticationService>();
+
+        return builder.Build();
 	}
 }

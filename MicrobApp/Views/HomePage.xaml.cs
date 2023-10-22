@@ -23,9 +23,12 @@ public partial class HomePage : ContentPage
 
         string folderPath = FileSystem.AppDataDirectory;
         fileName = Path.Combine(folderPath, "post.json");
-        string jsonData = File.ReadAllText(fileName);
+        if (File.Exists(fileName))
+        {
+            string jsonData = File.ReadAllText(fileName);
 
-        posts = JsonSerializer.Deserialize<List<Post>>(jsonData);
+            posts = JsonSerializer.Deserialize<List<Post>>(jsonData);
+        }
         
         // Configura la ListView para mostrar los posts
         postListView.ItemsSource = posts;
@@ -44,7 +47,7 @@ public partial class HomePage : ContentPage
 
     private void GoToUserPerfil(object sender, EventArgs e)
     {
-        //Debe ir al perfil del usuario perteneciente a dichho post
+        //Debe ir al perfil del usuario perteneciente a dicho post
         Navigation.PushAsync(new ProfilePage());
     }
 }
