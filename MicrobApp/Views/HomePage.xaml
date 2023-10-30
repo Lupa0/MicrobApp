@@ -2,11 +2,11 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MicrobApp.Views.HomePage"
-             
              >
 
     <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Add" Clicked="Add_Clicked" IconImageSource="{FontImage Glyph='+', Color=Aqua, Size=22}"></ToolbarItem>
+        <ToolbarItem Text="Add" Clicked="Add_Clicked" IconImageSource="add.svg"></ToolbarItem>
+        <ToolbarItem Text="Settings" Clicked="Redirect_to_settings" IconImageSource="settings_icon.svg"></ToolbarItem>
     </ContentPage.ToolbarItems>
 
     <ListView x:Name="postListView" BackgroundColor="{StaticResource LightBackground}">

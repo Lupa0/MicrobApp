@@ -50,4 +50,9 @@ public partial class HomePage : ContentPage
         //Debe ir al perfil del usuario perteneciente a dicho post
         Navigation.PushAsync(new ProfilePage());
     }
+
+    private void Redirect_to_settings(object sender, EventArgs e)
+    {
+        Navigation.PushAsync(new SettingsPage());
+    }
 }

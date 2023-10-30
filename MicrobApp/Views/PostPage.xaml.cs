@@ -21,7 +21,7 @@ public partial class PostPage : ContentPage
         InitializeComponent();
     }
 
-    private void Publicar(object sender, EventArgs e)
+    private async void Publicar(object sender, EventArgs e)
     {
         string title = TextTitle.Text;
         string message = TextEditor.Text;
@@ -51,9 +51,9 @@ public partial class PostPage : ContentPage
             jsonData = JsonSerializer.Serialize<List<Post>>(posts);
            
             // Serializar y guardar la lista actualizada
-            File.WriteAllText(fileName, jsonData);  
+            File.WriteAllText(fileName, jsonData);
 
-        Navigation.PushAsync(new HomePage());
+            await Shell.Current.GoToAsync("..");
 
         }
 
