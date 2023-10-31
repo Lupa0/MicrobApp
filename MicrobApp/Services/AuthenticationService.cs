@@ -13,22 +13,12 @@ namespace MicrobApp.Services
             _httpClient = HttpClientFactory.CreateHttpClient();
         }
 
-        public async Task<HttpResponseMessage> Login()
+        public async Task<HttpResponseMessage> Login(UserLogin user)
         {
             string apiUrl = "/Account/Login";
 
-            // Datos del usuario para la solicitud
-            var user = new UserLogin
-            {
-                email = "cuchosmarket@gmail.com",
-                password = "Pass_1234"
-            };
-
             // Serializa el objeto UserLogin a JSON
             string jsonRequest = JsonSerializer.Serialize(user);
-
-            // Establece el encabezado tenant y el tipo de contenido de la solicitud
-            _httpClient.DefaultRequestHeaders.Add("tenant", "0");
 
             // Contenido de la solicitud
             HttpContent content = new StringContent(jsonRequest, Encoding.UTF8, "application/json");

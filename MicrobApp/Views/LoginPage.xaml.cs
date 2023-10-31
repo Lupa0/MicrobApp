@@ -48,12 +48,12 @@ public partial class LoginPage : ContentPage
         }
 
         UserLogin user = new UserLogin();
-        user.email = username; //Cuando se corrija el flujo de back a dominio debe cambiarse
+        user.username = username; 
         user.password = password;
 
         try
         {
-            HttpResponseMessage response = await _authenticationService.Login();
+            HttpResponseMessage response = await _authenticationService.Login(user);
             Console.WriteLine("Respuesta de la API: " + await response.Content.ReadAsStringAsync());
 
             UserAuthenticationResponseDto responseBody = JsonSerializer
@@ -66,7 +66,7 @@ public partial class LoginPage : ContentPage
             }
             else
             {
-                Console.WriteLine("Error: Problemas");
+                Console.WriteLine("Error: " + responseBody.errorMessage);
                 await DisplayAlert("Error", "Inicio de sesión fallido. Por favor, verifica tus credenciales.", "OK");
             }
         }
