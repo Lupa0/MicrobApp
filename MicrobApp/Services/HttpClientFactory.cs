@@ -17,4 +17,12 @@ public class HttpClientFactory
 
         return httpClient;
     }
+
+    public static HttpClient CreateHttpClientWithToken()
+    {
+        var httpClient = CreateHttpClient();
+        httpClient.DefaultRequestHeaders.Add("header", SecureStorage.GetAsync("token").Result);
+
+        return httpClient;
+    }
 }

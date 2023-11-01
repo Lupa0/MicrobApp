@@ -61,7 +61,17 @@ public partial class LoginPage : ContentPage
 
             if (response.IsSuccessStatusCode)
             {
+                int atIndex = username.IndexOf('@');
+
+                if (atIndex >= 0 && atIndex < username.Length - 1)
+                {
+                    string domain = username.Substring(atIndex + 1);
+                    Console.WriteLine(domain);
+                    await SecureStorage.SetAsync("instanceDomain", domain);
+                }
+
                 await SecureStorage.SetAsync("token", responseBody.token);
+                await SecureStorage.SetAsync("username", username);
                 await Shell.Current.GoToAsync("//HomePage");
             }
             else
