@@ -5,56 +5,104 @@
              xmlns:toolkit="clr-namespace:CommunityToolkit.Maui.Views;assembly=CommunityToolkit.Maui"
              x:Class="MicrobApp.Views.ProfilePage"
              x:DataType="{x:Type models:UserProfile}">
+    
+    <ScrollView HorizontalScrollBarVisibility="Never">
+        <Grid RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,*">
+            <Grid Grid.Row="0">
+                <Frame VerticalOptions="Start" HeightRequest="70" Padding="0" CornerRadius="0">
+                    <Image BackgroundColor="#9BA7BF" Aspect="AspectFill"/>
+                </Frame>
 
-    <Grid RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto">
-        <Frame Grid.Row="0" VerticalOptions="Start" HeightRequest="160" Padding="0">
-            <Image Source="{Binding CoverImage}" Aspect="AspectFill"/>
-        </Frame>
-        
-        <Grid Grid.Row="1" Margin="10,-70,0,0" HorizontalOptions="Start">
-            <toolkit:AvatarView
-                ImageSource="{Binding ProfileImage}"
-                BorderColor="White"
-                BorderWidth="10"
-                CornerRadius="70"
-                HeightRequest="140"
-                WidthRequest="140"/>
-        </Grid>
+            </Grid>
 
-        <Label Grid.Row="2" Text="{Binding Name}" FontAttributes="Bold" TextColor="#141619" HorizontalTextAlignment="Start" Margin="15,0,0,0" FontSize="22"/>
-        <Label Grid.Row="3" Text="{Binding Username}" TextColor="#687684" HorizontalTextAlignment="Start" Margin="15,0,0,0" FontSize="16"/>
-        <Label Grid.Row="4" Text="{Binding Biography}" FontSize="15" TextColor="#141619" LineBreakMode="WordWrap" Margin="15,10,0,0" HorizontalOptions="StartAndExpand"/>
+            <Grid Grid.Row="1" Margin="10,-70,0,0" ColumnDefinitions="Auto,Auto" HorizontalOptions="Start">
+                <toolkit:AvatarView
+                    Grid.Column="0"
+                    ImageSource="{Binding ProfileImage}"
+                    BorderColor="White"
+                    BorderWidth="10"
+                    CornerRadius="70"
+                    HeightRequest="140"
+                    WidthRequest="140"/>
+                <Button x:Name="SeguirButton"
+                        Grid.Column="2"
+                        FontFamily="InterBold"
+                        FontSize="17"
+                        BackgroundColor="#BF8136"
+                        TextColor="White"
+                        HeightRequest="40"
+                        WidthRequest="150"
+                        MinimumWidthRequest="100"
+                        HorizontalOptions="End"
+                        Margin="80,70,0,0"
+                        Padding="0">
+                </Button>
+            </Grid>
 
-        <Grid Grid.Row="5" ColumnDefinitions="Auto,Auto" HorizontalOptions="Start" Margin="15,10,0,0">
-            <Image Grid.Column="0" Source="calendar_icon.svg" WidthRequest="18" HeightRequest="18" HorizontalOptions="Center" />
-            <Label Grid.Column="1">
+            <Label Grid.Row="2" FontAttributes="Bold" TextColor="#141619" HorizontalTextAlignment="Start" Margin="15,0,0,0" FontSize="22">
                 <Label.FormattedText>
                     <FormattedString>
-                        <Span Text=" Se unió " FontSize="15" TextColor="#687684" />
-                        <Span Text="{Binding JoinDate}" FontSize="15" TextColor="#687684" />
+                        <Span Text="{Binding FirstName}"/>
+                        <Span Text=" "/>
+                        <Span Text="{Binding LastName}"/>
                     </FormattedString>
                 </Label.FormattedText>
             </Label>
-        </Grid>
+            <Label Grid.Row="3" Text="{Binding UserName}" TextColor="#687684" HorizontalTextAlignment="Start" Margin="15,0,0,0" FontSize="16"/>
+            <Label Grid.Row="4" Text="{Binding Biography}" FontSize="15" TextColor="#141619" LineBreakMode="WordWrap" Margin="15,10,0,0" HorizontalOptions="StartAndExpand"/>
 
-        <Grid Grid.Row="6" ColumnDefinitions="Auto,Auto" HorizontalOptions="Start" Margin="15,10,0,0">
-            <Label Grid.Column="0" Margin="0,0,10,0">
-                <Label.FormattedText>
-                    <FormattedString>
-                        <Span Text="{Binding Followers}" FontAttributes="Bold" FontSize="15" TextColor="#141619" />
-                        <Span Text=" Seguidores" FontSize="15" TextColor="#687684" />
-                    </FormattedString>
-                </Label.FormattedText>
-            </Label>
-            <Label Grid.Column="1" Margin="10,0,0,0">
-                <Label.FormattedText>
-                    <FormattedString>
-                        <Span Text="{Binding Following}" FontAttributes="Bold" FontSize="15" TextColor="#141619" />
-                        <Span Text=" Siguiendo" FontSize="15" TextColor="#687684" />
-                    </FormattedString>
-                </Label.FormattedText>
-            </Label>
+            <Grid Grid.Row="5" ColumnDefinitions="Auto,Auto" HorizontalOptions="Start" Margin="15,10,0,0">
+                <Image Grid.Column="0" Source="calendar_icon.svg" WidthRequest="18" HeightRequest="18" HorizontalOptions="Center" />
+                <Label Grid.Column="1">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text=" Se unió " FontSize="15" TextColor="#687684" />
+                            <Span Text="{Binding CreationDate}" FontSize="15" TextColor="#687684" />
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+            </Grid>
+
+            <Grid Grid.Row="6" ColumnDefinitions="Auto,Auto" HorizontalOptions="Start" Margin="15,10,0,0">
+                <Label Grid.Column="0" Margin="0,0,10,0">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="{Binding Followers}" FontAttributes="Bold" FontSize="15" TextColor="#141619" />
+                            <Span Text=" Seguidores" FontSize="15" TextColor="#687684" />
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+                <Label Grid.Column="1" Margin="10,0,0,0">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="{Binding Following}" FontAttributes="Bold" FontSize="15" TextColor="#141619" />
+                            <Span Text=" Siguiendo" FontSize="15" TextColor="#687684" />
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+            </Grid>
+            <BoxView Grid.Row="7" HorizontalOptions="FillAndExpand" HeightRequest="1"  Margin="-20,13,0,12" Color="#CED5DC"/>
+            <Grid Grid.Row="8">
+                <CollectionView x:Name="userPosts" SelectionMode="Single" ItemsSource="{Binding Posts}">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <!-- ... Define tu plantilla para cada elemento de la colección aquí ... -->
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                    <CollectionView.EmptyView>
+                        <ContentView>
+                            <StackLayout>
+                                <Label Text="Sin posts para mostrar."
+                                           Margin="10,25,10,10"
+                                           FontSize="18"
+                                           HorizontalOptions="Fill"
+                                           HorizontalTextAlignment="Center" />
+                            </StackLayout>
+                        </ContentView>
+                    </CollectionView.EmptyView>
+                </CollectionView>
+            </Grid>
         </Grid>
-        <BoxView Grid.Row="7" HorizontalOptions="FillAndExpand" HeightRequest="1"  Margin="-20,13,0,12" Color="#CED5DC"/>
-    </Grid>
+    </ScrollView>
+
 </ContentPage>

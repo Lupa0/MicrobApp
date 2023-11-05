@@ -1,8 +1,5 @@
-using CommunityToolkit.Maui.Behaviors;
 using MicrobApp.Models;
 using MicrobApp.Services;
-using Microsoft.Maui.ApplicationModel.Communication;
-using System.Text;
 using System.Text.Json;
 
 namespace MicrobApp.Views;
@@ -61,7 +58,17 @@ public partial class LoginPage : ContentPage
 
             if (response.IsSuccessStatusCode)
             {
+                int atIndex = user.username.IndexOf('@');
+
+                if (atIndex >= 0 && atIndex < user.username.Length - 1)
+                {
+                    string domain = user.username.Substring(atIndex + 1);
+                    Console.WriteLine(domain);
+                    await SecureStorage.SetAsync("instanceDomain", domain);
+                }
+
                 await SecureStorage.SetAsync("token", responseBody.token);
+                await SecureStorage.SetAsync("username", user.username);
                 await Shell.Current.GoToAsync("//HomePage");
             }
             else

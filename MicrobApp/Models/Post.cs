@@ -1,15 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Globalization;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Text.Json;
+﻿using System.Globalization;
 
 namespace MicrobApp.Models
 {
-    internal class Post
+    public class Post
     {
         public string FileName { get; set; }
         public string Id { get; set; }

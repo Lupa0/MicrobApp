@@ -40,7 +40,7 @@ namespace MicrobApp.Views
                         await Shell.Current.GoToAsync("..");
                         break;
                     case "Cerrar sesión":
-                        SecureStorage.Remove("token");
+                        SecureStorage.RemoveAll();
                         await Shell.Current.GoToAsync("../LoginPage");
                         break;
                 }
