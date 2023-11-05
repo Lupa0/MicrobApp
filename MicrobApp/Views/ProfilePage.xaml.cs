@@ -1,31 +1,60 @@
 using MicrobApp.Models;
+using MicrobApp.Services;
 
 namespace MicrobApp.Views;
 
 public partial class ProfilePage : ContentPage
 {
-    public UserProfile UserProfile { get; set; }
+    private readonly UserService _userService;
+    private readonly string username;
 
-    public ProfilePage()
+    // Constructor para acceder a través de la TabBar
+    public ProfilePage(UserService service)
     {
         InitializeComponent();
-        GetProfileData();
+        _userService = service;
+        username = SecureStorage.GetAsync("username").Result;
+        LoadProfileData();
+        SeguirButton.IsVisible = false;
     }
 
-    private void GetProfileData()
+    public ProfilePage(UserService service, string username)
     {
-        UserProfile = new UserProfile
+        InitializeComponent();
+        _userService = service;
+        this.username = username;
+        if (!Equals(username, SecureStorage.GetAsync("username").Result))
         {
-            ProfileImage = "images/modelprofile.png",
-            CoverImage = "timeline.png",
-            Name = "Nombre Apellido",
-            Username = "@persona@marciano",
-            Biography = "Digital Goodies Team - Web u Mobile UI/UX development; Graphics; Illustrations",
-            JoinDate = new DateOnly(2021, 4, 1),
-            Followers = 10,
-            Following = 10,
-            IsFollowing = true
-        };
-        BindingContext = UserProfile;
+            SeguirButton.IsVisible = true;
+        }
+        LoadProfileData();
+        Shell.SetTabBarIsVisible(this, false);
+    }
+
+    private async void LoadProfileData()
+    {
+        try
+        {
+            string tenantId = SecureStorage.GetAsync("tenantId").Result;
+            Console.WriteLine(tenantId);
+            UserProfile user = await _userService.GetUser(username, tenantId);
+            user.Followers = user.FollowUsers.Count;
+            user.Posts = new List<Post>();
+
+            if (user.IsFollowing)
+            {
+                SeguirButton.Text = "Siguiendo";
+            } else
+            {
+                SeguirButton.Text = "Seguir";
+            }
+
+            BindingContext = user;
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine("Error al obtener los datos del perfil: " + ex.Message);
+            await DisplayAlert("Error", "Ha ocurrido un problema. Por favor vuelve a intentar mas tarde.", "OK");
+        }
     }
 }

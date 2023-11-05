@@ -13,13 +13,18 @@ namespace MicrobApp.Services
 
         public async Task<Instance> GetInstanceByDomain(String domain)
         {
-            string apiUrl = $"Instance/GetInstanceByDomain?domain={domain}";
+            string apiUrl = $"/Instance/GetInstanceByDomain?domain={domain}";
 
             HttpResponseMessage response = await _httpClient.GetAsync(apiUrl);
+            Console.WriteLine("Respuesta de la API: " + await response.Content.ReadAsStringAsync());
 
             try
             {
-                return JsonSerializer.Deserialize<Instance>(await response.Content.ReadAsStringAsync());
+                var options = new JsonSerializerOptions
+                {
+                    PropertyNamingPolicy = JsonNamingPolicy.CamelCase
+                };
+                return JsonSerializer.Deserialize<Instance>(response.Content.ReadAsStream(), options);
             } catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
