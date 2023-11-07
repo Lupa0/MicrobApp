@@ -1,16 +1,18 @@
+using MicrobApp.Models;
+
 namespace MicrobApp.Views
 {
     public partial class SettingsPage : ContentPage
     {
-        public SettingsPage()
+        public SettingsPage(Instance instance)
         {
             InitializeComponent();
 
             var menuItems = new List<MenuItem>
             {
                 new MenuItem { Text = "Notificaciones", IconImageSource = "notifications_icon.svg" },
-                new MenuItem { Text = "Reglas", IconImageSource = "format_list_bulleted_icon.svg" },
-                new MenuItem { Text = "Info", IconImageSource = "help_icon.svg" },
+                new MenuItem { Text = "Servidor", IconImageSource = "format_list_bulleted_icon.svg" },
+                new MenuItem { Text = "Acerca de Microb.uy", IconImageSource = "help_icon.svg" },
                 new MenuItem { Text = "Cerrar sesión", IconImageSource = "logout_icon.svg" }
             };
 
@@ -29,15 +31,15 @@ namespace MicrobApp.Views
                         // Redirige a la pantalla de notificaciones
                         await Shell.Current.GoToAsync("..");
                         break;
-                    case "Reglas":
-                        Console.WriteLine("Reglas Servidor");
+                    case "Servidor":
+                        Console.WriteLine("Informacion del Servidor");
                         // Redirige a la pantalla de reglas
                         await Shell.Current.GoToAsync("..");
                         break;
-                    case "Info":
+                    case "Acerca de Microb.uy":
                         Console.WriteLine("Info de la app");
                         // Redirige a la pantalla de información
-                        await Shell.Current.GoToAsync("..");
+                        await Navigation.PushAsync(new InformationPage());
                         break;
                     case "Cerrar sesión":
                         SecureStorage.RemoveAll();

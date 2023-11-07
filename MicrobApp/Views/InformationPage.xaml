@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MicrobApp.Views.InformationPage"
+             Shell.TabBarIsVisible="False">
+    <VerticalStackLayout>
+        <Image Source="principal.png"
+               Aspect="AspectFill"
+               HeightRequest="200"/>
+        <Label 
+            Text="Acerca de Microb.uy"
+            FontSize="Title"
+            VerticalOptions="Center" 
+            HorizontalOptions="Center" 
+            Margin="0,20,0,20"/>
+        <Line HorizontalOptions="CenterAndExpand"
+              Stroke="#919191"
+              X1="150"/>
+        <ScrollView>
+            <Label 
+                Text="Somos una plataforma social que te brinda la libertad de compartir tus pensamientos,
+                ideas y momentos con el mundo. Al igual que en Twitter, aquí puedes crear publicaciones,
+                seguir a otros usuarios, recibir notificaciones de las últimas actualizaciones y mucho más."
+                FontSize="Body" 
+                LineBreakMode="WordWrap"
+                HorizontalOptions="FillAndExpand"
+                Margin="20,20,20,0"/>
+        </ScrollView>
+    </VerticalStackLayout>
+</ContentPage>

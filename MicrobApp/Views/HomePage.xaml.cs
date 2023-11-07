@@ -7,6 +7,7 @@ namespace MicrobApp.Views;
 public partial class HomePage : ContentPage
 {
     private readonly InstanceService _instanceService;
+    private Instance instance;
 
     public HomePage(InstanceService instanceService)
     {
@@ -20,7 +21,7 @@ public partial class HomePage : ContentPage
         try
         {
             string domain = SecureStorage.GetAsync("instanceDomain").Result;
-            Instance instance = await _instanceService.GetInstanceByDomain(domain);
+            instance = await _instanceService.GetInstanceByDomain(domain);
             await SecureStorage.SetAsync("tenantId", instance.TenantInstanceId.ToString());
             Console.WriteLine("instancia: " + instance.TenantInstanceId);
 
@@ -51,7 +52,6 @@ public partial class HomePage : ContentPage
         // Configura la ListView para mostrar los posts
         postListView.ItemsSource = posts;
 
-        //LoadInstanceData();
     }
 
     private void OnImageButtonClicked(object sender, EventArgs e)
@@ -74,6 +74,6 @@ public partial class HomePage : ContentPage
 
     private void Redirect_to_settings(object sender, EventArgs e)
     {
-        Navigation.PushAsync(new SettingsPage());
+        Navigation.PushAsync(new SettingsPage(instance));
     }
 }

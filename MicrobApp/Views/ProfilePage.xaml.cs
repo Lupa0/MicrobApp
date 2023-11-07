@@ -38,7 +38,7 @@ public partial class ProfilePage : ContentPage
             string tenantId = SecureStorage.GetAsync("tenantId").Result;
             Console.WriteLine(tenantId);
             UserProfile user = await _userService.GetUser(username, tenantId);
-            user.Followers = user.FollowUsers.Count;
+            user.Following = user.FollowUsers.Count;
             user.Posts = new List<Post>();
 
             if (user.IsFollowing)
