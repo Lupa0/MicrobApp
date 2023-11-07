@@ -5,38 +5,46 @@
              xmlns:models="clr-namespace:MicrobApp.Models"
              Title="Nuevo Post"
              >
-    <VerticalStackLayout>
-        <Grid BackgroundColor="White" RowDefinitions=".2*,.6*,.2*" Margin="2">
+    <Grid>
+        <Grid.Background>
+            <LinearGradientBrush StartPoint="1,0"
+                 EndPoint="0,0.45">
+                <GradientStop Color="#2E4159" Offset="0.0" />
+                <GradientStop Color="#0F1926" Offset="0.75" />
+            </LinearGradientBrush>
+        </Grid.Background>
+        <VerticalStackLayout>
             <Frame BorderColor="{StaticResource PrimaryDark}" BackgroundColor="{StaticResource Primarylight}" Margin="5" VerticalOptions="StartAndExpand">
                 <StackLayout  Grid.Row="1">
                     <!-- Título del post -->
                     <Entry x:Name="TextTitle"
-                             Placeholder="Título del post"
-                             PlaceholderColor="DimGrey"
-                             Text="{Binding Title}"
-                           TextColor="Black"/>
-                           
+                                Placeholder="Título del post"
+                                PlaceholderColor="WhiteSmoke"
+                                Text="{Binding Title}"
+                            TextColor="Black"/>
+
                     <!-- Cuerpo del post (Editor para texto multilinea) -->
                     <Editor x:Name="TextEditor"
+                    
+                            AutoSize="TextChanges"
                             Placeholder="Escribe tu mensaje..." 
-                            PlaceholderColor="DimGrey"
+                            PlaceholderColor="WhiteSmoke"
                             HeightRequest="250"
                             TextColor="Black"
                             />
                     <Label
-                        x:Name="CountCaracteres"
-                        Text="0/250" HorizontalTextAlignment="End" Margin="4"/>
+                                x:Name="LongCaracteresEditor"                       
+                                Text="{Binding Count}" HorizontalTextAlignment="End" Margin="4"/>
 
+                    <Button x:Name="btnPublicar" 
+                            Clicked="Publicar"
+                            Grid.Row="2"
+                            Text="Publicar" 
+                            HorizontalOptions="End"
+                            VerticalOptions="EndAndExpand"
+                        />
                 </StackLayout>
             </Frame>
-            <Button x:Name="btnPublicar" 
-    
-                        Clicked="Publicar"
-                        Grid.Row="2"
-                        Text="Publicar" 
-                        HorizontalOptions="End"
-                        VerticalOptions="End"
-                        />
-        </Grid>
-    </VerticalStackLayout>
+        </VerticalStackLayout>
+    </Grid>
 </ContentPage>
