@@ -5,7 +5,7 @@
     <ContentPage.Resources>
         <ContentView x:Key="EmptyView">
             <StackLayout>
-                <Label Text="Sin posts para mostrar."
+                <Label Text="Sin resultados para mostrar."
                        Margin="10,25,10,10"
                        FontSize="18"
                        HorizontalOptions="Fill"
