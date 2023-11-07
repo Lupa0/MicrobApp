@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:models="clr-namespace:MicrobApp.Models"
              x:Class="MicrobApp.Views.HomePage"
-             >
+             x:DataType="{x:Type models:Post}">
 
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="Add" Clicked="Add_Clicked" IconImageSource="add.svg"></ToolbarItem>
@@ -36,15 +37,15 @@
                                     <Label x:Name="TextName"
                                           Margin="2"
                                           FontSize="Medium"
-                                          Text="{Binding Author}">
+                                          Text="{Binding UserOwner.FirstName}">
                                     </Label>
-                                    <Label x:Name="TextUser" Text="{Binding AuthorId}"></Label>
+                                    <Label x:Name="TextUser" Text="{Binding UserOwner.UserName}"></Label>
                                 </VerticalStackLayout>
                                 <BoxView Color="Gray"
                                          HeightRequest="2"
                                          HorizontalOptions="Fill" />
                             </HorizontalStackLayout>
-                            <Label Text="{Binding Message}" TextColor="Black" BackgroundColor="Beige" />
+                            <Label Text="{Binding Text}" TextColor="Black" BackgroundColor="Beige" />
                         </StackLayout>
                     </Frame>
                 </ViewCell>

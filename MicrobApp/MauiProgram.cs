@@ -23,12 +23,14 @@ public static class MauiProgram
         builder.Services.AddTransient<LoginPage>();
         builder.Services.AddTransient<HomePage>();
         builder.Services.AddTransient<ProfilePage>();
+        builder.Services.AddTransient<PostService>();
 
 
         //Se agregan servicios
         builder.Services.AddSingleton<AuthenticationService>();
         builder.Services.AddSingleton<UserService>();
         builder.Services.AddSingleton<InstanceService>();
+        builder.Services.AddSingleton<PostService>();
 
         return builder.Build();
     }

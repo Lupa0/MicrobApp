@@ -16,12 +16,15 @@
         <VerticalStackLayout>
             <Frame BorderColor="{StaticResource PrimaryDark}" BackgroundColor="{StaticResource Primarylight}" Margin="5" VerticalOptions="StartAndExpand">
                 <StackLayout  Grid.Row="1">
-                    <!-- Título del post -->
+                    <!-- Título del post 
                     <Entry x:Name="TextTitle"
-                                Placeholder="Título del post"
-                                PlaceholderColor="WhiteSmoke"
-                                Text="{Binding Title}"
+                            Placeholder="Título del post"
+                            PlaceholderColor="WhiteSmoke"
+                            Text="{Binding Title}"
                             TextColor="Black"/>
+                    
+                    -->
+                    
 
                     <!-- Cuerpo del post (Editor para texto multilinea) -->
                     <Editor x:Name="TextEditor"
@@ -32,9 +35,6 @@
                             HeightRequest="250"
                             TextColor="Black"
                             />
-                    <Label
-                                x:Name="LongCaracteresEditor"                       
-                                Text="{Binding Count}" HorizontalTextAlignment="End" Margin="4"/>
 
                     <Button x:Name="btnPublicar" 
                             Clicked="Publicar"

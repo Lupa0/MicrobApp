@@ -7,13 +7,21 @@ namespace MicrobApp.Views;
 public partial class HomePage : ContentPage
 {
     private readonly InstanceService _instanceService;
+    private readonly PostService _postService;
     private Instance instance;
+
+    public HomePage()
+    {
+        InitializeComponent();
+        _postService = new PostService();
+    }
 
     public HomePage(InstanceService instanceService)
     {
         InitializeComponent();
         _instanceService = instanceService;
-        LoadInstanceData();
+        _postService = new PostService();
+        //LoadInstanceData();
     }
 
     private async void LoadInstanceData()
@@ -33,14 +41,27 @@ public partial class HomePage : ContentPage
         }
     }
 
-    protected override void OnAppearing()
+    protected override async void OnAppearing()
     {
         base.OnAppearing();
-        string fileName;
-        List<Post> posts = new List<Post>();
+        LoadInstanceData();
+        //string fileName;
 
+        List<Post> posts = new();
 
-        string folderPath = FileSystem.AppDataDirectory;
+        try 
+        {
+            string tenantId = SecureStorage.GetAsync("tenantId").Result;
+            string username = SecureStorage.GetAsync("username").Result;
+            posts = await _postService.GetPostsByUser(username, tenantId);
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine("Error al obtener los posts: " + ex.Message);
+            await DisplayAlert("Error", "Ha ocurrido un problema. Por favor vuelve a intentar mas tarde.", "OK");
+        }
+
+        /*string folderPath = FileSystem.AppDataDirectory;
         fileName = Path.Combine(folderPath, "post.json");
         if (File.Exists(fileName))
         {
@@ -48,6 +69,7 @@ public partial class HomePage : ContentPage
 
             posts = JsonSerializer.Deserialize<List<Post>>(jsonData);
         }
+        */
 
         // Configura la ListView para mostrar los posts
         postListView.ItemsSource = posts;
