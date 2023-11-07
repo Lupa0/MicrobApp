@@ -2,10 +2,42 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MicrobApp.Views.SearchPage">
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
+    <ContentPage.Resources>
+        <ContentView x:Key="EmptyView">
+            <StackLayout>
+                <Label Text="Sin resultados para mostrar."
+                       Margin="10,25,10,10"
+                       FontSize="18"
+                       HorizontalOptions="Fill"
+                       HorizontalTextAlignment="Center" />
+            </StackLayout>
+        </ContentView>
+    </ContentPage.Resources>
+    <Grid RowDefinitions="Auto,*">
+        <Frame Grid.Row="0"
+               CornerRadius="55" 
+               Padding="0" 
+               Margin="12,15,12,0"
+               Background="#E7ECF0"
+               BorderColor="#E7ECF0">
+            <SearchBar 
+                x:Name="searchBar"
+                SearchButtonPressed="searchButtonPressed"
+                TextChanged="searchBar_TextChanged"
+                HorizontalOptions="Center" 
+                Placeholder="Buscar"
+                Background="#E7ECF0"
+                Keyboard="Text"/>
+        </Frame>
+        <CollectionView x:Name="searchResults"
+                        SelectionMode="Single"
+                        Grid.Row="1"
+                        BackgroundColor="Transparent">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Label Text="{Binding Results}"/>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </Grid>
 </ContentPage>
