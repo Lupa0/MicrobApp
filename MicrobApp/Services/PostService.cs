@@ -1,4 +1,5 @@
 ﻿using MicrobApp.Models;
+using System.Collections.ObjectModel;
 using System.Text;
 using System.Text.Json;
 
@@ -32,7 +33,7 @@ namespace MicrobApp.Services
             return await _httpClient.PostAsync(apiUrl, content);
         }
 
-        public async Task<List<Post>> GetPostsByUser(String username, String tenantId)
+        public async Task<ObservableCollection<Post>> GetPostsByUser(String username, String tenantId)
         {
             string apiUrl = $"/Post/GetPostByUser?userName={username}";
             _httpClient.DefaultRequestHeaders.Add("tenant", tenantId);
@@ -47,7 +48,8 @@ namespace MicrobApp.Services
                     {
                         PropertyNamingPolicy = JsonNamingPolicy.CamelCase
                     };
-                    return JsonSerializer.Deserialize<List<Post>>(response.Content.ReadAsStream(), options);
+                    _httpClient.DefaultRequestHeaders.Remove("tenant");
+                    return JsonSerializer.Deserialize<ObservableCollection<Post>>(response.Content.ReadAsStream(), options);
                 }
                 catch (Exception ex)
                 {

@@ -33,7 +33,7 @@
                             Placeholder="Escribe tu mensaje..." 
                             PlaceholderColor="WhiteSmoke"
                             HeightRequest="250"
-                            TextColor="Black"
+                            TextColor="WhiteSmoke"
                             />
 
                     <Button x:Name="btnPublicar" 

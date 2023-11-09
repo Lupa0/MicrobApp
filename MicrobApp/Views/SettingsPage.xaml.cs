@@ -1,10 +1,8 @@
-using MicrobApp.Models;
-
 namespace MicrobApp.Views
 {
     public partial class SettingsPage : ContentPage
     {
-        public SettingsPage(Instance instance)
+        public SettingsPage()
         {
             InitializeComponent();
 

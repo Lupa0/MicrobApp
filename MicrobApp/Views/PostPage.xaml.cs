@@ -3,8 +3,6 @@ using MicrobApp.Services;
 
 namespace MicrobApp.Views;
 
-
-
 public partial class PostPage : ContentPage
 {
     private readonly PostService _postService;
@@ -20,7 +18,7 @@ public partial class PostPage : ContentPage
 
         if (message != "")
         {
-            Post post = new Post
+            Post post = new()
             {
                 Text = message
             };
@@ -28,7 +26,7 @@ public partial class PostPage : ContentPage
             try
             {
                 HttpResponseMessage httpResponseMessage = await _postService.DoPost(post);
-                Console.WriteLine(httpResponseMessage.StatusCode); 
+                Console.WriteLine(httpResponseMessage.StatusCode);
             }
             catch (Exception ex)
             {
@@ -36,7 +34,7 @@ public partial class PostPage : ContentPage
                 await DisplayAlert("Error", "Ha ocurrido un problema. Por favor vuelve a intentar mas tarde.", "OK");
                 await Shell.Current.GoToAsync("..");
             }
-            await Shell.Current.GoToAsync("..");
+            await Shell.Current.GoToAsync("//HomePage");
 
         }
 

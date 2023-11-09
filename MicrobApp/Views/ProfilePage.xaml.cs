@@ -39,7 +39,6 @@ public partial class ProfilePage : ContentPage
             Console.WriteLine(tenantId);
             UserProfile user = await _userService.GetUser(username, tenantId);
             user.Following = user.FollowUsers.Count;
-            user.Posts = new List<Post>();
 
             if (user.IsFollowing)
             {

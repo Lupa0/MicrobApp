@@ -10,47 +10,55 @@
         <ToolbarItem Text="Settings" Clicked="Redirect_to_settings" IconImageSource="settings_icon.svg"></ToolbarItem>
     </ContentPage.ToolbarItems>
 
-    <ListView x:Name="postListView" BackgroundColor="{StaticResource LightBackground}">
-       <ListView.ItemTemplate>
-            <DataTemplate>
-                <ViewCell>
-                    <Frame BorderColor="Gray"
-                           CornerRadius="5"
-                           Padding="12">
-                        <StackLayout BackgroundColor="{StaticResource Primarylight}">
-                            <HorizontalStackLayout>
-                                <Frame Margin="10"
-                                       BorderColor="Black"
-                                       CornerRadius="50"
-                                       HeightRequest="60"
-                                       WidthRequest="60"
-                                       IsClippedToBounds="True"
-                                       HorizontalOptions="Center"
-                                       VerticalOptions="Center">
-                                    <Image Source="ana_chi.jpg"
-                                            Aspect="AspectFill"
-                                            Margin="-20"
-                                            HeightRequest="100"
-                                            WidthRequest="100" />
-                                </Frame>
-                                <VerticalStackLayout>
-                                    <Label x:Name="TextName"
-                                          Margin="2"
-                                          FontSize="Medium"
-                                          Text="{Binding UserOwner.FirstName}">
-                                    </Label>
-                                    <Label x:Name="TextUser" Text="{Binding UserOwner.UserName}"></Label>
-                                </VerticalStackLayout>
-                                <BoxView Color="Gray"
-                                         HeightRequest="2"
-                                         HorizontalOptions="Fill" />
-                            </HorizontalStackLayout>
-                            <Label Text="{Binding Text}" TextColor="Black" BackgroundColor="Beige" />
-                        </StackLayout>
-                    </Frame>
-                </ViewCell>
-            </DataTemplate>
-        </ListView.ItemTemplate>
-      </ListView>
+    <ScrollView>
+        <ListView x:Name="postListView" BackgroundColor="{StaticResource LightBackground}" HasUnevenRows="True">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <Grid BackgroundColor="White" 
+                              RowDefinitions="Auto, Auto"
+                              ColumnDefinitions="Auto, Auto"
+                              Padding="10">
+                            <Frame Grid.Column="0"
+                                   Grid.Row="0"
+                                   BorderColor="Black"
+                                   CornerRadius="50"
+                                   HeightRequest="60"
+                                   WidthRequest="60"
+                                   IsClippedToBounds="True"
+                                   VerticalOptions="Start">
+                                <Image Source="{Binding UserOwner.ProfileImage}"
+                                       Aspect="AspectFill"
+                                       HeightRequest="100"
+                                       WidthRequest="100" />
+                            </Frame>
+                            <VerticalStackLayout Grid.Column="1" Margin="10,0,0,0">
+                                <Label x:Name="TextName"
+			                           FontSize="Medium">
+                                    <Label.FormattedText>
+                                        <FormattedString>
+                                            <Span Text="{Binding UserOwner.FirstName}"/>
+                                            <Span Text=" "/>
+                                            <Span Text="{Binding UserOwner.LastName}"/>
+                                        </FormattedString>
+                                    </Label.FormattedText>
+                                </Label>
+                                <Label x:Name="TextUser"
+			                           Text="{Binding UserOwner.UserName}" />
+                                
+                            </VerticalStackLayout>
+                            <Label Text="{Binding Text}"
+                                   Grid.Row="1"
+                                   TextColor="Black"
+                                   FontSize="Body"
+                                   BackgroundColor="Transparent"
+                                   Padding="0, 15, 0, 5" />
+                        </Grid>
+
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </ScrollView>
 
 </ContentPage>

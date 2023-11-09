@@ -8,15 +8,18 @@ public partial class LoginPage : ContentPage
 {
 
     private readonly AuthenticationService _authenticationService;
-    public LoginPage(AuthenticationService authenticationService)
+    private readonly InstanceService _instanceService;
+
+    public LoginPage(AuthenticationService authenticationService, InstanceService instanceService)
     {
         InitializeComponent();
         _authenticationService = authenticationService;
+        _instanceService = instanceService;
         Loaded += LoginPage_Loaded;
     }
 
 
-    private async void LoginPage_Loaded(object sender, EventArgs e)
+    private void LoginPage_Loaded(object sender, EventArgs e)
     {
         _ = StartAnimation();
     }
@@ -44,9 +47,11 @@ public partial class LoginPage : ContentPage
             return;
         }
 
-        UserLogin user = new UserLogin();
-        user.username = username; 
-        user.password = password;
+        UserLogin user = new()
+        {
+            username = username,
+            password = password
+        };
 
         try
         {
@@ -65,6 +70,9 @@ public partial class LoginPage : ContentPage
                     string domain = user.username.Substring(atIndex + 1);
                     Console.WriteLine(domain);
                     await SecureStorage.SetAsync("instanceDomain", domain);
+                    Instance instance = await _instanceService.GetInstanceByDomain(domain);
+                    await SecureStorage.SetAsync("tenantId", instance.TenantInstanceId.ToString());
+                    Console.WriteLine("instancia: " + instance.TenantInstanceId);
                 }
 
                 await SecureStorage.SetAsync("token", responseBody.token);
