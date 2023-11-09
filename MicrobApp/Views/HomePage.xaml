@@ -17,36 +17,40 @@
                     <ViewCell>
                         <Grid BackgroundColor="White" 
                               RowDefinitions="Auto, Auto"
-                              ColumnDefinitions="Auto, Auto"
                               Padding="10">
-                            <Frame Grid.Column="0"
-                                   Grid.Row="0"
-                                   BorderColor="Black"
-                                   CornerRadius="50"
-                                   HeightRequest="60"
-                                   WidthRequest="60"
-                                   IsClippedToBounds="True"
-                                   VerticalOptions="Start">
-                                <Image Source="{Binding UserOwner.ProfileImage}"
-                                       Aspect="AspectFill"
-                                       HeightRequest="100"
-                                       WidthRequest="100" />
-                            </Frame>
-                            <VerticalStackLayout Grid.Column="1" Margin="10,0,0,0">
-                                <Label x:Name="TextName"
-			                           FontSize="Medium">
-                                    <Label.FormattedText>
-                                        <FormattedString>
-                                            <Span Text="{Binding UserOwner.FirstName}"/>
-                                            <Span Text=" "/>
-                                            <Span Text="{Binding UserOwner.LastName}"/>
-                                        </FormattedString>
-                                    </Label.FormattedText>
-                                </Label>
-                                <Label x:Name="TextUser"
-			                           Text="{Binding UserOwner.UserName}" />
-                                
-                            </VerticalStackLayout>
+                            <Grid
+                                Grid.Row="0"
+                                RowDefinitions="Auto, Auto"
+                                ColumnDefinitions="Auto, Auto">
+                                <Frame Grid.Column="0"
+                                       Grid.Row="0"
+                                       BorderColor="Black"
+                                       CornerRadius="50"
+                                       HeightRequest="60"
+                                       WidthRequest="60"
+                                       IsClippedToBounds="True"
+                                       VerticalOptions="Start">
+                                    <Image Source="{Binding UserOwner.ProfileImage}"
+                                           Aspect="AspectFill"
+                                           HeightRequest="100"
+                                           WidthRequest="100" />
+                                </Frame>
+                                <VerticalStackLayout Grid.Column="1" Margin="20,0,0,0">
+                                    <Label x:Name="TextName"
+                                           FontSize="Medium">
+                                        <Label.FormattedText>
+                                            <FormattedString>
+                                                <Span Text="{Binding UserOwner.FirstName}"/>
+                                                <Span Text=" "/>
+                                                <Span Text="{Binding UserOwner.LastName}"/>
+                                            </FormattedString>
+                                        </Label.FormattedText>
+                                    </Label>
+                                    <Label x:Name="TextUser"
+                                           Text="{Binding UserOwner.UserName}" />
+                                </VerticalStackLayout>
+                            </Grid>
+
                             <Label Text="{Binding Text}"
                                    Grid.Row="1"
                                    TextColor="Black"
@@ -54,7 +58,6 @@
                                    BackgroundColor="Transparent"
                                    Padding="0, 15, 0, 5" />
                         </Grid>
-
                     </ViewCell>
                 </DataTemplate>
             </ListView.ItemTemplate>

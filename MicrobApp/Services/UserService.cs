@@ -27,6 +27,7 @@ namespace MicrobApp.Services
                     {
                         PropertyNamingPolicy = JsonNamingPolicy.CamelCase
                     };
+                    _httpClient.DefaultRequestHeaders.Remove("tenant");
                     return JsonSerializer.Deserialize<UserProfile>(response.Content.ReadAsStream(), options);
                 }
                 catch (Exception ex)
