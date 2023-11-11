@@ -33,6 +33,44 @@ namespace MicrobApp.Services
             return await _httpClient.PostAsync(apiUrl, content);
         }
 
+        public async Task<HttpResponseMessage> CreateComment(int postId, Post post)
+        {
+            string username = SecureStorage.GetAsync("username").Result;
+            string apiUrl = $"/Post/CreateComment?postId={postId}&userName={username}";
+
+            string tenantId = SecureStorage.GetAsync("tenantId").Result;
+
+            _httpClient.DefaultRequestHeaders.Add("tenant", tenantId);
+
+            // Serializa el objeto UserLogin a JSON
+            string jsonRequest = JsonSerializer.Serialize(post);
+
+            // Contenido de la solicitud
+            HttpContent content = new StringContent(jsonRequest, Encoding.UTF8, "application/json");
+
+            // Realiza la solicitud HTTP POST
+            return await _httpClient.PostAsync(apiUrl, content);
+        }
+
+        public async void LikePost(Post post)
+        {
+            string username = SecureStorage.GetAsync("username").Result;
+            string apiUrl = $"/Post/CreateComment?postId={post.PostId}&userName={username}";
+
+            string tenantId = SecureStorage.GetAsync("tenantId").Result;
+
+            _httpClient.DefaultRequestHeaders.Add("tenant", tenantId);
+
+            // Serializa el objeto UserLogin a JSON
+            string jsonRequest = JsonSerializer.Serialize(post);
+
+            // Contenido de la solicitud
+            HttpContent content = new StringContent(jsonRequest, Encoding.UTF8, "application/json");
+
+            // Realiza la solicitud HTTP POST
+            await _httpClient.PostAsync(apiUrl, content);
+        }
+
         public async Task<ObservableCollection<Post>> GetPostsByUser(String username, String tenantId)
         {
             string apiUrl = $"/Post/GetPostByUser?userName={username}";
