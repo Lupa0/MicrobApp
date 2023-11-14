@@ -26,6 +26,7 @@
                     WidthRequest="140"/>
                 <Button x:Name="SeguirButton"
                         Grid.Column="2"
+                        Clicked="SeguirButton_Clicked"
                         FontFamily="InterBold"
                         FontSize="17"
                         BackgroundColor="#BF8136"
