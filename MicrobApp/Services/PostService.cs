@@ -23,7 +23,6 @@ namespace MicrobApp.Services
 
             _httpClient.DefaultRequestHeaders.Add("tenant", tenantId);
 
-            // Serializa el objeto UserLogin a JSON
             string jsonRequest = JsonSerializer.Serialize(post);
 
             // Contenido de la solicitud
@@ -42,7 +41,6 @@ namespace MicrobApp.Services
 
             _httpClient.DefaultRequestHeaders.Add("tenant", tenantId);
 
-            // Serializa el objeto UserLogin a JSON
             string jsonRequest = JsonSerializer.Serialize(post);
 
             // Contenido de la solicitud
@@ -61,7 +59,6 @@ namespace MicrobApp.Services
 
             _httpClient.DefaultRequestHeaders.Add("tenant", tenantId);
 
-            // Serializa el objeto UserLogin a JSON
             string jsonRequest = JsonSerializer.Serialize(post);
 
             // Contenido de la solicitud

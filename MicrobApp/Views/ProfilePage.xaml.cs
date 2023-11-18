@@ -9,14 +9,16 @@ public partial class ProfilePage : ContentPage
     private readonly UserService _userService;
     private readonly PostService _postService;
     private readonly string username;
+    private readonly string logInAs;
 
     // Constructor para acceder a través de la TabBar
     public ProfilePage(UserService service, PostService postService)
     {
         InitializeComponent();
         _userService = service;
-        _postService = postService; 
+        _postService = postService;
         username = SecureStorage.GetAsync("username").Result;
+        logInAs = username;
         SeguirButton.IsVisible = false;
     }
 
@@ -26,9 +28,10 @@ public partial class ProfilePage : ContentPage
         _userService = service;
         _postService = postService;
         this.username = username;
-        if (!Equals(username, SecureStorage.GetAsync("username").Result))
+        this.logInAs = SecureStorage.GetAsync("username").Result;
+        if (Equals(username, logInAs))
         {
-            SeguirButton.IsVisible = true;
+            SeguirButton.IsVisible = false;
         }
         Shell.SetTabBarIsVisible(this, false);
     }
@@ -46,14 +49,21 @@ public partial class ProfilePage : ContentPage
             string tenantId = SecureStorage.GetAsync("tenantId").Result;
             Console.WriteLine(tenantId);
             UserProfile user = await _userService.GetUser(username, tenantId);
-            user.Following = user.FollowUsers.Count;
+            user.FollowersNumber = user.Following.Count;
+            user.FollowingNumber = user.Followers.Count;
 
-            if (user.IsFollowing)
+            if (!Equals(username, logInAs))
             {
-                SeguirButton.Text = "Siguiendo";
-            } else
-            {
-                SeguirButton.Text = "Seguir";
+                List<UserProfile> followingUsers = await _userService.GetFollowingUsers(logInAs);
+                if (followingUsers.Count > 0 && followingUsers.Exists(aUser => Equals(aUser.UserName, username)))
+                {
+                    SeguirButton.Text = "Siguiendo";
+                    SeguirButton.IsEnabled = false;
+                }
+                else
+                {
+                    SeguirButton.Text = "Seguir";
+                }
             }
 
             BindingContext = user;
@@ -64,6 +74,32 @@ public partial class ProfilePage : ContentPage
         {
             Console.WriteLine("Error al obtener los datos del perfil: " + ex.Message);
             await DisplayAlert("Error", "Ha ocurrido un problema. Por favor vuelve a intentar mas tarde.", "OK");
+        }
+    }
+
+    private async void SeguirButton_Clicked(object sender, EventArgs e)
+    {
+        if (SeguirButton.Text == "Seguir")
+        {
+            try
+            {
+                _userService.FollowUser(username);
+                SeguirButton.Text = "Siguiendo";
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error al seguir usuario: " + username + ". " + ex.Message);
+                await DisplayAlert("Error", "Ha ocurrido un problema. Por favor vuelve a intentar mas tarde.", "OK");
+            }
+        }
+    }
+
+    private void GoToUserPerfil(object sender, EventArgs e)
+    {
+        //Debe ir al perfil del usuario perteneciente a dicho post
+        if (!Equals(username, logInAs))
+        {
+            Navigation.PushAsync(new ProfilePage(new UserService(), new PostService(), username));
         }
     }
 }

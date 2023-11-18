@@ -30,10 +30,11 @@
                                        WidthRequest="60"
                                        IsClippedToBounds="True"
                                        VerticalOptions="Start">
-                                    <Image Source="{Binding UserOwner.ProfileImage}"
-                                           Aspect="AspectFill"
-                                           HeightRequest="100"
-                                           WidthRequest="100" />
+                                    <ImageButton Source="{Binding UserOwner.ProfileImage}"
+                                                 Clicked="GoToUserPerfil"
+                                                 Aspect="AspectFill"
+                                                 HeightRequest="100"
+                                                 WidthRequest="100" />
                                 </Frame>
                                 <VerticalStackLayout Grid.Column="1" Margin="20,0,0,0">
                                     <Label x:Name="TextName"

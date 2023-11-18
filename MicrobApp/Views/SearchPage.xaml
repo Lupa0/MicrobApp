@@ -23,7 +23,7 @@
             <SearchBar 
                 x:Name="searchBar"
                 SearchButtonPressed="searchButtonPressed"
-                TextChanged="searchBar_TextChanged"
+                TextChanged="SearchBar_TextChanged"
                 HorizontalOptions="Center" 
                 Placeholder="Buscar"
                 Background="#E7ECF0"
@@ -31,11 +31,28 @@
         </Frame>
         <CollectionView x:Name="searchResults"
                         SelectionMode="Single"
-                        Grid.Row="1"
-                        BackgroundColor="Transparent">
+                        SelectionChanged="searchResults_SelectionChanged"
+                        Grid.Row="1">
             <CollectionView.ItemTemplate>
                 <DataTemplate>
-                    <Label Text="{Binding Results}"/>
+                    <Grid Padding="10" Margin="5">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+
+                        <Label Text="{Binding}" VerticalOptions="Center" HorizontalOptions="Start" Margin="10,0,0,0" Grid.Column="1" />
+
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup Name="CommonStates">
+                                <VisualState Name="Selected">
+                                    <VisualState.Setters>
+                                        <Setter Property="BackgroundColor" Value="LightGray" />
+                                    </VisualState.Setters>
+                                </VisualState>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                    </Grid>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>
