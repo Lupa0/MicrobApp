@@ -68,7 +68,7 @@
                 <Label Grid.Column="0" Margin="0,0,10,0">
                     <Label.FormattedText>
                         <FormattedString>
-                            <Span Text="{Binding Followers}" FontAttributes="Bold" FontSize="15" TextColor="#141619" />
+                            <Span Text="{Binding FollowersNumber}" FontAttributes="Bold" FontSize="15" TextColor="#141619" />
                             <Span Text=" Seguidores" FontSize="15" TextColor="#687684" />
                         </FormattedString>
                     </Label.FormattedText>
@@ -76,7 +76,7 @@
                 <Label Grid.Column="1" Margin="10,0,0,0">
                     <Label.FormattedText>
                         <FormattedString>
-                            <Span Text="{Binding Following}" FontAttributes="Bold" FontSize="15" TextColor="#141619" />
+                            <Span Text="{Binding FollowingNumber}" FontAttributes="Bold" FontSize="15" TextColor="#141619" />
                             <Span Text=" Siguiendo" FontSize="15" TextColor="#687684" />
                         </FormattedString>
                     </Label.FormattedText>
@@ -102,10 +102,11 @@
                                            WidthRequest="60"
                                            IsClippedToBounds="True"
                                            VerticalOptions="Start">
-                                        <Image Source="{Binding UserOwner.ProfileImage}"
-                                               Aspect="AspectFill"
-                                               HeightRequest="100"
-                                               WidthRequest="100" />
+                                        <ImageButton Source="{Binding UserOwner.ProfileImage}"
+                                                     Clicked="GoToUserPerfil"
+                                                     Aspect="AspectFill"
+                                                     HeightRequest="100"
+                                                     WidthRequest="100" />
                                     </Frame>
                                     <VerticalStackLayout Grid.Column="1" Margin="20,0,0,0">
                                         <Label x:Name="TextName"

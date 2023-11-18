@@ -1,7 +1,6 @@
 using MicrobApp.Models;
 using MicrobApp.Services;
 using System.Collections.ObjectModel;
-using Windows.System;
 
 namespace MicrobApp.Views;
 
@@ -17,7 +16,7 @@ public partial class ProfilePage : ContentPage
     {
         InitializeComponent();
         _userService = service;
-        _postService = postService; 
+        _postService = postService;
         username = SecureStorage.GetAsync("username").Result;
         logInAs = username;
         SeguirButton.IsVisible = false;
@@ -30,9 +29,9 @@ public partial class ProfilePage : ContentPage
         _postService = postService;
         this.username = username;
         this.logInAs = SecureStorage.GetAsync("username").Result;
-        if (!Equals(username, logInAs))
+        if (Equals(username, logInAs))
         {
-            SeguirButton.IsVisible = true;
+            SeguirButton.IsVisible = false;
         }
         Shell.SetTabBarIsVisible(this, false);
     }
@@ -50,21 +49,23 @@ public partial class ProfilePage : ContentPage
             string tenantId = SecureStorage.GetAsync("tenantId").Result;
             Console.WriteLine(tenantId);
             UserProfile user = await _userService.GetUser(username, tenantId);
-            user.Following = user.FollowingUsers.Count;
-            user.Followers = user.FollowersUsers.Count;
+            user.FollowersNumber = user.Following.Count;
+            user.FollowingNumber = user.Followers.Count;
 
             if (!Equals(username, logInAs))
             {
-                if (_userService.GetFollowingUsers(logInAs).Result.Contains(user))
+                List<UserProfile> followingUsers = await _userService.GetFollowingUsers(logInAs);
+                if (followingUsers.Count > 0 && followingUsers.Exists(aUser => Equals(aUser.UserName, username)))
                 {
                     SeguirButton.Text = "Siguiendo";
+                    SeguirButton.IsEnabled = false;
                 }
                 else
                 {
                     SeguirButton.Text = "Seguir";
                 }
             }
-            
+
             BindingContext = user;
             ObservableCollection<Post> posts = await _postService.GetPostsByUser(username, tenantId);
             userPosts.ItemsSource = posts.Reverse();
@@ -84,11 +85,21 @@ public partial class ProfilePage : ContentPage
             {
                 _userService.FollowUser(username);
                 SeguirButton.Text = "Siguiendo";
-            } catch (Exception ex)
+            }
+            catch (Exception ex)
             {
                 Console.WriteLine("Error al seguir usuario: " + username + ". " + ex.Message);
                 await DisplayAlert("Error", "Ha ocurrido un problema. Por favor vuelve a intentar mas tarde.", "OK");
             }
+        }
+    }
+
+    private void GoToUserPerfil(object sender, EventArgs e)
+    {
+        //Debe ir al perfil del usuario perteneciente a dicho post
+        if (!Equals(username, logInAs))
+        {
+            Navigation.PushAsync(new ProfilePage(new UserService(), new PostService(), username));
         }
     }
 }

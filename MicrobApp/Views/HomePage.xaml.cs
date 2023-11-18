@@ -40,12 +40,6 @@ public partial class HomePage : ContentPage
         }
     }
 
-    private void OnImageButtonClicked(object sender, EventArgs e)
-    {
-        // Navegar a la segunda página (SecondPage)
-        Navigation.PushAsync(new PostPage());
-    }
-
     private void Add_Clicked(object sender, EventArgs e)
     {
         Navigation.PushAsync(new PostPage());
@@ -54,8 +48,8 @@ public partial class HomePage : ContentPage
     private void GoToUserPerfil(object sender, EventArgs e)
     {
         //Debe ir al perfil del usuario perteneciente a dicho post
-        string username = ""; //Username del usuario del post seleccionado
-        Navigation.PushAsync(new ProfilePage(new UserService(), new PostService(), username));
+        string userName = username; //Username del usuario del post seleccionado
+        Navigation.PushAsync(new ProfilePage(new UserService(), new PostService(), userName));
     }
 
     private void Redirect_to_settings(object sender, EventArgs e)
