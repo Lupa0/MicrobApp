@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MicrobApp.Views.InstancePage"
+             Shell.TabBarIsVisible="False"
+             Title="InstancePage">
+    <Grid>
+        <Grid.Background>
+            <LinearGradientBrush StartPoint="1,0"
+             EndPoint="0,0.45">
+                <GradientStop Color="#2E4159" Offset="0.0" />
+                <GradientStop Color="#0F1926" Offset="0.75" />
+            </LinearGradientBrush>
+        </Grid.Background>
+        <ScrollView>
+            <StackLayout x:Name="stackParentOfAll" Opacity="0">
+                <VerticalStackLayout
+                BackgroundColor="Transparent"
+                MaximumWidthRequest="300"
+                Spacing="10"
+                >
+                    <VerticalStackLayout x:Name="stackList">
+                        //la lista de instancais
+                    </VerticalStackLayout>
+                </VerticalStackLayout>
+            </StackLayout>
+        </ScrollView>
+    </Grid>
+</ContentPage>
