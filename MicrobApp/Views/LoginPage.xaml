@@ -26,7 +26,7 @@
 
                     <VerticalStackLayout x:Name="stackTop">
                         <Image
-                            Margin="0,20,0,20"
+                            Margin="0,15,0,15"
                             MinimumHeightRequest="250"
                             HorizontalOptions="Center"
                             SemanticProperties.Description="Logo Microb!"
@@ -55,7 +55,7 @@
 
                         <Border
                             x:Name="border"
-                            Margin="0,40,0,0"
+                            Margin="0,15,0,0"
                             Stroke="#919191"
                             StrokeShape="RoundRectangle 15"
                             StrokeThickness="1"
@@ -105,9 +105,21 @@
                             Stroke="#919191"
                             X1="150"
                             />
+
+                        <Label
+                            HorizontalOptions="CenterAndExpand"
+                            Text="o inicia sesión con " 
+                            TextColor="White"
+                            FontFamily="InterBold"
+                            FontSize="Subtitle"
+                            Padding="10"/>
+                        <ImageButton Aspect="AspectFit"
+                                     HeightRequest="40"
+                                     Source="https://www.freepnglogos.com/uploads/google-logo-png/google-logo-icon-png-transparent-background-osteopathy-16.png"
+                                     WidthRequest="40" 
+                                     Clicked="OnGoogleLoginClicked"/>
+
                     </VerticalStackLayout>
-
-
                 </VerticalStackLayout>
             </StackLayout>
         </ScrollView>

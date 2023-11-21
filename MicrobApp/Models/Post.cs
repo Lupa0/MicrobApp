@@ -8,9 +8,11 @@ namespace MicrobApp.Models
         public string Text { get; set; }
         public string Attachment { get; set; }
         public UserProfile UserOwner { get; set; } = null!;
-        public bool isSanctioned { get; set; } = false;
+        public bool isSanctioned { get; set; }
         public DateTime Created { get; set; }
-
+        public bool Active { get; set; }
+        //Respuestas a un post
+        //public ICollection<CommentModel> Comments { get; set; } = new List<CommentModel>();
         //Personas que le dieron me gusta al post
         public ICollection<UserProfile> Likes { get; set; } = new List<UserProfile>();
         public List<string> Hashtag { get; set; } = new List<string>();
