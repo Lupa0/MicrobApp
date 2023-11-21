@@ -1,7 +1,8 @@
-<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+              xmlns:models="clr-namespace:MicrobApp.Models"
              x:Class="MicrobApp.Views.InstancePage"
+             x:DataType="{x:Type models:Instance}"
              Shell.TabBarIsVisible="False"
              Title="InstancePage">
     <Grid>
@@ -13,17 +14,16 @@
             </LinearGradientBrush>
         </Grid.Background>
         <ScrollView>
-            <StackLayout x:Name="stackParentOfAll" Opacity="0">
-                <VerticalStackLayout
-                BackgroundColor="Transparent"
-                MaximumWidthRequest="300"
-                Spacing="10"
-                >
-                    <VerticalStackLayout x:Name="stackList">
-                        //la lista de instancais
-                    </VerticalStackLayout>
-                </VerticalStackLayout>
-            </StackLayout>
+            <ListView x:Uid="listViewId"  x:Name="stackList" ItemSelected="stackList_ItemSelected">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <TextCell 
+                                    TextColor="Beige"
+                                    Height="25"
+                                    Text="{Binding Nombre}"/>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
         </ScrollView>
     </Grid>
 </ContentPage>

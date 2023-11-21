@@ -36,7 +36,7 @@ namespace MicrobApp.Services
 
         public async Task<List<Instance>> GetActiveInstance()
         {
-            string apiUrl = $"/Instance/GetActiveInstance";
+            string apiUrl = "/Instance/GetActiveInstances";
 
             HttpResponseMessage response = await _httpClient.GetAsync(apiUrl);
             Console.WriteLine("Respuesta de la API: " + await response.Content.ReadAsStringAsync());
@@ -47,7 +47,7 @@ namespace MicrobApp.Services
                 {
                     PropertyNamingPolicy = JsonNamingPolicy.CamelCase
                 };
-                return JsonSerializer.Deserialize<List <Instance>>(response.Content.ReadAsStream(), options);
+                return JsonSerializer.Deserialize<List<Instance>>(response.Content.ReadAsStream(), options);
             }
             catch (Exception ex)
             {

@@ -20,11 +20,10 @@ public static class MauiProgram
             });
 
         //Inyeccion de dependencias
+        builder.Services.AddTransient<InstancePage>();
         builder.Services.AddTransient<LoginPage>();
         builder.Services.AddTransient<HomePage>();
         builder.Services.AddTransient<ProfilePage>();
-        builder.Services.AddTransient<PostService>();
-
 
         //Se agregan servicios
         builder.Services.AddSingleton<AuthenticationService>();
