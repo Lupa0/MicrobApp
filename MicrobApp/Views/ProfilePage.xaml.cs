@@ -104,4 +104,12 @@ public partial class ProfilePage : ContentPage
             Navigation.PushAsync(new ProfilePage(new UserService(), new PostService(), username));
         }
     }
+
+    private async void Button_Clicked(object sender, EventArgs e)
+    {
+        var ListItem = sender as Button;
+        String idPost = ListItem.CommandParameter.ToString();
+        await _postService.LikePost(idPost);
+;
+    }
 }

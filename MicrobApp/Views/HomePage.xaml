@@ -16,8 +16,16 @@
                 <DataTemplate>
                     <ViewCell>
                         <Grid BackgroundColor="White" 
-                              RowDefinitions="Auto, Auto"
                               Padding="10">
+                            <Grid.RowDefinitions>
+                                <RowDefinition />
+                                <RowDefinition />
+                                <RowDefinition />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
                             <Grid
                                 Grid.Row="0"
                                 RowDefinitions="Auto, Auto"
@@ -36,7 +44,7 @@
                                                  HeightRequest="100"
                                                  WidthRequest="100" />
                                 </Frame>
-                                <VerticalStackLayout Grid.Column="1" Margin="20,0,0,0">
+                                <VerticalStackLayout Grid.Column="1" Margin="20,0,0,0" >
                                     <Label x:Name="TextName"
                                            FontSize="Medium">
                                         <Label.FormattedText>
@@ -51,13 +59,39 @@
                                            Text="{Binding UserOwner.UserName}" />
                                 </VerticalStackLayout>
                             </Grid>
-
                             <Label Text="{Binding Text}"
-                                   Grid.Row="1"
+                                    Grid.Row="1"
                                    TextColor="Black"
                                    FontSize="Body"
-                                   BackgroundColor="Transparent"
-                                   Padding="0, 15, 0, 5" />
+                                   BackgroundColor="Transparent"/>
+
+                                <Button 
+                                    Grid.Row="2"
+                                    Grid.Column="0"
+                                    BackgroundColor="Beige"
+                                    HeightRequest="30"
+                                    WidthRequest="30"
+                                    HorizontalOptions="Start"
+                                    ImageSource="heart_post.svg"/>
+                            <HorizontalStackLayout 
+                                    Grid.Row="2"
+                                    Grid.Column="1"
+                                    HorizontalOptions="End"
+                                    Spacing="10">
+                                <Button 
+                                    BackgroundColor="Aquamarine"
+                                    HeightRequest="30"
+                                    WidthRequest="30"
+                                    HorizontalOptions="Center"
+                                    ImageSource="forum.svg"/>
+                                <Button 
+ 
+                                    BackgroundColor="Coral"
+                                    HeightRequest="30"
+                                    WidthRequest="30"
+                                    ImageSource="repost_icon.svg"
+                                    HorizontalOptions="End"/>
+                            </HorizontalStackLayout>
                         </Grid>
                     </ViewCell>
                 </DataTemplate>
