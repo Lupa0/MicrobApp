@@ -88,8 +88,18 @@
                     <CollectionView.ItemTemplate>
                         <DataTemplate x:DataType="models:Post">
                             <Grid BackgroundColor="White" 
-                                  RowDefinitions="Auto, Auto, 1"
-                                  Padding="10">
+                                Padding="10">
+                                 
+                                <Grid.RowDefinitions>
+                                    <RowDefinition />
+                                    <RowDefinition />
+                                    <RowDefinition />
+                                    <RowDefinition Height="1" />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition />
+                                    <ColumnDefinition />
+                                </Grid.ColumnDefinitions>
                                 <Grid
                                     Grid.Row="0"
                                     RowDefinitions="Auto, Auto"
@@ -130,7 +140,42 @@
                                        FontSize="Body"
                                        BackgroundColor="Transparent"
                                        Padding="0, 15, 0, 8" />
-                                <BoxView Grid.Row="2"
+                                <Button 
+                                    Grid.Row="2"
+                                    Grid.Column="0"
+                                    Margin="5"
+                                    BackgroundColor="Beige"
+                                    HeightRequest="30"
+                                    WidthRequest="30"
+                                    HorizontalOptions="Start"
+                                    ImageSource="heart_post.svg"
+                                    CommandParameter="{Binding PostId}"
+                                    Clicked="Button_Clicked"/>
+                                <HorizontalStackLayout 
+                                    Grid.Row="2"
+                                    Grid.Column="1"
+                                    HorizontalOptions="End"
+                                    Spacing="10">
+                                    <Button 
+                                    BackgroundColor="Aquamarine"
+                                    HeightRequest="30"
+                                    WidthRequest="30"
+                                    HorizontalOptions="Center"
+                                    ImageSource="forum.svg"/>
+                                    <Button 
+ 
+                                    BackgroundColor="Coral"
+                                    HeightRequest="30"
+                                    WidthRequest="30"
+                                    ImageSource="repost_icon.svg"
+                                    HorizontalOptions="End"/>
+                                </HorizontalStackLayout>
+                                
+                                <BoxView Grid.Row="3"
+                                        Color="Silver"
+                                        HorizontalOptions="CenterAndExpand"/>
+                                <BoxView Grid.Row="3"
+                                         Grid.Column="1"
                                         Color="Silver"
                                         HorizontalOptions="CenterAndExpand"/>
                             </Grid>
