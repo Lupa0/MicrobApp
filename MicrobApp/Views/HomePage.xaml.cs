@@ -7,16 +7,16 @@ namespace MicrobApp.Views;
 public partial class HomePage : ContentPage
 {
     private readonly PostService _postService;
+    private readonly UserService _userService;
 
     private ObservableCollection<Post> posts = new();
-    private readonly string tenantId;
     private readonly string username;
 
     public HomePage()
     {
         InitializeComponent();
         _postService = new PostService();
-        tenantId = SecureStorage.GetAsync("tenantId").Result;
+        _userService = new UserService();
         username = SecureStorage.GetAsync("username").Result;
     }
     protected override void OnAppearing()
@@ -30,7 +30,7 @@ public partial class HomePage : ContentPage
         posts.Clear();
         try
         {
-            posts = await _postService.GetPostsByUser(username, tenantId);
+            posts = await _userService.GetUserTimeline();
             postListView.ItemsSource = posts.Reverse();
         }
         catch (Exception ex)

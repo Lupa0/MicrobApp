@@ -1,5 +1,6 @@
 ﻿
 using MicrobApp.Models;
+using System.Collections.ObjectModel;
 using System.Text;
 using System.Text.Json;
 
@@ -92,6 +93,40 @@ namespace MicrobApp.Services
             else
             {
                 return new List<UserProfile> { };
+            }
+        }
+
+        public async Task<ObservableCollection<Post>> GetUserTimeline()
+        {
+            string username = SecureStorage.GetAsync("username").Result;
+            string apiUrl = $"/Account/GetUserTimeline?&userName={username}";
+
+            string tenantId = SecureStorage.GetAsync("tenantId").Result;
+
+            _httpClient.DefaultRequestHeaders.Add("tenant", tenantId);
+
+            HttpResponseMessage response = await _httpClient.GetAsync(apiUrl);
+            if (response.IsSuccessStatusCode)
+            {
+                try
+                {
+                    Console.WriteLine("Respuesta de la API: " + await response.Content.ReadAsStringAsync());
+                    var options = new JsonSerializerOptions
+                    {
+                        PropertyNamingPolicy = JsonNamingPolicy.CamelCase
+                    };
+                    _httpClient.DefaultRequestHeaders.Remove("tenant");
+                    return JsonSerializer.Deserialize<ObservableCollection<Post>>(response.Content.ReadAsStream(), options);
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                    throw;
+                }
+            }
+            else
+            {
+                return new ObservableCollection<Post> { };
             }
         }
     }
