@@ -56,4 +56,28 @@ public partial class HomePage : ContentPage
     {
         Navigation.PushAsync(new SettingsPage());
     }
+
+    private async void Button_Clicked(object sender, EventArgs e)
+    {
+        var ListItem = sender as Button;
+        ListItem.BackgroundColor = Color.FromRgb(234,92,85);
+        ListItem.BorderColor = Color.FromRgb(255, 255, 255);
+        String idPost = ListItem.CommandParameter.ToString();
+        await _postService.LikePost(idPost);
+    }
+
+    private void OnLabelTapped(object sender, TappedEventArgs e)
+    {
+        //var ListItem = sender as TapGestureRecognizer;
+        //String idPost = ListItem.CommandParameter.ToString();
+        Label label = (Label)sender;
+
+        // Obtén el BindingContext de la Label, que debe ser un objeto Post
+        Post post = (Post)label.BindingContext;
+
+        // Accede al PostId
+        string idPost = post.PostId.ToString();
+        //Post seleccionado
+        Navigation.PushAsync(new ViewPostPage(new PostService(), idPost));
+    }
 }

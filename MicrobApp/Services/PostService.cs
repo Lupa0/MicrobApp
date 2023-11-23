@@ -54,20 +54,29 @@ namespace MicrobApp.Services
         {
          
             string username = SecureStorage.GetAsync("username").Result;
-            string apiUrl = $"/Post/CreateComment?postId={postId}&userName={username}";
+            string apiUrl = $"/Post/AddLikeToPost?postId={postId}&userName={username}";
+
+            Console.WriteLine(apiUrl + "  ckvhzdfhdfhdfghjfdkghdfjgh");
 
             string tenantId = SecureStorage.GetAsync("tenantId").Result;
 
             _httpClient.DefaultRequestHeaders.Add("tenant", tenantId);
-
+            
             Post post = new Post();
+            post.PostId = int.Parse(postId);
+
             string jsonRequest = JsonSerializer.Serialize(post);
 
             // Contenido de la solicitud
             HttpContent content = new StringContent(jsonRequest, Encoding.UTF8, "application/json");
 
+            Console.WriteLine(tenantId + "  llegoooooooooh");
+
+
             // Realiza la solicitud HTTP POST
             await _httpClient.PostAsync(apiUrl, content);
+            Console.WriteLine(tenantId + "  llegoooooooooh finnnnnnnn");
+
         }
 
         public async Task<ObservableCollection<Post>> GetPostsByUser(String username, String tenantId)
@@ -100,5 +109,26 @@ namespace MicrobApp.Services
                 throw new Exception("Ha ocurrido un problema");
             }
         }
+        public async Task<Post> GetPostById(String postId)
+
+        {
+            string username = SecureStorage.GetAsync("username").Result;
+            string tenantId = SecureStorage.GetAsync("tenantId").Result;
+            Post resultado = null;
+
+            Task<ObservableCollection<Post>> postsUser = this.GetPostsByUser(username, tenantId);
+            ObservableCollection<Post> posts = await postsUser;
+
+            foreach (Post p in posts)
+            {
+               if( p.PostId.Equals(postId))
+                {
+                    resultado = p;
+                }
+            }
+            Console.WriteLine(resultado.ToString());
+            return resultado;
+        }
+
     }
 }

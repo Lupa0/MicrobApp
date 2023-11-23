@@ -108,6 +108,5 @@ public partial class ProfilePage : ContentPage
         var ListItem = sender as Button;
         String idPost = ListItem.CommandParameter.ToString();
         await _postService.LikePost(idPost);
-;
     }
 }
