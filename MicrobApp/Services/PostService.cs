@@ -109,6 +109,8 @@ namespace MicrobApp.Services
                 throw new Exception("Ha ocurrido un problema");
             }
         }
+
+        //no se esta usando, se creo para una funcinalidad y ya no es necesaria. En caso de no reutilizar, hay q borrarla.
         public async Task<Post> GetPostById(String postId)
 
         {

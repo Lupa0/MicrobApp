@@ -24,7 +24,6 @@
                             </Grid.RowDefinitions>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition />
-                                <ColumnDefinition />
                             </Grid.ColumnDefinitions>
                             <Grid
                                 Grid.Row="0"
@@ -69,10 +68,13 @@
                                         <TapGestureRecognizer Tapped="OnLabelTapped" />
                                     </Label.GestureRecognizers>
                                 </Label>
+                            <HorizontalStackLayout 
+                                    Grid.Row="2"
+                                    HorizontalOptions="End"
+                                    Spacing="10">
                             <Button 
                                     x:Name="btnLike"
                                     Grid.Row="2"
-                                    Grid.Column="0"
                                     BackgroundColor="Beige"
                                     BorderColor="#5E5B5B"
                                     BorderWidth="1"
@@ -82,11 +84,6 @@
                                     CommandParameter="{Binding PostId}"
                                     Clicked="Button_Clicked"
                                     ImageSource="heart_post.svg"/>
-                            <HorizontalStackLayout 
-                                    Grid.Row="2"
-                                    Grid.Column="1"
-                                    HorizontalOptions="End"
-                                    Spacing="10">
                                 <Button 
                                     BackgroundColor="Aquamarine"
                                     HeightRequest="30"

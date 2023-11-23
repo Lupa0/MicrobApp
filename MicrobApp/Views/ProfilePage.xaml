@@ -98,7 +98,6 @@
                                 </Grid.RowDefinitions>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition />
-                                    <ColumnDefinition />
                                 </Grid.ColumnDefinitions>
                                 <Grid
                                     Grid.Row="0"
@@ -140,9 +139,12 @@
                                        FontSize="Body"
                                        BackgroundColor="Transparent"
                                        Padding="0, 15, 0, 8" />
+                                <HorizontalStackLayout 
+                                    Grid.Row="2"
+                                    HorizontalOptions="End"
+                                    Spacing="10">
                                 <Button 
                                     Grid.Row="2"
-                                    Grid.Column="0"
                                     Margin="5"
                                     BackgroundColor="Beige"
                                     HeightRequest="30"
@@ -151,11 +153,6 @@
                                     ImageSource="heart_post.svg"
                                     CommandParameter="{Binding PostId}"
                                     Clicked="Button_Clicked"/>
-                                <HorizontalStackLayout 
-                                    Grid.Row="2"
-                                    Grid.Column="1"
-                                    HorizontalOptions="End"
-                                    Spacing="10">
                                     <Button 
                                     BackgroundColor="Aquamarine"
                                     HeightRequest="30"

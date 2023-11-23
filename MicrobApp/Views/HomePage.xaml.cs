@@ -75,9 +75,7 @@ public partial class HomePage : ContentPage
         // Obtén el BindingContext de la Label, que debe ser un objeto Post
         Post post = (Post)label.BindingContext;
 
-        // Accede al PostId
-        string idPost = post.PostId.ToString();
         //Post seleccionado
-        Navigation.PushAsync(new ViewPostPage(new PostService(), idPost));
+        Navigation.PushAsync(new ViewPostPage(post));
     }
 }
