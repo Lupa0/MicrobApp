@@ -138,7 +138,11 @@
                                        TextColor="Black"
                                        FontSize="Body"
                                        BackgroundColor="Transparent"
-                                       Padding="0, 15, 0, 8" />
+                                       Padding="0, 15, 0, 8">
+                                    <Label.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="OnLabelTapped" />
+                                    </Label.GestureRecognizers>
+                                    </Label>
                                 <HorizontalStackLayout 
                                     Grid.Row="2"
                                     HorizontalOptions="End"
