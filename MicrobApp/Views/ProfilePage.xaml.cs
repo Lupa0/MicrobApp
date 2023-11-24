@@ -67,6 +67,8 @@ public partial class ProfilePage : ContentPage
             }
 
             BindingContext = user;
+            Console.WriteLine(user.Posts);
+
             ObservableCollection<Post> posts = await _postService.GetPostsByUser(username, tenantId);
             userPosts.ItemsSource = posts.Reverse();
         }

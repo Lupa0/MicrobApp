@@ -1,3 +1,4 @@
+using Firebase.Auth;
 using MicrobApp.Models;
 using MicrobApp.Services;
 using System.Text.Json;
@@ -8,11 +9,13 @@ public partial class LoginPage : ContentPage
 {
 
     private readonly AuthenticationService _authenticationService;
+    private readonly FirebaseAuthClient _authClient;
     private readonly InstanceService _instanceService;
 
-    public LoginPage(AuthenticationService authenticationService, InstanceService instanceService)
+    public LoginPage(AuthenticationService authenticationService, InstanceService instanceService, FirebaseAuthClient authClient)
     {
         InitializeComponent();
+        _authClient = authClient;
         _authenticationService = authenticationService;
         _instanceService = instanceService;
         Loaded += LoginPage_Loaded;
@@ -88,6 +91,23 @@ public partial class LoginPage : ContentPage
         {
             Console.WriteLine("Error: " + ex.Message);
             await DisplayAlert("Error", "Ha ocurrido un problema. Por favor vuelve a intentar mas tarde.", "OK");
+        }
+    }
+
+    private async void OnGoogleLoginClicked(object sender, EventArgs e)
+    {
+        try
+        {
+            //var result = await _authClient.SignInWithCredentialAsync("accessToken");
+            //var firebaseToken = result.FirebaseToken;
+
+            // Puedes usar firebaseToken para realizar acciones adicionales o navegar a la página principal.
+            await Shell.Current.GoToAsync("//HomePage");
+        }
+        catch (FirebaseAuthException ex)
+        {
+            // Manejar errores de autenticación.
+            Console.WriteLine($"Error de autenticación: {ex.Message}");
         }
     }
 }
