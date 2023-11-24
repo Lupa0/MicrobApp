@@ -110,6 +110,18 @@ public partial class ProfilePage : ContentPage
         var ListItem = sender as Button;
         String idPost = ListItem.CommandParameter.ToString();
         await _postService.LikePost(idPost);
-;
+    }
+
+    private void OnLabelTapped(object sender, TappedEventArgs e)
+    {
+        //var ListItem = sender as TapGestureRecognizer;
+        //String idPost = ListItem.CommandParameter.ToString();
+        Label label = (Label)sender;
+
+        // Obtén el BindingContext de la Label, que debe ser un objeto Post
+        Post post = (Post)label.BindingContext;
+
+        //Post seleccionado
+        Navigation.PushAsync(new ViewPostPage(post));
     }
 }

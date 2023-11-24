@@ -74,7 +74,6 @@ public partial class LoginPage : ContentPage
                     Console.WriteLine(domain);
                     await SecureStorage.SetAsync("instanceDomain", domain);
                     Instance instance = await _instanceService.GetInstanceByDomain(domain);
-                    await SecureStorage.SetAsync("tenantId", instance.TenantInstanceId.ToString());
                     Console.WriteLine("instancia: " + instance.TenantInstanceId);
                 }
 

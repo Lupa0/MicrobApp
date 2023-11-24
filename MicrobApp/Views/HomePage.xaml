@@ -24,7 +24,6 @@
                             </Grid.RowDefinitions>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition />
-                                <ColumnDefinition />
                             </Grid.ColumnDefinitions>
                             <Grid
                                 Grid.Row="0"
@@ -59,25 +58,32 @@
                                            Text="{Binding UserOwner.UserName}" />
                                 </VerticalStackLayout>
                             </Grid>
-                            <Label Text="{Binding Text}"
+                                <Label 
                                     Grid.Row="1"
                                    TextColor="Black"
                                    FontSize="Body"
-                                   BackgroundColor="Transparent"/>
-
-                                <Button 
+                                   Text="{Binding Text}"
+                                   BackgroundColor="Transparent">
+                                    <Label.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="OnLabelTapped" />
+                                    </Label.GestureRecognizers>
+                                </Label>
+                            <HorizontalStackLayout 
                                     Grid.Row="2"
-                                    Grid.Column="0"
+                                    HorizontalOptions="End"
+                                    Spacing="10">
+                            <Button 
+                                    x:Name="btnLike"
+                                    Grid.Row="2"
                                     BackgroundColor="Beige"
+                                    BorderColor="#5E5B5B"
+                                    BorderWidth="1"
                                     HeightRequest="30"
                                     WidthRequest="30"
                                     HorizontalOptions="Start"
+                                    CommandParameter="{Binding PostId}"
+                                    Clicked="Button_Clicked"
                                     ImageSource="heart_post.svg"/>
-                            <HorizontalStackLayout 
-                                    Grid.Row="2"
-                                    Grid.Column="1"
-                                    HorizontalOptions="End"
-                                    Spacing="10">
                                 <Button 
                                     BackgroundColor="Aquamarine"
                                     HeightRequest="30"

@@ -36,7 +36,7 @@ public partial class InstancePage : ContentPage
         // Ahora puedes trabajar con la instanciaSeleccionada
             String idTenant =instanciaSeleccionada.TenantInstanceId.ToString();
 
-            await SecureStorage.SetAsync("instanceNombre", idTenant);
+            await SecureStorage.SetAsync("tenantId", idTenant);
             await Shell.Current.GoToAsync("//LoginPage");
 
 

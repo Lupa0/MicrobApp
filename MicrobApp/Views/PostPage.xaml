@@ -16,17 +16,6 @@
         <VerticalStackLayout>
             <Frame BorderColor="{StaticResource PrimaryDark}" BackgroundColor="{StaticResource Primarylight}" Margin="5" VerticalOptions="StartAndExpand">
                 <StackLayout  Grid.Row="1">
-                    <!-- Título del post 
-                    <Entry x:Name="TextTitle"
-                            Placeholder="Título del post"
-                            PlaceholderColor="WhiteSmoke"
-                            Text="{Binding Title}"
-                            TextColor="Black"/>
-                    
-                    -->
-                    
-
-                    <!-- Cuerpo del post (Editor para texto multilinea) -->
                     <Editor x:Name="TextEditor"
                     
                             AutoSize="TextChanges"
