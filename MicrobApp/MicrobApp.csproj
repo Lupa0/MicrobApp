@@ -32,7 +32,7 @@
 
 	<ItemGroup>
 		<!-- App Icon -->
-		<MauiIcon Include="Resources\Images\astronauta.png" ForegroundFile="Resources\Images\astronauta.png" Color="#512BD4" />
+		<MauiIcon Include="Resources\AppIcon\astronauta.svg"/>
 
 		<!-- Splash Screen -->
 		<MauiSplashScreen Include="Resources\Splash\splash.svg" Color="#512BD4" BaseSize="128,128" />
@@ -49,6 +49,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <None Remove="Resources\AppIcon\astronauta.png" />
 	  <None Remove="Resources\Images\account_icon.svg" />
 	  <None Remove="Resources\Images\add.svg" />
 	  <None Remove="Resources\Images\calendar_icon.svg" />

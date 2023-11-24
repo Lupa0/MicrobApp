@@ -56,27 +56,24 @@ namespace MicrobApp.Services
             string username = SecureStorage.GetAsync("username").Result;
             string apiUrl = $"/Post/AddLikeToPost?postId={postId}&userName={username}";
 
-            Console.WriteLine(apiUrl + "  ckvhzdfhdfhdfghjfdkghdfjgh");
-
             string tenantId = SecureStorage.GetAsync("tenantId").Result;
 
             _httpClient.DefaultRequestHeaders.Add("tenant", tenantId);
-            
-            Post post = new Post();
-            post.PostId = int.Parse(postId);
+
+            Post post = new Post
+            {
+                PostId = int.Parse(postId)
+            };
 
             string jsonRequest = JsonSerializer.Serialize(post);
 
             // Contenido de la solicitud
             HttpContent content = new StringContent(jsonRequest, Encoding.UTF8, "application/json");
 
-            Console.WriteLine(tenantId + "  llegoooooooooh");
-
 
             // Realiza la solicitud HTTP POST
             await _httpClient.PostAsync(apiUrl, content);
-            Console.WriteLine(tenantId + "  llegoooooooooh finnnnnnnn");
-
+            _httpClient.DefaultRequestHeaders.Remove("tenant");
         }
 
         public async Task<ObservableCollection<Post>> GetPostsByUser(String username, String tenantId)
