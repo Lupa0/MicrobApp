@@ -6,10 +6,18 @@ namespace MicrobApp.Views;
 public partial class PostPage : ContentPage
 {
     private readonly PostService _postService;
+    private readonly string respondsTo;
     public PostPage()
     {
         InitializeComponent();
         _postService = new PostService();
+    }
+
+    public PostPage(string idPost)
+    {
+        InitializeComponent();
+        _postService = new PostService();
+        respondsTo = idPost;
     }
 
     private async void Publicar(object sender, EventArgs e)
@@ -25,8 +33,13 @@ public partial class PostPage : ContentPage
 
             try
             {
-                HttpResponseMessage httpResponseMessage = await _postService.DoPost(post);
-                Console.WriteLine(httpResponseMessage.StatusCode);
+                if (respondsTo == null)
+                {
+                    await _postService.DoPost(post);
+                } else
+                {
+                    await _postService.CreateComment(respondsTo, post);
+                }
             }
             catch (Exception ex)
             {

@@ -78,4 +78,11 @@ public partial class HomePage : ContentPage
         //Post seleccionado
         Navigation.PushAsync(new ViewPostPage(post));
     }
+
+    private void AnswerPost(object sender, EventArgs e)
+    {
+        var ListItem = sender as Button;
+        string inResponseTo = ListItem.CommandParameter.ToString();
+        Navigation.PushAsync(new PostPage(inResponseTo));
+    }
 }

@@ -89,9 +89,11 @@
                                     HeightRequest="30"
                                     WidthRequest="30"
                                     HorizontalOptions="Center"
+                                    CommandParameter="{Binding PostId}"
+                                    Clicked="AnswerPost"
                                     ImageSource="forum.svg"/>
                                 <Button 
- 
+                                    CommandParameter="{Binding PostId}"
                                     BackgroundColor="Coral"
                                     HeightRequest="30"
                                     WidthRequest="30"
