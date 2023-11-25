@@ -7,10 +7,14 @@ public partial class PostPage : ContentPage
 {
     private readonly PostService _postService;
     private readonly string respondsTo;
+    public string TitleText { get; private set; }
+
     public PostPage()
     {
         InitializeComponent();
         _postService = new PostService();
+        TitleText = "Nuevo post";
+        BindingContext = this;
     }
 
     public PostPage(string idPost)
@@ -18,6 +22,8 @@ public partial class PostPage : ContentPage
         InitializeComponent();
         _postService = new PostService();
         respondsTo = idPost;
+        TitleText = "Responder a post";
+        BindingContext = this;
     }
 
     private async void Publicar(object sender, EventArgs e)
