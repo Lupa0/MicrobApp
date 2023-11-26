@@ -65,7 +65,7 @@ namespace MicrobApp.Services
 
         public async Task<List<UserProfile>> GetFollowingUsers(string username)
         {
-            string apiUrl = $"/Account/GetFollowedUsers?&userName={username}";
+            string apiUrl = $"/Account/GetFollowedUsers?Page=1&ItemsPerPage=50&userName={username}";
 
             string tenantId = SecureStorage.GetAsync("tenantId").Result;
 
@@ -99,7 +99,7 @@ namespace MicrobApp.Services
         public async Task<ObservableCollection<Post>> GetUserTimeline()
         {
             string username = SecureStorage.GetAsync("username").Result;
-            string apiUrl = $"/Account/GetUserTimeline?&userName={username}";
+            string apiUrl = $"/Account/GetUserTimeline?Page=1&ItemsPerPage=50&userName={username}";
 
             string tenantId = SecureStorage.GetAsync("tenantId").Result;
 
