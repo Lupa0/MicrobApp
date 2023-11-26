@@ -6,7 +6,6 @@
              x:Class="MicrobApp.Views.ViewPostPage"
              x:DataType="{x:Type models:Post}"
              >
-<<<<<<< Updated upstream
     <VerticalStackLayout>
         <ScrollView>
         <Grid BackgroundColor="White" 
@@ -53,101 +52,12 @@
                                            Text="{Binding UserOwner.UserName}" />
                 </VerticalStackLayout>
             </Grid>
-            <Label Text="{Binding Text}"
+                <Label Text="{Binding Text}"
                     Grid.Row="1"
                     TextColor="Black"
                     FontSize="Body"
                     BackgroundColor="Transparent"/>
-=======
-    <ScrollView>
-
-        <HorizontalStackLayout>
-            <Grid BackgroundColor="White" 
-                  Padding="10">
-                <Grid.RowDefinitions>
-                    <RowDefinition />
-                    <RowDefinition />
-                    <RowDefinition />
-                </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition />
-                </Grid.ColumnDefinitions>
-                <Grid
-                    RowDefinitions="Auto, Auto"
-                    ColumnDefinitions="Auto, Auto">
-                    <Frame Grid.Column="0"
-                                Grid.Row="0"
-                                BorderColor="Black"
-                                CornerRadius="50"
-                                HeightRequest="60"
-                                WidthRequest="60"
-                                IsClippedToBounds="True"
-                                VerticalOptions="Start">
-                        <ImageButton Source="{Binding UserOwner.ProfileImage}"
-                                            Clicked="GoToUserPerfil"
-                                            Aspect="AspectFill"
-                                            HeightRequest="100"
-                                            WidthRequest="100" />
-                    </Frame>
-                    <VerticalStackLayout Grid.Column="1" Margin="20,0,0,0" >
-                        <Label x:Name="TextName"
-                                                       FontSize="Medium">
-                            <Label.FormattedText>
-                                <FormattedString>
-                                    <Span Text="{Binding UserOwner.FirstName}"/>
-                                    <Span Text=" "/>
-                                    <Span Text="{Binding UserOwner.LastName}"/>
-                                </FormattedString>
-                            </Label.FormattedText>
-                        </Label>
-                        <Label x:Name="TextUser"
-                                 Text="{Binding UserOwner.UserName}" />
-                    </VerticalStackLayout>
-                </Grid>
-
-                <Label Text="{Binding Text}"
-                            Grid.Row="1"
-                            TextColor="Black"
-                            BackgroundColor="Transparent"/>
-
                 <HorizontalStackLayout 
-                            Grid.Row="2"
-                            HorizontalOptions="End"
-                            Spacing="10">
-                    <Button 
-                                x:Name="btnLike"
-                                Grid.Row="2"
-                                BackgroundColor="Beige"
-                                BorderColor="#5E5B5B"
-                                BorderWidth="1"
-                                HeightRequest="30"
-                                WidthRequest="30"
-                                HorizontalOptions="Start"
-                                CommandParameter="{Binding PostId}"
-                                Clicked="Button_Clicked"
-                                ImageSource="heart_post.svg"/>
-                    <Button 
-                                BackgroundColor="Aquamarine"
-                                HeightRequest="30"
-                                WidthRequest="30"
-                                HorizontalOptions="Center"
-                                    ImageSource="forum.svg"/>
-                    <Button 
-                                BackgroundColor="Coral"
-                                HeightRequest="30"
-                                WidthRequest="30"
-                                ImageSource="repost_icon.svg"
-                                HorizontalOptions="End"/>
-                </HorizontalStackLayout>
-            </Grid>
-            
-           
-        </HorizontalStackLayout>
-    </ScrollView>
->>>>>>> Stashed changes
-
-
-            <HorizontalStackLayout 
                     Grid.Row="2"
                     HorizontalOptions="End"
                     Spacing="10">

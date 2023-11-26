@@ -14,33 +14,11 @@ public partial class ViewPostPage : ContentPage
         BindingContext = post;
 
     }
-<<<<<<< Updated upstream
-=======
 
     protected override void OnAppearing()
     {
         base.OnAppearing();
-      //  LoadComments();
     }
-  /*  private async void LoadComments()
-    {
-        commenListView.ItemsSource = null;
-        comments.Clear();
-        try
-        {
-            comments = this._post.Comments;
-            commenListView.ItemsSource = comments.Reverse();
-        }
-        catch (Exception ex)
-        {
-            Console.WriteLine("Error al obtener los comments: " + ex.Message);
-            await DisplayAlert("Error", "Ha ocurrido un problema. Por favor vuelve a intentar mas tarde.", "OK");
-        }
-    }*/
-
-    
-
->>>>>>> Stashed changes
     private void GoToUserPerfil(object sender, EventArgs e)
     {
 
