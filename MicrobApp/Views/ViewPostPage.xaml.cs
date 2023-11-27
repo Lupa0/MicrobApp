@@ -5,12 +5,9 @@ namespace MicrobApp.Views;
 
 public partial class ViewPostPage : ContentPage
 {
-    private readonly PostService _postService;
-    private readonly Post post;
     public ViewPostPage(Post post)
-	{
-		InitializeComponent();
-        this.post = post;
+    {
+        InitializeComponent();
         BindingContext = post;
 
     }

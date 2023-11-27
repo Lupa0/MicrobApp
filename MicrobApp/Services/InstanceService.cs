@@ -36,7 +36,7 @@ namespace MicrobApp.Services
 
         public async Task<List<Instance>> GetActiveInstance()
         {
-            string apiUrl = "/Instance/GetActiveInstances";
+            string apiUrl = "/Instance/GetActiveInstances?Page=1&ItemsperPage=50";
 
             HttpResponseMessage response = await _httpClient.GetAsync(apiUrl);
             Console.WriteLine("Respuesta de la API: " + await response.Content.ReadAsStringAsync());
