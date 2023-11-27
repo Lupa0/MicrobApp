@@ -4,7 +4,7 @@
              x:Class="MicrobApp.Views.InstancePage"
              x:DataType="{x:Type models:Instance}"
              Shell.TabBarIsVisible="False"
-             Title="InstancePage">
+             Title="Instancias">
     <Grid>
         <Grid.Background>
             <LinearGradientBrush StartPoint="1,0"
