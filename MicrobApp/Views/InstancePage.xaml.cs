@@ -12,9 +12,6 @@ public partial class InstancePage : ContentPage
         _instanceService = instanceService;
         StartInstances();
     }
-             //   await SecureStorage.SetAsync("tenantId", instance.TenantInstanceId.ToString());
-             //   await Shell.Current.GoToAsync("//HomePage");
-
 
     private async void StartInstances()
     {
