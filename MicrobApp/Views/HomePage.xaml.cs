@@ -11,6 +11,11 @@ public partial class HomePage : ContentPage
 
     private ObservableCollection<Post> posts = new();
     private readonly string username;
+    private bool hasNext = false;
+    private int currentPage = 1;
+    private int totalCount = 0;
+    private readonly int pageSize = 15;
+    public Command LoadMorePostsCommand { get; set; }
 
     public HomePage()
     {
@@ -18,25 +23,63 @@ public partial class HomePage : ContentPage
         _postService = new PostService();
         _userService = new UserService();
         username = SecureStorage.GetAsync("username").Result;
+        BindingContext = this;
     }
     protected override void OnAppearing()
     {
         base.OnAppearing();
         LoadPosts();
     }
+
+    protected override void OnDisappearing()
+    {
+        base.OnDisappearing();
+        posts.Clear();
+        hasNext = false;
+        currentPage = 1;
+        totalCount = 0;
+        postListView.ItemsSource = null;
+        loaderInit.IsVisible = true;
+
+    }
+
     private async void LoadPosts()
     {
-        postListView.ItemsSource = null;
-        posts.Clear();
+        loaderInit.IsRunning = true;
         try
         {
-            posts = await _userService.GetUserTimeline();
-            postListView.ItemsSource = posts.Reverse();
+            PostPaginated pagination = await _userService.GetUserTimeline(currentPage, pageSize);
+            postListView.ItemsSource = pagination.Posts;
+            hasNext = pagination.HasNext;
+            currentPage = pagination.CurrentPage;
+            totalCount = pagination.TotalCount;
+            postListView.RemainingItemsThreshold = hasNext ? 5 : 0;
+            loaderInit.IsRunning = false;
+            loaderInit.IsVisible = false;
         }
         catch (Exception ex)
         {
             Console.WriteLine("Error al obtener los posts: " + ex.Message);
             await DisplayAlert("Error", "Ha ocurrido un problema. Por favor vuelve a intentar mas tarde.", "OK");
+        }
+    }
+
+    private async void LoadMorePosts(object sender, EventArgs e)
+    {
+        if (loaderInit.IsRunning) { return; }
+        else if (posts.Count < totalCount)
+        {
+            loaderFooter.IsRunning = true;
+            PostPaginated pagination = await _userService.GetUserTimeline(currentPage + 1, pageSize);
+            foreach (Post post in pagination.Posts)
+            {
+                posts.Add(post);
+            }
+            hasNext = pagination.HasNext;
+            currentPage = pagination.CurrentPage;
+            postListView.RemainingItemsThreshold = hasNext ? 1 : 0;
+            loaderFooter.IsRunning = false;
+            loaderFooter.IsVisible = false;
         }
     }
 
@@ -47,8 +90,8 @@ public partial class HomePage : ContentPage
 
     private void GoToUserPerfil(object sender, EventArgs e)
     {
-        //Debe ir al perfil del usuario perteneciente a dicho post
-        string userName = username; //Username del usuario del post seleccionado
+        var ListItem = sender as ImageButton;
+        string userName = ListItem.CommandParameter.ToString(); //Username del usuario del post seleccionado
         Navigation.PushAsync(new ProfilePage(new UserService(), new PostService(), userName));
     }
 
@@ -83,6 +126,6 @@ public partial class HomePage : ContentPage
     {
         var ListItem = sender as Button;
         string inResponseTo = ListItem.CommandParameter.ToString();
-        Navigation.PushAsync(new PostPage(inResponseTo));
+        Navigation.PushAsync(new PostPage(inResponseTo, false));
     }
 }

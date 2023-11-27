@@ -7,6 +7,7 @@ public partial class PostPage : ContentPage
 {
     private readonly PostService _postService;
     private readonly string respondsTo;
+    private bool accessFromProfilePage = false;
     public string TitleText { get; private set; }
 
     public PostPage()
@@ -17,11 +18,12 @@ public partial class PostPage : ContentPage
         BindingContext = this;
     }
 
-    public PostPage(string idPost)
+    public PostPage(string idPost, bool fromProfilePage)
     {
         InitializeComponent();
         _postService = new PostService();
         respondsTo = idPost;
+        accessFromProfilePage = fromProfilePage;
         TitleText = "Responder a post";
         BindingContext = this;
     }
@@ -53,7 +55,14 @@ public partial class PostPage : ContentPage
                 await DisplayAlert("Error", "Ha ocurrido un problema. Por favor vuelve a intentar mas tarde.", "OK");
                 await Shell.Current.GoToAsync("..");
             }
-            await Shell.Current.GoToAsync("//HomePage");
+            
+            if (accessFromProfilePage)
+            {
+                await Shell.Current.GoToAsync("..");
+            } else
+            {
+                await Shell.Current.GoToAsync("//HomePage");
+            }
 
         }
 

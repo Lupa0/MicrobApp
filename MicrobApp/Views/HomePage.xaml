@@ -3,108 +3,114 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:models="clr-namespace:MicrobApp.Models"
              x:Class="MicrobApp.Views.HomePage"
-             x:DataType="{x:Type models:Post}">
+             >
 
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="Add" Clicked="Add_Clicked" IconImageSource="add.svg"></ToolbarItem>
         <ToolbarItem Text="Settings" Clicked="Redirect_to_settings" IconImageSource="settings_icon.svg"></ToolbarItem>
     </ContentPage.ToolbarItems>
 
-    <ScrollView>
-        <ListView x:Name="postListView" BackgroundColor="{StaticResource LightBackground}" HasUnevenRows="True">
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <ViewCell>
-                        <Grid BackgroundColor="White" 
-                              Padding="10">
-                            <Grid.RowDefinitions>
-                                <RowDefinition />
-                                <RowDefinition />
-                                <RowDefinition />
-                            </Grid.RowDefinitions>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition />
-                            </Grid.ColumnDefinitions>
-                            <Grid
-                                Grid.Row="0"
-                                RowDefinitions="Auto, Auto"
-                                ColumnDefinitions="Auto, Auto">
-                                <Frame Grid.Column="0"
-                                       Grid.Row="0"
-                                       BorderColor="Black"
-                                       CornerRadius="50"
-                                       HeightRequest="60"
-                                       WidthRequest="60"
-                                       IsClippedToBounds="True"
-                                       VerticalOptions="Start">
-                                    <ImageButton Source="{Binding UserOwner.ProfileImage}"
-                                                 Clicked="GoToUserPerfil"
-                                                 Aspect="AspectFill"
-                                                 HeightRequest="100"
-                                                 WidthRequest="100" />
-                                </Frame>
-                                <VerticalStackLayout Grid.Column="1" Margin="20,0,0,0" >
-                                    <Label x:Name="TextName"
-                                           FontSize="Medium">
-                                        <Label.FormattedText>
-                                            <FormattedString>
-                                                <Span Text="{Binding UserOwner.FirstName}"/>
-                                                <Span Text=" "/>
-                                                <Span Text="{Binding UserOwner.LastName}"/>
-                                            </FormattedString>
-                                        </Label.FormattedText>
-                                    </Label>
-                                    <Label x:Name="TextUser"
-                                           Text="{Binding UserOwner.UserName}" />
-                                </VerticalStackLayout>
-                            </Grid>
-                                <Label 
-                                    Grid.Row="1"
-                                   TextColor="Black"
-                                   FontSize="Body"
-                                   Text="{Binding Text}"
-                                   BackgroundColor="Transparent">
-                                    <Label.GestureRecognizers>
-                                        <TapGestureRecognizer Tapped="OnLabelTapped" />
-                                    </Label.GestureRecognizers>
+    <StackLayout>
+        <ActivityIndicator x:Name="loaderInit" Color="#45858C"/>
+        <CollectionView x:Name="postListView" VerticalOptions="FillAndExpand" RemainingItemsThresholdReached="LoadMorePosts">
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="{x:Type models:Post}">
+                    <Grid BackgroundColor="White" 
+                          Padding="10"
+                          RowSpacing="10">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Grid
+                            Grid.Row="0"
+                            RowDefinitions="Auto, Auto"
+                            ColumnDefinitions="Auto, Auto">
+                            <Frame Grid.Column="0"
+                                    Grid.Row="0"
+                                    BorderColor="Black"
+                                    CornerRadius="50"
+                                    HeightRequest="60"
+                                    WidthRequest="60"
+                                    IsClippedToBounds="True"
+                                    VerticalOptions="Start">
+                                <ImageButton Source="{Binding UserOwner.ProfileImage}"
+                                     Clicked="GoToUserPerfil"
+                                     CommandParameter="{Binding UserOwner.UserName}"
+                                     Aspect="AspectFill"
+                                     HeightRequest="100"
+                                     WidthRequest="100" />
+                            </Frame>
+                            <VerticalStackLayout Grid.Column="1" Margin="20,0,0,0" >
+                                <Label x:Name="TextName"
+                                       FontSize="Medium">
+                                    <Label.FormattedText>
+                                        <FormattedString>
+                                            <Span Text="{Binding UserOwner.FirstName}"/>
+                                            <Span Text=" "/>
+                                            <Span Text="{Binding UserOwner.LastName}"/>
+                                        </FormattedString>
+                                    </Label.FormattedText>
                                 </Label>
-                            <HorizontalStackLayout 
-                                    Grid.Row="2"
-                                    HorizontalOptions="End"
-                                    Spacing="10">
-                            <Button 
-                                    x:Name="btnLike"
-                                    Grid.Row="2"
-                                    BackgroundColor="Beige"
-                                    BorderColor="#5E5B5B"
-                                    BorderWidth="1"
-                                    HeightRequest="30"
-                                    WidthRequest="30"
-                                    HorizontalOptions="Start"
-                                    CommandParameter="{Binding PostId}"
-                                    Clicked="Button_Clicked"
-                                    ImageSource="heart_post.svg"/>
-                                <Button 
-                                    BackgroundColor="Aquamarine"
-                                    HeightRequest="30"
-                                    WidthRequest="30"
-                                    HorizontalOptions="Center"
-                                    CommandParameter="{Binding PostId}"
-                                    Clicked="AnswerPost"
-                                    ImageSource="forum.svg"/>
-                                <Button 
-                                    CommandParameter="{Binding PostId}"
-                                    BackgroundColor="Coral"
-                                    HeightRequest="30"
-                                    WidthRequest="30"
-                                    ImageSource="repost_icon.svg"
-                                    HorizontalOptions="End"/>
-                            </HorizontalStackLayout>
+                                <Label x:Name="TextUser"
+                                       Text="{Binding UserOwner.UserName}" />
+                            </VerticalStackLayout>
                         </Grid>
-                    </ViewCell>
+                        <Label 
+                            Grid.Row="1"
+                            TextColor="Black"
+                            FontSize="Body"
+                            Text="{Binding Text}"
+                            BackgroundColor="Transparent">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="OnLabelTapped" />
+                            </Label.GestureRecognizers>
+                        </Label>
+                        <HorizontalStackLayout 
+                            Grid.Row="2"
+                            HorizontalOptions="End"
+                            Spacing="10">
+                            <Button 
+                                x:Name="btnLike"
+                                Grid.Row="2"
+                                BackgroundColor="Beige"
+                                BorderColor="#5E5B5B"
+                                BorderWidth="1"
+                                HeightRequest="30"
+                                WidthRequest="30"
+                                HorizontalOptions="Start"
+                                CommandParameter="{Binding PostId}"
+                                Clicked="Button_Clicked"
+                                ImageSource="heart_post.svg"/>
+                            <Button 
+                                BackgroundColor="Aquamarine"
+                                HeightRequest="30"
+                                WidthRequest="30"
+                                HorizontalOptions="Center"
+                                CommandParameter="{Binding PostId}"
+                                Clicked="AnswerPost"
+                                ImageSource="forum.svg"/>
+                            <Button 
+                                CommandParameter="{Binding PostId}"
+                                BackgroundColor="Coral"
+                                HeightRequest="30"
+                                WidthRequest="30"
+                                ImageSource="repost_icon.svg"
+                                HorizontalOptions="End"/>
+                        </HorizontalStackLayout>
+                        <BoxView Grid.Row="3" HeightRequest="0.5" BackgroundColor="LightGray" HorizontalOptions="FillAndExpand" Opacity="0.5"/>
+                    </Grid>
                 </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
-    </ScrollView>
+            </CollectionView.ItemTemplate>
+            <CollectionView.Footer>
+                <ActivityIndicator x:Name="loaderFooter" Color="#45858C"/>
+            </CollectionView.Footer>
+        </CollectionView>
+    </StackLayout>
 
 </ContentPage>
