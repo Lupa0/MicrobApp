@@ -21,6 +21,7 @@
                                 <RowDefinition />
                                 <RowDefinition />
                                 <RowDefinition />
+                                <RowDefinition />
                             </Grid.RowDefinitions>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition />
@@ -58,8 +59,11 @@
                                            Text="{Binding UserOwner.UserName}" />
                                 </VerticalStackLayout>
                             </Grid>
-                                <Label 
-                                    Grid.Row="1"
+                            <Image Grid.Row="2"
+                                   x:Name="imgHomePost"
+                                   Source="{Binding Post.Attachment, Converter={StaticResource Base64Converter}}"/>
+                            <Label 
+                                    Grid.Row="2"
                                    TextColor="Black"
                                    FontSize="Body"
                                    Text="{Binding Text}"
@@ -69,7 +73,7 @@
                                     </Label.GestureRecognizers>
                                 </Label>
                             <HorizontalStackLayout 
-                                    Grid.Row="2"
+                                    Grid.Row="3"
                                     HorizontalOptions="End"
                                     Spacing="10">
                             <Button 
