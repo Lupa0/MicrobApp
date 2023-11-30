@@ -23,6 +23,7 @@
                             <RowDefinition Height="Auto" />
                             <RowDefinition Height="Auto" />
                             <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
                         </Grid.RowDefinitions>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition/>
@@ -61,8 +62,12 @@
                                        Text="{Binding UserOwner.UserName}" />
                             </VerticalStackLayout>
                         </Grid>
+                        <Image Grid.Row="1"
+                               x:Name="imgHomePost"
+                               Source="{Binding Attachment}"
+                               Margin="10"/>
                         <Label 
-                            Grid.Row="1"
+                            Grid.Row="2"
                             TextColor="Black"
                             FontSize="Body"
                             Text="{Binding Text}"
@@ -72,7 +77,7 @@
                             </Label.GestureRecognizers>
                         </Label>
                         <HorizontalStackLayout 
-                            Grid.Row="2"
+                            Grid.Row="3"
                             HorizontalOptions="End"
                             Spacing="10">
                             <Button 
@@ -103,7 +108,7 @@
                                 ImageSource="repost_icon.svg"
                                 HorizontalOptions="End"/>
                         </HorizontalStackLayout>
-                        <BoxView Grid.Row="3" HeightRequest="0.5" BackgroundColor="LightGray" HorizontalOptions="FillAndExpand" Opacity="0.5"/>
+                        <BoxView Grid.Row="4" HeightRequest="0.5" BackgroundColor="LightGray" HorizontalOptions="FillAndExpand" Opacity="0.5"/>
                     </Grid>
                 </DataTemplate>
             </CollectionView.ItemTemplate>

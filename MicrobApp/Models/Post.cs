@@ -12,7 +12,7 @@ namespace MicrobApp.Models
         public DateTime Created { get; set; }
         public bool Active { get; set; }
         //Respuestas a un post
-        //public ICollection<CommentModel> Comments { get; set; } = new List<CommentModel>();
+        public ICollection<Post> Comments { get; set; } = new List<Post>();
         //Personas que le dieron me gusta al post
         public ICollection<UserProfile> Likes { get; set; } = new List<UserProfile>();
         public List<string> Hashtag { get; set; } = new List<string>();
