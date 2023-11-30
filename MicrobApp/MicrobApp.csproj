@@ -15,7 +15,7 @@
 		<ApplicationTitle>Microb</ApplicationTitle>
 
 		<!-- App Identifier -->
-		<ApplicationId>com.companyname.microbapp</ApplicationId>
+		<ApplicationId>com.maui.microbuy</ApplicationId>
 		<ApplicationIdGuid>ed2c7c99-2219-4a3b-bc00-7afe42e652df</ApplicationIdGuid>
 
 		<!-- Versions -->
@@ -28,11 +28,24 @@
 		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</SupportedOSPlatformVersion>
 		<TargetPlatformMinVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</TargetPlatformMinVersion>
 		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'tizen'">6.5</SupportedOSPlatformVersion>
+		<AndroidSigningKeyStore>debug.keystore</AndroidSigningKeyStore>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net7.0-android|AnyCPU'">
+	  <AndroidKeyStore>False</AndroidKeyStore>
+	  <AndroidSigningKeyAlias>androiddebugkey</AndroidSigningKeyAlias>
+	  <AndroidSigningKeyPass>Password</AndroidSigningKeyPass>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net7.0-android|AnyCPU'">
+	  <AndroidKeyStore>False</AndroidKeyStore>
+	  <AndroidSigningKeyAlias>androiddebugkey</AndroidSigningKeyAlias>
+	  <AndroidSigningKeyPass>Password</AndroidSigningKeyPass>
 	</PropertyGroup>
 
 	<ItemGroup>
 		<!-- App Icon -->
-		<MauiIcon Include="Resources\AppIcon\astronauta.svg"/>
+		<MauiIcon Include="Resources\AppIcon\astronauta.svg" />
 
 		<!-- Splash Screen -->
 		<MauiSplashScreen Include="Resources\Splash\splash.svg" Color="#512BD4" BaseSize="128,128" />
@@ -49,7 +62,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <None Remove="Resources\AppIcon\astronauta.png" />
+	  <None Remove="Resources\AppIcon\astronauta.svg" />
 	  <None Remove="Resources\Images\account_icon.svg" />
 	  <None Remove="Resources\Images\add.svg" />
 	  <None Remove="Resources\Images\calendar_icon.svg" />
@@ -96,6 +109,12 @@
 	  <MauiXaml Update="Views\ViewPostPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	</ItemGroup>
+
+	<ItemGroup Condition="'$(TargetFramework)' == 'net7.0-android'">
+	  <PackageReference Include="Xamarin.GooglePlayServices.Auth">
+	    <Version>120.4.0.1</Version>
+	  </PackageReference>
 	</ItemGroup>
 
 </Project>

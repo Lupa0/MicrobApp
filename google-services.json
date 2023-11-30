@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "996737835227",
+    "project_id": "microbuyapp",
+    "storage_bucket": "microbuyapp.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:996737835227:android:ab191bfda4f35a250c6cfe",
+        "android_client_info": {
+          "package_name": "com.maui.microbuy"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "996737835227-0cqtqlrgglfob088un84r2ub7ssbedmj.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.maui.microbuy",
+            "certificate_hash": "07c352f31be01eeb2a0371805ee789ed530a2440"
+          }
+        },
+        {
+          "client_id": "996737835227-h0kr9hg7uq313p6g9iv14oa4vsk429ns.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCtz4eeQgnaL5ITO0Fy0mSv5FGi_x41G4M"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "996737835227-h0kr9hg7uq313p6g9iv14oa4vsk429ns.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,4 +1,6 @@
 using Firebase.Auth;
+using Firebase.Auth.Providers;
+using Firebase.Auth.Repository;
 using MicrobApp.Models;
 using MicrobApp.Services;
 using System.Text.Json;
@@ -10,12 +12,14 @@ public partial class LoginPage : ContentPage
 
     private readonly AuthenticationService _authenticationService;
     private readonly FirebaseAuthClient _authClient;
+    private readonly IGoogleAuthService _googleAuthService;
     private readonly InstanceService _instanceService;
 
-    public LoginPage(AuthenticationService authenticationService, InstanceService instanceService, FirebaseAuthClient authClient)
+    public LoginPage(AuthenticationService authenticationService, InstanceService instanceService, FirebaseAuthClient authClient, IGoogleAuthService googleAuthService)
     {
         InitializeComponent();
         _authClient = authClient;
+        _googleAuthService = googleAuthService;
         _authenticationService = authenticationService;
         _instanceService = instanceService;
         Loaded += LoginPage_Loaded;
@@ -98,7 +102,19 @@ public partial class LoginPage : ContentPage
     {
         try
         {
-            //var result = await _authClient.SignInWithCredentialAsync("accessToken");
+            GoogleSignInResponseDTO googleResponse = await _googleAuthService.AuthenticateAsync();
+            Console.WriteLine(googleResponse.Success);
+            if (googleResponse != null && googleResponse.Success)
+            {
+                var result = await _authClient.SignInWithCredentialAsync(GoogleProvider.GetCredential(googleResponse.IdToken, OAuthCredentialTokenType.IdToken));
+
+            }
+            else
+            {
+                Console.WriteLine("Error: Fallo iniciar sesion con Google");
+                await DisplayAlert("Error", "Inicio de sesión fallido con Google", "OK");
+                return;
+            }
             //var firebaseToken = result.FirebaseToken;
 
             // Puedes usar firebaseToken para realizar acciones adicionales o navegar a la página principal.
