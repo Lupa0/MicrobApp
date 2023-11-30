@@ -1,6 +1,5 @@
 using MicrobApp.Models;
 using MicrobApp.Services;
-using System.IO;
 
 namespace MicrobApp.Views;
 
@@ -63,18 +62,6 @@ public partial class PostPage : ContentPage
 
     private async void Button_library(object sender, EventArgs e)
     {
-        /*   var photo = await MediaPicker.PickPhotoAsync();
-           if (photo != null)
-           {
-
-               var selectedImageStream = (MemoryStream)await photo.OpenReadAsync();
-               imgPhoto.Source = ImageSource.FromStream(() => this.selectedImageStream);
-               //  post.Attachment = imgPhoto.Source;
-               byte[] imageBytes = this.selectedImageStream.ToArray();
-               this.post.Attachment = Convert.ToBase64String(imageBytes);
-
-           }
-       }*/
         var photo = await MediaPicker.PickPhotoAsync();
         if (photo != null)
         {
@@ -89,9 +76,10 @@ public partial class PostPage : ContentPage
                 // Convierte el MemoryStream a una cadena Base64
                 byte[] imageBytes = selectedImageStream.ToArray();
                 string base64Image = Convert.ToBase64String(imageBytes);
-
+                base64Image = "data:image/jpg;base64," + base64Image;
+                    ;
                 // Asigna la cadena Base64 a la propiedad Attachment del objeto Post
-                post.Attachment = base64Image;
+                this.post.Attachment = base64Image;
 
                 // Muestra la imagen en el componente imgPhoto
                 imgPhoto.Source = ImageSource.FromStream(() => new MemoryStream(imageBytes));

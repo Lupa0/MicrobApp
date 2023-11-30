@@ -59,9 +59,10 @@
                                            Text="{Binding UserOwner.UserName}" />
                                 </VerticalStackLayout>
                             </Grid>
-                            <Image Grid.Row="2"
+                            <Image Grid.Row="1"
                                    x:Name="imgHomePost"
-                                   Source="{Binding Post.Attachment, Converter={StaticResource Base64Converter}}"/>
+                                   Source="{Binding Attachment}"
+                                   Margin="10"/>
                             <Label 
                                     Grid.Row="2"
                                    TextColor="Black"
