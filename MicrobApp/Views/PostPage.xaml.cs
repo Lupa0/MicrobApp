@@ -10,10 +10,26 @@ public partial class PostPage : ContentPage
 
 
     private readonly PostService _postService;
+    private readonly string respondsTo;
+    private bool accessFromProfilePage = false;
+    public string TitleText { get; private set; }
+
     public PostPage()
     {
         InitializeComponent();
         _postService = new PostService();
+        TitleText = "Nuevo post";
+        BindingContext = this;
+    }
+
+    public PostPage(string idPost, bool fromProfilePage)
+    {
+        InitializeComponent();
+        _postService = new PostService();
+        respondsTo = idPost;
+        accessFromProfilePage = fromProfilePage;
+        TitleText = "Responder a post";
+        BindingContext = this;
     }
 
     private async void Publicar(object sender, EventArgs e)
@@ -27,8 +43,13 @@ public partial class PostPage : ContentPage
 
             try
             {
-                HttpResponseMessage httpResponseMessage = await _postService.DoPost(post);
-                Console.WriteLine(httpResponseMessage.StatusCode);
+                if (respondsTo == null)
+                {
+                    await _postService.DoPost(post);
+                } else
+                {
+                    await _postService.CreateComment(respondsTo, post);
+                }
             }
             catch (Exception ex)
             {
@@ -36,7 +57,14 @@ public partial class PostPage : ContentPage
                 await DisplayAlert("Error", "Ha ocurrido un problema. Por favor vuelve a intentar mas tarde.", "OK");
                 await Shell.Current.GoToAsync("..");
             }
-            await Shell.Current.GoToAsync("//HomePage");
+            
+            if (accessFromProfilePage)
+            {
+                await Shell.Current.GoToAsync("..");
+            } else
+            {
+                await Shell.Current.GoToAsync("//HomePage");
+            }
         }
     }
 

@@ -88,16 +88,16 @@
                     <CollectionView.ItemTemplate>
                         <DataTemplate x:DataType="models:Post">
                             <Grid BackgroundColor="White" 
-                                Padding="10">
-                                 
+                                  Padding="10"
+                                    RowSpacing="10">
                                 <Grid.RowDefinitions>
-                                    <RowDefinition />
-                                    <RowDefinition />
-                                    <RowDefinition />
-                                    <RowDefinition Height="1" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
                                 </Grid.RowDefinitions>
                                 <Grid.ColumnDefinitions>
-                                    <ColumnDefinition />
+                                    <ColumnDefinition/>
                                 </Grid.ColumnDefinitions>
                                 <Grid
                                     Grid.Row="0"
@@ -113,6 +113,7 @@
                                            VerticalOptions="Start">
                                         <ImageButton Source="{Binding UserOwner.ProfileImage}"
                                                      Clicked="GoToUserPerfil"
+                                                     CommandParameter="{Binding UserOwner.UserName}"
                                                      Aspect="AspectFill"
                                                      HeightRequest="100"
                                                      WidthRequest="100" />
@@ -137,8 +138,7 @@
                                        Grid.Row="1"
                                        TextColor="Black"
                                        FontSize="Body"
-                                       BackgroundColor="Transparent"
-                                       Padding="0, 15, 0, 8">
+                                       BackgroundColor="Transparent">
                                     <Label.GestureRecognizers>
                                         <TapGestureRecognizer Tapped="OnLabelTapped" />
                                     </Label.GestureRecognizers>
@@ -147,38 +147,36 @@
                                     Grid.Row="2"
                                     HorizontalOptions="End"
                                     Spacing="10">
-                                <Button 
-                                    Grid.Row="2"
-                                    Margin="5"
-                                    BackgroundColor="Beige"
-                                    HeightRequest="30"
-                                    WidthRequest="30"
-                                    HorizontalOptions="Start"
-                                    ImageSource="heart_post.svg"
-                                    CommandParameter="{Binding PostId}"
-                                    Clicked="Button_Clicked"/>
                                     <Button 
-                                    BackgroundColor="Aquamarine"
-                                    HeightRequest="30"
-                                    WidthRequest="30"
-                                    HorizontalOptions="Center"
-                                    ImageSource="forum.svg"/>
+                                        x:Name="btnLike"
+                                        Grid.Row="2"
+                                        BackgroundColor="Beige"
+                                        BorderColor="#5E5B5B"
+                                        BorderWidth="1"
+                                        HeightRequest="30"
+                                        WidthRequest="30"
+                                        HorizontalOptions="Start"
+                                        CommandParameter="{Binding PostId}"
+                                        Clicked="Button_Clicked"
+                                        ImageSource="heart_post.svg"/>
                                     <Button 
- 
-                                    BackgroundColor="Coral"
-                                    HeightRequest="30"
-                                    WidthRequest="30"
-                                    ImageSource="repost_icon.svg"
-                                    HorizontalOptions="End"/>
+                                        BackgroundColor="Aquamarine"
+                                        HeightRequest="30"
+                                        WidthRequest="30"
+                                        HorizontalOptions="Center"
+                                        CommandParameter="{Binding PostId}"
+                                        Clicked="AnswerPost"
+                                        ImageSource="forum.svg"/>
+                                    <Button 
+                                        CommandParameter="{Binding PostId}"
+                                        BackgroundColor="Coral"
+                                        HeightRequest="30"
+                                        WidthRequest="30"
+                                        ImageSource="repost_icon.svg"
+                                        HorizontalOptions="End"/>
                                 </HorizontalStackLayout>
-                                
-                                <BoxView Grid.Row="3"
-                                        Color="Silver"
-                                        HorizontalOptions="CenterAndExpand"/>
-                                <BoxView Grid.Row="3"
-                                         Grid.Column="1"
-                                        Color="Silver"
-                                        HorizontalOptions="CenterAndExpand"/>
+
+                                <BoxView Grid.Row="3" HeightRequest="0.5" BackgroundColor="LightGray" HorizontalOptions="FillAndExpand" Opacity="0.5"/>
                             </Grid>
                         </DataTemplate>
                     </CollectionView.ItemTemplate>
