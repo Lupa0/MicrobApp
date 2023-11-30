@@ -32,7 +32,7 @@ namespace MicrobApp.Services
             return await _httpClient.PostAsync(apiUrl, content);
         }
 
-        public async Task<HttpResponseMessage> CreateComment(int postId, Post post)
+        public async Task<HttpResponseMessage> CreateComment(string postId, Post post)
         {
             string username = SecureStorage.GetAsync("username").Result;
             string apiUrl = $"/Post/CreateComment?postId={postId}&userName={username}";

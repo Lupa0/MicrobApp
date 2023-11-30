@@ -96,11 +96,12 @@ namespace MicrobApp.Services
             }
         }
 
-        public async Task<ObservableCollection<Post>> GetUserTimeline()
+        public async Task<PostPaginated> GetUserTimeline(int numberPage, int pageSize)
         {
             string username = SecureStorage.GetAsync("username").Result;
-            string apiUrl = $"/Account/GetUserTimeline?Page=1&ItemsPerPage=50&userName={username}";
 
+            string apiUrl = $"/Account/GetUserTimeline?Page={numberPage}&ItemsPerPage={pageSize}&userName={username}";
+            Console.WriteLine(apiUrl);
             string tenantId = SecureStorage.GetAsync("tenantId").Result;
 
             _httpClient.DefaultRequestHeaders.Add("tenant", tenantId);
@@ -116,7 +117,20 @@ namespace MicrobApp.Services
                         PropertyNamingPolicy = JsonNamingPolicy.CamelCase
                     };
                     _httpClient.DefaultRequestHeaders.Remove("tenant");
-                    return JsonSerializer.Deserialize<ObservableCollection<Post>>(response.Content.ReadAsStream(), options);
+                    PostPaginated postPaginated = new()
+                    {
+                        Posts = JsonSerializer.Deserialize<ObservableCollection<Post>>(response.Content.ReadAsStream(), options)
+                    };
+
+                    try
+                    {
+                        postPaginated = ExtractXPaginationHeader(response, options, postPaginated);
+                    }
+                    catch
+                    {
+                        Console.WriteLine("Error here");
+                    }
+                    return postPaginated;
                 }
                 catch (Exception ex)
                 {
@@ -126,8 +140,49 @@ namespace MicrobApp.Services
             }
             else
             {
-                return new ObservableCollection<Post> { };
+                return new PostPaginated();
             }
+        }
+
+        private PostPaginated ExtractXPaginationHeader(HttpResponseMessage response, JsonSerializerOptions options, PostPaginated postPaginated)
+        {
+            // Obtener valores del encabezado X-Pagination
+            if (response.Headers.TryGetValues("X-Pagination", out IEnumerable<string> paginationValues))
+            {
+                var paginationJson = paginationValues.FirstOrDefault();
+
+                if (!string.IsNullOrEmpty(paginationJson))
+                {
+                    var paginationData = JsonSerializer.Deserialize<Dictionary<string, object>>(paginationJson, options);
+
+                    // Asignar los valores al objeto PostPaginated
+                    if (paginationData.ContainsKey("CurrentPage"))
+                    {
+                        postPaginated.CurrentPage = int.Parse(paginationData["CurrentPage"].ToString());
+                    }
+
+                    if (paginationData.ContainsKey("TotalCount"))
+                    {
+                        postPaginated.TotalCount = int.Parse(paginationData["TotalCount"].ToString());
+                    }
+
+                    if (paginationData.ContainsKey("TotalPages"))
+                    {
+                        postPaginated.TotalPages = int.Parse(paginationData["TotalPages"].ToString());
+                    }
+
+                    if (paginationData.ContainsKey("HasPrevious"))
+                    {
+                        postPaginated.HasPrevious = bool.Parse(paginationData["HasPrevious"].ToString());
+                    }
+
+                    if (paginationData.ContainsKey("HasNext"))
+                    {
+                        postPaginated.HasNext = bool.Parse(paginationData["HasNext"].ToString());
+                    }
+                }
+            }
+            return postPaginated;
         }
     }
 }

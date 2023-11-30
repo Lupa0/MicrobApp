@@ -8,6 +8,7 @@ public partial class ProfilePage : ContentPage
 {
     private readonly UserService _userService;
     private readonly PostService _postService;
+    private ObservableCollection<Post> posts = new();
     private readonly string username;
     private readonly string logInAs;
 
@@ -42,6 +43,14 @@ public partial class ProfilePage : ContentPage
         LoadProfileData();
     }
 
+    protected override void OnDisappearing()
+    {
+        base.OnDisappearing();
+        posts.Clear();
+        userPosts.ItemsSource = posts;
+
+    }
+
     private async void LoadProfileData()
     {
         try
@@ -69,7 +78,7 @@ public partial class ProfilePage : ContentPage
             BindingContext = user;
             Console.WriteLine(user.Posts);
 
-            ObservableCollection<Post> posts = await _postService.GetPostsByUser(username, tenantId);
+            posts = await _postService.GetPostsByUser(username, tenantId);
             userPosts.ItemsSource = posts.Reverse();
         }
         catch (Exception ex)
@@ -123,5 +132,12 @@ public partial class ProfilePage : ContentPage
 
         //Post seleccionado
         Navigation.PushAsync(new ViewPostPage(post));
+    }
+
+    private void AnswerPost(object sender, EventArgs e)
+    {
+        var ListItem = sender as Button;
+        string inResponseTo = ListItem.CommandParameter.ToString();
+        Navigation.PushAsync(new PostPage(inResponseTo, true));
     }
 }
