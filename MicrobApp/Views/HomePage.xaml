@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:models="clr-namespace:MicrobApp.Models"
              x:Class="MicrobApp.Views.HomePage"
+             BackgroundColor="#253163"
              >
 
     <ContentPage.ToolbarItems>
@@ -11,13 +12,13 @@
     </ContentPage.ToolbarItems>
 
     <StackLayout>
-        <ActivityIndicator x:Name="loaderInit" Color="#45858C"/>
+        <ActivityIndicator x:Name="loaderInit"/>
         <CollectionView x:Name="postListView" VerticalOptions="FillAndExpand" RemainingItemsThresholdReached="LoadMorePosts">
             <CollectionView.ItemTemplate>
                 <DataTemplate x:DataType="{x:Type models:Post}">
-                    <Grid BackgroundColor="White" 
-                          Padding="10"
-                          RowSpacing="10">
+                    <Grid Padding="2"
+                          Margin="0,5"
+                          RowSpacing="5">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto" />
                             <RowDefinition Height="Auto" />
@@ -34,32 +35,31 @@
                             ColumnDefinitions="Auto, Auto">
                             <Frame Grid.Column="0"
                                     Grid.Row="0"
-                                    BorderColor="Black"
-                                    CornerRadius="50"
                                     HeightRequest="60"
                                     WidthRequest="60"
                                     IsClippedToBounds="True"
                                     VerticalOptions="Start">
+                                    
                                 <ImageButton Source="{Binding UserOwner.ProfileImage}"
                                      Clicked="GoToUserPerfil"
                                      CommandParameter="{Binding UserOwner.UserName}"
                                      Aspect="AspectFill"
                                      HeightRequest="100"
-                                     WidthRequest="100" />
+                                     WidthRequest="100"/>
                             </Frame>
                             <VerticalStackLayout Grid.Column="1" Margin="20,0,0,0" >
                                 <Label x:Name="TextName"
                                        FontSize="Medium">
                                     <Label.FormattedText>
                                         <FormattedString>
-                                            <Span Text="{Binding UserOwner.FirstName}"/>
+                                            <Span Text="{Binding UserOwner.FirstName}" TextColor="Beige"/>
                                             <Span Text=" "/>
-                                            <Span Text="{Binding UserOwner.LastName}"/>
+                                                <Span Text="{Binding UserOwner.LastName}" TextColor="Beige"/>
                                         </FormattedString>
                                     </Label.FormattedText>
                                 </Label>
                                 <Label x:Name="TextUser"
-                                       Text="{Binding UserOwner.UserName}" />
+                                       Text="{Binding UserOwner.UserName}" TextColor="Beige"/>
                             </VerticalStackLayout>
                         </Grid>
                         <Image Grid.Row="1"
@@ -68,8 +68,8 @@
                                Margin="10"/>
                         <Label 
                             Grid.Row="2"
-                            TextColor="Black"
-                            FontSize="Body"
+                            TextColor="Beige"
+                            FontSize="Medium"
                             Text="{Binding Text}"
                             BackgroundColor="Transparent">
                             <Label.GestureRecognizers>
@@ -108,7 +108,7 @@
                                 ImageSource="repost_icon.svg"
                                 HorizontalOptions="End"/>
                         </HorizontalStackLayout>
-                        <BoxView Grid.Row="4" HeightRequest="0.5" BackgroundColor="LightGray" HorizontalOptions="FillAndExpand" Opacity="0.5"/>
+                        <BoxView Grid.Row="4" HeightRequest="2" BackgroundColor="Beige" HorizontalOptions="FillAndExpand"/>
                     </Grid>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
