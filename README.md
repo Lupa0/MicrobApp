@@ -27,6 +27,6 @@ Explica cómo utilizar la aplicación, cómo iniciar sesión, y proporciona ejem
 
 ## Capturas de Pantalla
 
-![image](https://github.com/Lupa0/MicrobApp/main/MicrobApp/Resources/Images/captura_login.png)
+![image](https://github.com/Lupa0/MicrobApp/blob/b487b78406f1770e33f0f71089229b2153e26e63/MicrobApp/Resources/Images/captura_login.png)
 
 
