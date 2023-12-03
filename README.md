@@ -1,18 +1,8 @@
 # MICROB.uy
 
-Descripción completa y clara del proyecto. Proporciona un resumen conciso y atractivo para que los usuarios tengan una idea rápida de lo que hace tu aplicación.
+Microb.uy es una red descentralizada de microblogging que tiene como público objetivo a Uruguay, que permite a cualquier persona u organización de nuestro país instanciarlas.
 
-## Características Principales
-
-- **Inicio de Sesión con Google:** Utiliza Firebase Authentication para permitir que los usuarios inicien sesión mediante Google.
-
-- **Comunicación con Backend en .NET:** La aplicación se comunica con un backend implementado en .NET para manejar operaciones del servidor.
-
-- **Autenticación Multitenant:** Admite múltiples usuarios con sus propias vistas y permisos dentro de la aplicación.
-
-- **Persistencia de Datos con LocalStorage:** Utiliza localStorage para almacenar datos localmente en el navegador del usuario.
-
-- **Angular Material:** Se utiliza Angular Material como framework CSS para una interfaz de usuario moderna y consistente.
+Este repositorio es para una aplicación Android de Microb.uy.
 
 ## Estructura del Proyecto
 
@@ -20,18 +10,16 @@ Descripción de la estructura de carpetas y archivos importantes en tu proyecto.
 
 ## Tecnologías Utilizadas
 
-- [Angular](https://angular.io/)
+- [.NET Maui](https://learn.microsoft.com/es-es/dotnet/maui/what-is-maui?view=net-maui-8.0)
 - [Firebase](https://firebase.google.com/)
-- [Angular Material](https://material.angular.io/)
-- [.NET](https://dotnet.microsoft.com/)
 
-## Instalación
+## Pre-requisitos
 
-Proporciona instrucciones claras sobre cómo instalar y configurar el proyecto. Asegúrate de incluir todos los requisitos previos y pasos necesarios.
+ - Instale Visual Studio (2022 17.3 o posterior) o modifique la instalación existente e instale la carga de trabajo desarrollo de la interfaz de usuario de aplicaciones multiplataforma de .NET con sus opciones de instalación opcionales predeterminadas.
+ - Para utilizar con emulador de Android, tenga en consideración que la version minima de Android OS (API Level) aceptada para instalar y correr la aplicación es 21.
 
-## Configuración
-
-Describe la configuración necesaria, como variables de entorno, claves de API, etc.
+## Instalación: 
+- Abra una terminal y clone el repositorio "MicrobApp" dentro de la carpeta donde lo desee instalar con el comando git clone https://github.com/Lupa0/MicrobApp.git
 
 ## Uso
 
@@ -39,6 +27,6 @@ Explica cómo utilizar la aplicación, cómo iniciar sesión, y proporciona ejem
 
 ## Capturas de Pantalla
 
-![image](https://github.com/CintiaLeal/FrontendMicrob/assets/66495366/c27893c9-6ed4-496d-87bc-95fb9e4748af)
+![image](https://github.com/Lupa0/MicrobApp/main/MicrobApp/Resources/Images/captura_login.png)
 
 

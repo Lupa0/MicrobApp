@@ -53,6 +53,7 @@
 	  <None Remove="Resources\Images\account_icon.svg" />
 	  <None Remove="Resources\Images\add.svg" />
 	  <None Remove="Resources\Images\calendar_icon.svg" />
+	  <None Remove="Resources\Images\captura_login.png" />
 	  <None Remove="Resources\Images\format_list_bulleted_icon.svg" />
 	  <None Remove="Resources\Images\help_icon.svg" />
 	  <None Remove="Resources\Images\home_icon.svg" />
