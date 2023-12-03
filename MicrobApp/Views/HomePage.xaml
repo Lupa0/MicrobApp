@@ -49,7 +49,7 @@
                                 <ImageButton Source="{Binding UserOwner.ProfileImage}"
                                      Clicked="GoToUserPerfil"
                                      CommandParameter="{Binding UserOwner.UserName}"
-                                     Aspect="AspectFill"
+                                     Aspect="AspectFit"
                                      HeightRequest="100"
                                      WidthRequest="100" />
                             </Frame>
