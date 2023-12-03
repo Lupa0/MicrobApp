@@ -5,8 +5,20 @@ Microb.uy es una red descentralizada de microblogging que tiene como público ob
 Este repositorio es para una aplicación Android de Microb.uy.
 
 ## Estructura del Proyecto
+El proyecto sigue el patrón MVU (Model-View-Update), una arquitectura que organiza la aplicación en tres componentes principales: Model, View y Update. A continuación, se presenta la estructura de carpetas y archivos importantes en el proyecto:
 
-Descripción de la estructura de carpetas y archivos importantes en tu proyecto.
+```plaintext
+/MicrobApp
+    /Models 
+    /Views
+    /Services
+    /Platform
+    /Resources
+    ...
+```
+- En **Models** se encuentran las clases que representan el estado de la aplicación. Cada archivo de modelo contiene las propiedades y métodos necesarios para mantener y actualizar el estado de la aplicación. 
+- **Views** contiene las páginas y vistas de la aplicación, en estas páginas se trabaja directamente con el modelo y se actualiza según sea necesario.
+- **Services** posee los servicios de la aplicación, encargadas de realizar llamadas a las API.Los servicios proporcionan funcionalidades que son utilizadas por las páginas y modelos para realizar tareas específicas.
 
 ## Tecnologías Utilizadas
 
@@ -27,6 +39,7 @@ Explica cómo utilizar la aplicación, cómo iniciar sesión, y proporciona ejem
 
 ## Capturas de Pantalla
 
-![image](https://github.com/Lupa0/MicrobApp/blob/b487b78406f1770e33f0f71089229b2153e26e63/MicrobApp/Resources/Images/captura_login.png)
+<img src="https://github.com/Lupa0/MicrobApp/blob/b487b78406f1770e33f0f71089229b2153e26e63/MicrobApp/Resources/Images/captura_login.png" width="400">
+
 
 
