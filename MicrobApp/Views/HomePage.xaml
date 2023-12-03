@@ -1,23 +1,25 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:models="clr-namespace:MicrobApp.Models"
              x:Class="MicrobApp.Views.HomePage"
-             BackgroundColor="#253163"
+             BackgroundColor="#06214F"
              >
-
+   
     <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Add" Clicked="Add_Clicked" IconImageSource="add.svg"></ToolbarItem>
+       
         <ToolbarItem Text="Settings" Clicked="Redirect_to_settings" IconImageSource="settings_icon.svg"></ToolbarItem>
+        <ToolbarItem Text="Add" Clicked="Add_Clicked" IconImageSource="add.svg"></ToolbarItem>
     </ContentPage.ToolbarItems>
 
     <StackLayout>
         <ActivityIndicator x:Name="loaderInit"/>
+        
         <CollectionView x:Name="postListView" VerticalOptions="FillAndExpand" RemainingItemsThresholdReached="LoadMorePosts">
             <CollectionView.ItemTemplate>
                 <DataTemplate x:DataType="{x:Type models:Post}">
                     <Grid Padding="2"
-                          Margin="0,5"
+                          Margin="5"
                           RowSpacing="5">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto" />
@@ -30,22 +32,26 @@
                             <ColumnDefinition/>
                         </Grid.ColumnDefinitions>
                         <Grid
+                            HeightRequest="80"
+                            Padding="10"
                             Grid.Row="0"
                             RowDefinitions="Auto, Auto"
                             ColumnDefinitions="Auto, Auto">
-                            <Frame Grid.Column="0"
-                                    Grid.Row="0"
-                                    HeightRequest="60"
-                                    WidthRequest="60"
-                                    IsClippedToBounds="True"
-                                    VerticalOptions="Start">
-                                    
+                            <Frame 
+                                Grid.Column="0"
+                                Grid.Row="0"
+                                BorderColor="Black"
+                                CornerRadius="50"
+                                HeightRequest="60"
+                                WidthRequest="60"
+                                IsClippedToBounds="True"
+                                VerticalOptions="Start">
                                 <ImageButton Source="{Binding UserOwner.ProfileImage}"
                                      Clicked="GoToUserPerfil"
                                      CommandParameter="{Binding UserOwner.UserName}"
                                      Aspect="AspectFill"
                                      HeightRequest="100"
-                                     WidthRequest="100"/>
+                                     WidthRequest="100" />
                             </Frame>
                             <VerticalStackLayout Grid.Column="1" Margin="20,0,0,0" >
                                 <Label x:Name="TextName"
@@ -79,7 +85,8 @@
                         <HorizontalStackLayout 
                             Grid.Row="3"
                             HorizontalOptions="End"
-                            Spacing="10">
+                            Spacing="10"
+                            Padding="4,5">
                             <Button 
                                 x:Name="btnLike"
                                 Grid.Row="2"
@@ -108,7 +115,10 @@
                                 ImageSource="repost_icon.svg"
                                 HorizontalOptions="End"/>
                         </HorizontalStackLayout>
-                        <BoxView Grid.Row="4" HeightRequest="2" BackgroundColor="Beige" HorizontalOptions="FillAndExpand"/>
+                        <BoxView Grid.Row="4" 
+                                 HeightRequest="0.5"
+                                 Color="White" 
+                                 HorizontalOptions="FillAndExpand" />
                     </Grid>
                 </DataTemplate>
             </CollectionView.ItemTemplate>

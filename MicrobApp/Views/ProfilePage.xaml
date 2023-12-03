@@ -5,17 +5,16 @@
              xmlns:toolkit="clr-namespace:CommunityToolkit.Maui.Views;assembly=CommunityToolkit.Maui"
              x:Class="MicrobApp.Views.ProfilePage"
              x:DataType="{x:Type models:UserProfile}"
-             BackgroundColor="#253163">
+             BackgroundColor="#06214F">
     
     <ScrollView HorizontalScrollBarVisibility="Never">
         <Grid RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,*">
             <Grid Grid.Row="0">
-                <Frame VerticalOptions="Start" HeightRequest="70" Padding="0" CornerRadius="0">
+                <Frame VerticalOptions="Start" HeightRequest="100" Padding="0" CornerRadius="0">
                     <Image 
                        Source="galaxi.jpg"  
                         Aspect="AspectFill"/>
                 </Frame>
-
             </Grid>
 
             <Grid Grid.Row="1" Margin="10,-70,0,0" ColumnDefinitions="Auto,Auto" HorizontalOptions="Start">
@@ -23,7 +22,7 @@
                     Grid.Column="0"
                     ImageSource="{Binding ProfileImage}"
                     BorderColor="White"
-                    BorderWidth="10"
+                    BorderWidth="5"
                     CornerRadius="70"
                     HeightRequest="140"
                     WidthRequest="140"/>
@@ -91,8 +90,8 @@
                     <CollectionView.ItemTemplate >
                         <DataTemplate x:DataType="models:Post" >
                             <Grid 
-                                  Margin="20"
-                                  Padding="10"
+                                  Margin="20,0"
+                                  Padding="10,0"
                                   RowSpacing="10">
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="Auto" />
@@ -105,7 +104,7 @@
                                     <ColumnDefinition/>
                                 </Grid.ColumnDefinitions>
                                 <Grid
-                                    BackgroundColor="#253163"
+                                    BackgroundColor="#06214F"
                                     HeightRequest="80"
                                     Padding="10"
                                     Grid.Row="0"

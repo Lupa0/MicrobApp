@@ -4,13 +4,21 @@
              xmlns:models="clr-namespace:MicrobApp.Models"
              xmlns:toolkit="clr-namespace:CommunityToolkit.Maui.Views;assembly=CommunityToolkit.Maui"
              x:Class="MicrobApp.Views.ViewPostPage"
+             Title="Post"
              x:DataType="{x:Type models:Post}"
              >
-    <VerticalStackLayout BackgroundColor="BlueViolet">
+    <VerticalStackLayout BackgroundColor="#06214F">
+        <Grid Grid.Row="0">
+            <Frame VerticalOptions="Start" HeightRequest="100" Padding="0" CornerRadius="0">
+                <Image 
+                       Source="galaxi.jpg"  
+                        Aspect="AspectFill"/>
+            </Frame>
+        </Grid>
         <ScrollView>
-            <Grid BackgroundColor="White" 
+            <Grid BackgroundColor="Transparent" 
                               Padding="10"
-                  Margin="20,0"
+                  Margin="20,5"
               >
                 <Grid.RowDefinitions>
                     <RowDefinition />
@@ -44,19 +52,19 @@
                                            FontSize="Medium">
                             <Label.FormattedText>
                                 <FormattedString>
-                                    <Span Text="{Binding UserOwner.FirstName}"/>
+                                    <Span Text="{Binding UserOwner.FirstName}" TextColor="White"/>
                                     <Span Text=" "/>
-                                    <Span Text="{Binding UserOwner.LastName}"/>
+                                    <Span Text="{Binding UserOwner.LastName}" TextColor="White"/>
                                 </FormattedString>
                             </Label.FormattedText>
                         </Label>
                         <Label x:Name="TextUser"
-                                           Text="{Binding UserOwner.UserName}" />
+                                           Text="{Binding UserOwner.UserName}" TextColor="White"/>
                     </VerticalStackLayout>
                 </Grid>
                 <Label Text="{Binding Text}"
                     Grid.Row="1"
-                    TextColor="Black"
+                    TextColor="White"
                     FontSize="Body"
                     BackgroundColor="Transparent"/>
 
@@ -91,13 +99,13 @@
                 HorizontalOptions="End"/>
                 </HorizontalStackLayout>
 
-                <ListView x:Name="commentListView" BackgroundColor="{StaticResource LightBackground}" HasUnevenRows="True" Grid.Row="3" Margin="30,2,0,2" >
+                <ListView x:Name="commentListView"  BackgroundColor="#06214F" HasUnevenRows="True" Grid.Row="3" Margin="30,10" >
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <ViewCell>
-                                <Grid BackgroundColor="White"  
-                       Padding="10"
-                                    >
+                                <Grid BackgroundColor="Transparent"  
+                                      Padding="10"
+                                      Margin="5">
                                     <Grid.RowDefinitions>
                                         <RowDefinition />
                                         <RowDefinition />
@@ -107,41 +115,41 @@
                                         <ColumnDefinition />
                                     </Grid.ColumnDefinitions>
                                     <Grid
-                         Grid.Row="0"
-                         RowDefinitions="Auto, Auto"
-                         ColumnDefinitions="Auto, Auto">
+                                         Grid.Row="0"
+                                         RowDefinitions="Auto, Auto"
+                                         ColumnDefinitions="Auto, Auto">
                                         <Frame Grid.Column="0"
-                                Grid.Row="0"
-                                BorderColor="Black"
-                                CornerRadius="50"
-                                HeightRequest="60"
-                                WidthRequest="60"
-                                IsClippedToBounds="True"
-                                VerticalOptions="Start">
+                                                Grid.Row="0"
+                                                BorderColor="Black"
+                                                CornerRadius="50"
+                                                HeightRequest="60"
+                                                WidthRequest="60"
+                                                IsClippedToBounds="True"
+                                            VerticalOptions="Start">            
                                             <ImageButton Source="{Binding UserOwner.ProfileImage}"
-                                          Clicked="GoToUserPerfil"
-                                          Aspect="AspectFill"
-                                          HeightRequest="100"
-                                          WidthRequest="100" />
+                                                          Clicked="GoToUserPerfil"
+                                                          Aspect="AspectFill"
+                                                          HeightRequest="100"
+                                                          WidthRequest="100" />
                                         </Frame>
                                         <VerticalStackLayout Grid.Column="1" Margin="20,0,0,0" >
                                             <Label x:Name="TextName"
                                     FontSize="Medium">
                                                 <Label.FormattedText>
                                                     <FormattedString>
-                                                        <Span Text="{Binding UserOwner.FirstName}"/>
+                                                        <Span Text="{Binding UserOwner.FirstName}" TextColor="White"/>
                                                         <Span Text=" "/>
-                                                        <Span Text="{Binding UserOwner.LastName}"/>
+                                                        <Span Text="{Binding UserOwner.LastName}" TextColor="White"/>
                                                     </FormattedString>
                                                 </Label.FormattedText>
                                             </Label>
                                             <Label x:Name="TextUser"
-                                    Text="{Binding UserOwner.UserName}" />
+                                    Text="{Binding UserOwner.UserName}" TextColor="White"/>
                                         </VerticalStackLayout>
                                     </Grid>
                                     <Label 
                                          Grid.Row="1"
-                                        TextColor="Black"
+                                        TextColor="White"
                                         FontSize="Body"
                                         Text="{Binding Text}"
                                         BackgroundColor="Transparent"/>
