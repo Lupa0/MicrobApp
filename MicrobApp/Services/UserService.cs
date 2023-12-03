@@ -1,6 +1,7 @@
 ﻿
 using MicrobApp.Models;
 using System.Collections.ObjectModel;
+using System.Net;
 using System.Text;
 using System.Text.Json;
 
@@ -11,16 +12,16 @@ namespace MicrobApp.Services
         private HttpClient _httpClient;
         public UserService()
         {
-            _httpClient = HttpClientFactory.CreateHttpClient();
+            _httpClient = HttpClientFactory.CreateHttpClientWithToken();
         }
 
-        public async Task<UserProfile> GetUser(String username, String tenantId)
+        public async Task<UserProfile> GetUser(string username, string tenantId)
         {
             string apiUrl = $"/Account/GetUser?userName={username}";
             _httpClient.DefaultRequestHeaders.Add("tenant", tenantId);
 
             HttpResponseMessage response = await _httpClient.GetAsync(apiUrl);
-            if (response.IsSuccessStatusCode)
+            if (response.StatusCode.Equals(HttpStatusCode.OK))
             {
                 try
                 {
@@ -38,7 +39,11 @@ namespace MicrobApp.Services
                     throw;
                 }
             }
-            else
+            else if (response.StatusCode.Equals(HttpStatusCode.NoContent) || response.StatusCode.Equals(HttpStatusCode.NotFound))
+            {
+                Console.WriteLine("Response status: " + response.StatusCode);
+                throw new KeyNotFoundException("El usuario no existe");
+            } else
             {
                 Console.WriteLine("Response status: " + response.StatusCode);
                 throw new Exception("Ha ocurrido un problema");
@@ -63,7 +68,53 @@ namespace MicrobApp.Services
 
         }
 
-        public async Task<List<UserProfile>> GetFollowingUsers(string username)
+        public async Task<int> GetFollowedUsersCount(string username)
+        {
+            string apiUrl = $"/Account/GetFollowedUsers?Page=1&ItemsPerPage=1&userName={username}";
+
+            string tenantId = SecureStorage.GetAsync("tenantId").Result;
+
+            _httpClient.DefaultRequestHeaders.Add("tenant", tenantId);
+
+            HttpResponseMessage response = await _httpClient.GetAsync(apiUrl);
+            _httpClient.DefaultRequestHeaders.Remove("tenant");
+
+            if (response.Headers.TryGetValues("X-Pagination", out IEnumerable<string> paginationValues))
+            {
+                var paginationJson = paginationValues.FirstOrDefault();
+                if (!string.IsNullOrEmpty(paginationJson))
+                {
+                    var paginationData = JsonSerializer.Deserialize<Dictionary<string, object>>(paginationJson);
+                    if (paginationData.ContainsKey("TotalCount")) return int.Parse(paginationData["TotalCount"].ToString());
+                }
+            }
+            return 0;
+        }
+
+        public async Task<int> GetFollowersCount(string username)
+        {
+            string apiUrl = $"/Account/GetFollowers?Page=1&ItemsPerPage=1&userName={username}";
+
+            string tenantId = SecureStorage.GetAsync("tenantId").Result;
+
+            _httpClient.DefaultRequestHeaders.Add("tenant", tenantId);
+
+            HttpResponseMessage response = await _httpClient.GetAsync(apiUrl);
+            _httpClient.DefaultRequestHeaders.Remove("tenant");
+
+            if (response.Headers.TryGetValues("X-Pagination", out IEnumerable<string> paginationValues))
+            {
+                var paginationJson = paginationValues.FirstOrDefault();
+                if (!string.IsNullOrEmpty(paginationJson))
+                {
+                    var paginationData = JsonSerializer.Deserialize<Dictionary<string, object>>(paginationJson);
+                    if (paginationData.ContainsKey("TotalCount")) return int.Parse(paginationData["TotalCount"].ToString());
+                }
+            }
+            return 0;
+        }
+
+        public async Task<List<UserProfile>> GetFollowedUsers(string username)
         {
             string apiUrl = $"/Account/GetFollowedUsers?Page=1&ItemsPerPage=50&userName={username}";
 

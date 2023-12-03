@@ -1,6 +1,4 @@
-﻿using System.Globalization;
-
-namespace MicrobApp.Models
+﻿namespace MicrobApp.Models
 {
     public class Post
     {
@@ -14,7 +12,11 @@ namespace MicrobApp.Models
         //Respuestas a un post
         //public ICollection<CommentModel> Comments { get; set; } = new List<CommentModel>();
         //Personas que le dieron me gusta al post
-        public ICollection<UserProfile> Likes { get; set; } = new List<UserProfile>();
+        public List<UserProfile> Likes { get; set; } = new List<UserProfile>();
+        public bool IsLiked
+        {
+            get => Likes.Exists(aUser => Equals(aUser.UserName, SecureStorage.GetAsync("username").Result));
+        }
         public List<string> Hashtag { get; set; } = new List<string>();
     }
 }

@@ -21,7 +21,8 @@ public class HttpClientFactory
     public static HttpClient CreateHttpClientWithToken()
     {
         var httpClient = CreateHttpClient();
-        httpClient.DefaultRequestHeaders.Add("header", SecureStorage.GetAsync("token").Result);
+        var token = SecureStorage.GetAsync("token").Result;
+        httpClient.DefaultRequestHeaders.Add("Authorization", $"Bearer {token}");
 
         return httpClient;
     }

@@ -9,8 +9,7 @@ public partial class HomePage : ContentPage
     private readonly PostService _postService;
     private readonly UserService _userService;
 
-    private ObservableCollection<Post> posts = new();
-    private readonly string username;
+    private List<Post> posts = new();
     private bool hasNext = false;
     private int currentPage = 1;
     private int totalCount = 0;
@@ -22,7 +21,6 @@ public partial class HomePage : ContentPage
         InitializeComponent();
         _postService = new PostService();
         _userService = new UserService();
-        username = SecureStorage.GetAsync("username").Result;
         BindingContext = this;
     }
     protected override void OnAppearing()
@@ -105,7 +103,8 @@ public partial class HomePage : ContentPage
         var ListItem = sender as Button;
         ListItem.BackgroundColor = Color.FromRgb(234,92,85);
         ListItem.BorderColor = Color.FromRgb(255, 255, 255);
-        String idPost = ListItem.CommandParameter.ToString();
+        ListItem.IsEnabled = false;
+        string idPost = ListItem.CommandParameter.ToString();
         await _postService.LikePost(idPost);
     }
 

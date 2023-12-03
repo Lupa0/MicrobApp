@@ -30,14 +30,13 @@ public partial class InstancePage : ContentPage
             // Realizar el casting al tipo Instance
             Instance instanciaSeleccionada = (Instance)selectedItem;
 
-        // Ahora puedes trabajar con la instanciaSeleccionada
-            String idTenant =instanciaSeleccionada.TenantInstanceId.ToString();
+            // Ahora puedes trabajar con la instanciaSeleccionada
+            string idTenant = instanciaSeleccionada.TenantInstanceId.ToString();
+            string domainTenant = instanciaSeleccionada.Dominio.ToString();
 
             await SecureStorage.SetAsync("tenantId", idTenant);
+            await SecureStorage.SetAsync("instanceDomain", domainTenant);
             await Shell.Current.GoToAsync("//LoginPage");
-
-
-
 
             // Realizar las operaciones necesarias con la instancia seleccionada
         }

@@ -86,7 +86,15 @@
                                 HorizontalOptions="Start"
                                 CommandParameter="{Binding PostId}"
                                 Clicked="Button_Clicked"
-                                ImageSource="heart_post.svg"/>
+                                ImageSource="heart_post.svg">
+                                <Button.Triggers>
+                                    <DataTrigger TargetType="Button" Binding="{Binding IsLiked}" Value="true">
+                                        <Setter Property="BackgroundColor" Value="#ea5c55"/>
+                                        <Setter Property="BorderColor" Value="#ffffff"/>
+                                        <Setter Property="IsEnabled" Value="False"/>
+                                    </DataTrigger>
+                                </Button.Triggers>
+                            </Button>
                             <Button 
                                 BackgroundColor="Aquamarine"
                                 HeightRequest="30"
