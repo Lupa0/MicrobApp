@@ -33,9 +33,11 @@ public partial class InstancePage : ContentPage
             // Ahora puedes trabajar con la instanciaSeleccionada
             string idTenant = instanciaSeleccionada.TenantInstanceId.ToString();
             string domainTenant = instanciaSeleccionada.Dominio.ToString();
+            string nameTenant = instanciaSeleccionada.Nombre.ToString();
 
             await SecureStorage.SetAsync("tenantId", idTenant);
             await SecureStorage.SetAsync("instanceDomain", domainTenant);
+            await SecureStorage.SetAsync("instanceName", nameTenant);
             await Shell.Current.GoToAsync("//LoginPage");
 
             // Realizar las operaciones necesarias con la instancia seleccionada

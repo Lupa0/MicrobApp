@@ -21,6 +21,7 @@ public partial class HomePage : ContentPage
         InitializeComponent();
         _postService = new PostService();
         _userService = new UserService();
+        Title = SecureStorage.GetAsync("instanceName").Result;
         BindingContext = this;
     }
     protected override void OnAppearing()

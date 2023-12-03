@@ -58,6 +58,7 @@ public partial class ProfilePage : ContentPage
             UserProfile user = await _userService.GetUser(username, tenantId);
             user.FollowersNumber = await _userService.GetFollowersCount(username);
             user.FollowingNumber = await _userService.GetFollowedUsersCount(username);
+            CreatedIn.Text = user.CreationDate.ToShortDateString();
 
             if (!Equals(username, logInAs))
             {

@@ -13,7 +13,12 @@ public class HttpClientFactory
         httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
         // Establece la base address según la plataforma
+
+        //Url base para Backend local
         httpClient.BaseAddress = new Uri(DeviceInfo.Platform == DevicePlatform.Android ? "https://10.0.2.2:7131" : "https://localhost:7131");
+
+        //Url Base para Backend en la nube
+        //httpClient.BaseAddress = new Uri("http://microbuyapi.azurewebsites.net");
 
         return httpClient;
     }

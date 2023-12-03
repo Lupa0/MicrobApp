@@ -11,8 +11,9 @@ namespace MicrobApp.Services
             _httpClient = HttpClientFactory.CreateHttpClient();
         }
 
-        public async Task<Instance> GetInstanceByDomain(String domain)
+        public async Task<Instance> GetInstanceByDomain()
         {
+            string domain = SecureStorage.GetAsync("instanceDomain").Result;
             string apiUrl = $"/Instance/GetInstanceByDomain?domain={domain}";
 
             HttpResponseMessage response = await _httpClient.GetAsync(apiUrl);

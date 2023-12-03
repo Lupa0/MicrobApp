@@ -6,7 +6,7 @@
         public string Text { get; set; }
         public string Attachment { get; set; }
         public UserProfile UserOwner { get; set; } = null!;
-        public bool isSanctioned { get; set; }
+        public bool IsSanctioned { get; set; }
         public DateTime Created { get; set; }
         public bool Active { get; set; }
         //Respuestas a un post

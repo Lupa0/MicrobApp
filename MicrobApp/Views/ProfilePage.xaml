@@ -58,7 +58,7 @@
                     <Label.FormattedText>
                         <FormattedString>
                             <Span Text=" Se unió " FontSize="15" TextColor="#687684" />
-                            <Span Text="{Binding CreationDate}" FontSize="15" TextColor="#687684" />
+                            <Span x:Name="CreatedIn" FontSize="15" TextColor="#687684" />
                         </FormattedString>
                     </Label.FormattedText>
                 </Label>
@@ -175,6 +175,8 @@
                                         CommandParameter="{Binding PostId}"
                                         Clicked="AnswerPost"
                                         ImageSource="forum.svg"/>
+                                    <!--
+                                    
                                     <Button 
                                         CommandParameter="{Binding PostId}"
                                         BackgroundColor="Coral"
@@ -182,6 +184,8 @@
                                         WidthRequest="30"
                                         ImageSource="repost_icon.svg"
                                         HorizontalOptions="End"/>
+                                    
+                                    -->
                                 </HorizontalStackLayout>
 
                                 <BoxView Grid.Row="3" HeightRequest="0.5" BackgroundColor="LightGray" HorizontalOptions="FillAndExpand" Opacity="0.5"/>

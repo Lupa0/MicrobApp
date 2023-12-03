@@ -3,6 +3,7 @@
               xmlns:models="clr-namespace:MicrobApp.Models"
              x:Class="MicrobApp.Views.InstancePage"
              x:DataType="{x:Type models:Instance}"
+             Shell.NavBarIsVisible="False"
              Shell.TabBarIsVisible="False"
              Title="Instancias">
     <Grid>
@@ -15,6 +16,16 @@
         </Grid.Background>
         <ScrollView>
             <ListView x:Uid="listViewId"  x:Name="stackList" ItemSelected="stackList_ItemSelected">
+                <ListView.Header>
+                    <StackLayout BackgroundColor="#3f5a7b">
+                        <Label Margin="10,10"
+                               Text="Seleccione una instancia para iniciar sesion"
+                               HorizontalOptions="Center"
+                               FontSize="Subtitle"
+                               TextColor="White"
+                               FontAttributes="Bold" />
+                    </StackLayout>
+                </ListView.Header>
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <TextCell 
