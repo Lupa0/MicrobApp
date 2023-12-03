@@ -10,14 +10,12 @@ public partial class LoginPage : ContentPage
 
     private readonly AuthenticationService _authenticationService;
     private readonly FirebaseAuthClient _authClient;
-    private readonly InstanceService _instanceService;
 
-    public LoginPage(AuthenticationService authenticationService, InstanceService instanceService, FirebaseAuthClient authClient)
+    public LoginPage(AuthenticationService authenticationService, FirebaseAuthClient authClient)
     {
         InitializeComponent();
         _authClient = authClient;
         _authenticationService = authenticationService;
-        _instanceService = instanceService;
         Loaded += LoginPage_Loaded;
     }
 
@@ -25,6 +23,8 @@ public partial class LoginPage : ContentPage
     private void LoginPage_Loaded(object sender, EventArgs e)
     {
         _ = StartAnimation();
+        string domain = SecureStorage.GetAsync("instanceDomain").Result;
+        UsernameEntry.Placeholder = $"Usuario@{domain}";
     }
 
     private async Task StartAnimation()
@@ -66,17 +66,6 @@ public partial class LoginPage : ContentPage
 
             if (response.IsSuccessStatusCode)
             {
-                int atIndex = user.username.IndexOf('@');
-
-                if (atIndex >= 0 && atIndex < user.username.Length - 1)
-                {
-                    string domain = user.username.Substring(atIndex + 1);
-                    Console.WriteLine(domain);
-                    await SecureStorage.SetAsync("instanceDomain", domain);
-                    Instance instance = await _instanceService.GetInstanceByDomain(domain);
-                    Console.WriteLine("instancia: " + instance.TenantInstanceId);
-                }
-
                 await SecureStorage.SetAsync("token", responseBody.token);
                 await SecureStorage.SetAsync("username", user.username);
                 await Shell.Current.GoToAsync("//HomePage");

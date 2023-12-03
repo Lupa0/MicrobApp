@@ -47,8 +47,6 @@ public partial class ProfilePage : ContentPage
     {
         base.OnDisappearing();
         posts.Clear();
-        userPosts.ItemsSource = posts;
-
     }
 
     private async void LoadProfileData()
@@ -58,12 +56,13 @@ public partial class ProfilePage : ContentPage
             string tenantId = SecureStorage.GetAsync("tenantId").Result;
             Console.WriteLine(tenantId);
             UserProfile user = await _userService.GetUser(username, tenantId);
-            user.FollowersNumber = user.Following.Count;
-            user.FollowingNumber = user.Followers.Count;
+            user.FollowersNumber = await _userService.GetFollowersCount(username);
+            user.FollowingNumber = await _userService.GetFollowedUsersCount(username);
+            CreatedIn.Text = user.CreationDate.ToShortDateString();
 
             if (!Equals(username, logInAs))
             {
-                List<UserProfile> followingUsers = await _userService.GetFollowingUsers(logInAs);
+                List<UserProfile> followingUsers = await _userService.GetFollowedUsers(logInAs);
                 if (followingUsers.Count > 0 && followingUsers.Exists(aUser => Equals(aUser.UserName, username)))
                 {
                     SeguirButton.Text = "Siguiendo";
@@ -80,6 +79,11 @@ public partial class ProfilePage : ContentPage
 
             posts = await _postService.GetPostsByUser(username, tenantId);
             userPosts.ItemsSource = posts.Reverse();
+        } catch (KeyNotFoundException notFoundEx)
+        {
+            Console.WriteLine("Error al obtener los datos del perfil: " + notFoundEx.Data);
+            await DisplayAlert("Error", notFoundEx.Message, "OK");
+            await Shell.Current.GoToAsync("..");
         }
         catch (Exception ex)
         {

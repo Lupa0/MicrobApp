@@ -25,7 +25,7 @@
                 SearchButtonPressed="searchButtonPressed"
                 TextChanged="SearchBar_TextChanged"
                 HorizontalOptions="Center" 
-                Placeholder="Buscar"
+                Placeholder="Buscar a usuario"
                 Background="#E7ECF0"
                 Keyboard="Text"/>
         </Frame>

@@ -20,12 +20,6 @@
             <ShellContent ContentTemplate="{DataTemplate local:HomePage}"/>
         </Tab>
         
-        <!--
-        <Tab Icon="notifications_icon.svg">
-            <ShellContent ContentTemplate="{DataTemplate local:NotificationPage}"/>
-        </Tab>
-        -->
-        
         <Tab Icon="search_icon.svg">
             <ShellContent ContentTemplate="{DataTemplate local:SearchPage}"/>
         </Tab>

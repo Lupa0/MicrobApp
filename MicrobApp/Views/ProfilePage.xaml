@@ -59,8 +59,8 @@
                 <Label Grid.Column="1">
                     <Label.FormattedText>
                         <FormattedString>
-                            <Span Text=" Se unió " FontSize="15" TextColor="Beige" />
-                            <Span Text="{Binding CreationDate}" FontSize="15" TextColor="Beige" />
+                            <Span Text=" Se unió " FontSize="15" TextColor="#687684" />
+                            <Span x:Name="CreatedIn" FontSize="15" TextColor="#687684" />
                         </FormattedString>
                     </Label.FormattedText>
                 </Label>
@@ -168,7 +168,15 @@
                                         HorizontalOptions="Start"
                                         CommandParameter="{Binding PostId}"
                                         Clicked="Button_Clicked"
-                                        ImageSource="heart_post.svg"/>
+                                        ImageSource="heart_post.svg">
+                                        <Button.Triggers>
+                                            <DataTrigger TargetType="Button" Binding="{Binding IsLiked}" Value="true">
+                                                <Setter Property="BackgroundColor" Value="#ea5c55"/>
+                                                <Setter Property="BorderColor" Value="#ffffff"/>
+                                                <Setter Property="IsEnabled" Value="False"/>
+                                            </DataTrigger>
+                                        </Button.Triggers>
+                                    </Button>
                                     <Button 
                                         BackgroundColor="Aquamarine"
                                         HeightRequest="30"
@@ -177,7 +185,17 @@
                                         CommandParameter="{Binding PostId}"
                                         Clicked="AnswerPost"
                                         ImageSource="forum.svg"/>
+                                    <!--
                                     
+                                    <Button 
+                                        CommandParameter="{Binding PostId}"
+                                        BackgroundColor="Coral"
+                                        HeightRequest="30"
+                                        WidthRequest="30"
+                                        ImageSource="repost_icon.svg"
+                                        HorizontalOptions="End"/>
+                                    
+                                    -->
                                 </HorizontalStackLayout>
 
                                 <BoxView Grid.Row="4" HeightRequest="1" BackgroundColor="Beige" HorizontalOptions="FillAndExpand" Opacity="0.5"/>

@@ -68,12 +68,9 @@
                             <VerticalStackLayout>
                                 <local:TextField 
                                     x:Name="UsernameEntry" 
-                                    Placeholder="Usuario" 
                                     PrefixIcon="icon_user_dark.png" />
 
-
                                 <Line Stroke="#919191" X1="{Binding Width, Source={x:Reference border}}" />
-
 
                                 <local:TextField
                                     x:Name="PasswordEntry"

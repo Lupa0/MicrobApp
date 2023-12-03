@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MicrobApp.Views.ServerInformation"
+             xmlns:models="clr-namespace:MicrobApp.Models"
+             x:DataType="{x:Type models:Instance}"
+             Shell.TabBarIsVisible="False">
+    <VerticalStackLayout>
+        <Image x:Name="Logo"
+           Aspect="AspectFill"
+           HeightRequest="200"/>
+        <Label x:Name="PageTitle"
+            FontSize="Title"
+            VerticalOptions="Center" 
+            HorizontalOptions="Center" 
+            Margin="0,20,0,20"/>
+        <Line HorizontalOptions="CenterAndExpand"
+              Stroke="#919191"
+              X1="150"/>
+        <Label 
+            x:Name="Description"
+            FontSize="Body" 
+            LineBreakMode="WordWrap"
+            HorizontalOptions="FillAndExpand"
+            Margin="20,20,20,0"/>
+        <Label Margin="20,20,20,0">
+            <Label.FormattedText>
+                <FormattedString>
+                    <Span Text=" Se unió " FontSize="15"/>
+                    <Span x:Name="CreatedIn" FontSize="15" />
+                </FormattedString>
+            </Label.FormattedText>
+        </Label>
+    </VerticalStackLayout>
+</ContentPage>
