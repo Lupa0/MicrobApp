@@ -4,15 +4,17 @@
              xmlns:models="clr-namespace:MicrobApp.Models"
              xmlns:toolkit="clr-namespace:CommunityToolkit.Maui.Views;assembly=CommunityToolkit.Maui"
              x:Class="MicrobApp.Views.ProfilePage"
-             x:DataType="{x:Type models:UserProfile}">
+             x:DataType="{x:Type models:UserProfile}"
+             BackgroundColor="#06214F">
     
     <ScrollView HorizontalScrollBarVisibility="Never">
         <Grid RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,*">
             <Grid Grid.Row="0">
-                <Frame VerticalOptions="Start" HeightRequest="70" Padding="0" CornerRadius="0">
-                    <Image BackgroundColor="#9BA7BF" Aspect="AspectFill"/>
+                <Frame VerticalOptions="Start" HeightRequest="100" Padding="0" CornerRadius="0">
+                    <Image 
+                       Source="galaxi.jpg"  
+                        Aspect="AspectFill"/>
                 </Frame>
-
             </Grid>
 
             <Grid Grid.Row="1" Margin="10,-70,0,0" ColumnDefinitions="Auto,Auto" HorizontalOptions="Start">
@@ -20,7 +22,7 @@
                     Grid.Column="0"
                     ImageSource="{Binding ProfileImage}"
                     BorderColor="White"
-                    BorderWidth="10"
+                    BorderWidth="5"
                     CornerRadius="70"
                     HeightRequest="140"
                     WidthRequest="140"/>
@@ -43,17 +45,17 @@
             <Label Grid.Row="2" FontAttributes="Bold" TextColor="#141619" HorizontalTextAlignment="Start" Margin="15,0,0,0" FontSize="22">
                 <Label.FormattedText>
                     <FormattedString>
-                        <Span Text="{Binding FirstName}"/>
+                        <Span Text="{Binding FirstName}" TextColor="Beige"/>
                         <Span Text=" "/>
-                        <Span Text="{Binding LastName}"/>
+                        <Span Text="{Binding LastName}" TextColor="Beige"/>
                     </FormattedString>
                 </Label.FormattedText>
             </Label>
-            <Label Grid.Row="3" Text="{Binding UserName}" TextColor="#687684" HorizontalTextAlignment="Start" Margin="15,0,0,0" FontSize="16"/>
-            <Label Grid.Row="4" Text="{Binding Biography}" FontSize="15" TextColor="#141619" LineBreakMode="WordWrap" Margin="15,10,0,0" HorizontalOptions="StartAndExpand"/>
+            <Label Grid.Row="3" Text="{Binding UserName}" TextColor="Beige" HorizontalTextAlignment="Start" Margin="15,0,0,0" FontSize="16"/>
+            <Label Grid.Row="4" Text="{Binding Biography}" FontSize="15" TextColor="Beige" LineBreakMode="WordWrap" Margin="15,10,0,0" HorizontalOptions="StartAndExpand"/>
 
             <Grid Grid.Row="5" ColumnDefinitions="Auto,Auto" HorizontalOptions="Start" Margin="15,10,0,0">
-                <Image Grid.Column="0" Source="calendar_icon.svg" WidthRequest="18" HeightRequest="18" HorizontalOptions="Center" />
+                <Image Grid.Column="0" Source="calendar_icon.svg" WidthRequest="18" HeightRequest="18" HorizontalOptions="Center"/>
                 <Label Grid.Column="1">
                     <Label.FormattedText>
                         <FormattedString>
@@ -68,29 +70,31 @@
                 <Label Grid.Column="0" Margin="0,0,10,0">
                     <Label.FormattedText>
                         <FormattedString>
-                            <Span Text="{Binding FollowersNumber}" FontAttributes="Bold" FontSize="15" TextColor="#141619" />
-                            <Span Text=" Seguidores" FontSize="15" TextColor="#687684" />
+                            <Span Text="{Binding FollowersNumber}" FontAttributes="Bold" FontSize="15" TextColor="Beige" />
+                            <Span Text=" Seguidores" FontSize="15" TextColor="#288CDE" />
                         </FormattedString>
                     </Label.FormattedText>
                 </Label>
                 <Label Grid.Column="1" Margin="10,0,0,0">
                     <Label.FormattedText>
                         <FormattedString>
-                            <Span Text="{Binding FollowingNumber}" FontAttributes="Bold" FontSize="15" TextColor="#141619" />
-                            <Span Text=" Siguiendo" FontSize="15" TextColor="#687684" />
+                            <Span Text="{Binding FollowingNumber}" FontAttributes="Bold" FontSize="15" TextColor="Beige" />
+                            <Span Text=" Seguidos" FontSize="15" TextColor="#288CDE" />
                         </FormattedString>
                     </Label.FormattedText>
                 </Label>
             </Grid>
-            <BoxView Grid.Row="7" HorizontalOptions="FillAndExpand" HeightRequest="1"  Margin="-20,13,0,12" Color="#CED5DC"/>
-            <Grid Grid.Row="8">
+            <BoxView Grid.Row="7" HorizontalOptions="FillAndExpand" HeightRequest="2"  Margin="-20,13,0,12" Color="#CED5DC"/>
+            <Grid Grid.Row="8" >
                 <CollectionView x:Name="userPosts" SelectionMode="Single">
-                    <CollectionView.ItemTemplate>
-                        <DataTemplate x:DataType="models:Post">
-                            <Grid BackgroundColor="White" 
-                                  Padding="10"
-                                    RowSpacing="10">
+                    <CollectionView.ItemTemplate >
+                        <DataTemplate x:DataType="models:Post" >
+                            <Grid 
+                                  Margin="20,0"
+                                  Padding="10,0"
+                                  RowSpacing="10">
                                 <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
                                     <RowDefinition Height="Auto" />
                                     <RowDefinition Height="Auto" />
                                     <RowDefinition Height="Auto" />
@@ -100,6 +104,9 @@
                                     <ColumnDefinition/>
                                 </Grid.ColumnDefinitions>
                                 <Grid
+                                    BackgroundColor="#06214F"
+                                    HeightRequest="80"
+                                    Padding="10"
                                     Grid.Row="0"
                                     RowDefinitions="Auto, Auto"
                                     ColumnDefinitions="Auto, Auto">
@@ -123,28 +130,31 @@
                                                FontSize="Medium">
                                             <Label.FormattedText>
                                                 <FormattedString>
-                                                    <Span Text="{Binding UserOwner.FirstName}"/>
+                                                    <Span Text="{Binding UserOwner.FirstName}" TextColor="Beige"/>
                                                     <Span Text=" "/>
-                                                    <Span Text="{Binding UserOwner.LastName}"/>
+                                                    <Span Text="{Binding UserOwner.LastName}" TextColor="Beige"/>
                                                 </FormattedString>
                                             </Label.FormattedText>
                                         </Label>
                                         <Label x:Name="TextUser"
-                                               Text="{Binding UserOwner.UserName}" />
+                                               Text="{Binding UserOwner.UserName}" TextColor="Beige"/>
                                     </VerticalStackLayout>
                                 </Grid>
-
+                                <Image Grid.Row="1"
+                                       x:Name="imgHomePost"
+                                       Source="{Binding Attachment}"
+                                       Margin="5"/>
                                 <Label Text="{Binding Text}"
-                                       Grid.Row="1"
-                                       TextColor="Black"
+                                       Grid.Row="2"
+                                       TextColor="Beige"
                                        FontSize="Body"
-                                       BackgroundColor="Transparent">
+                                       >
                                     <Label.GestureRecognizers>
                                         <TapGestureRecognizer Tapped="OnLabelTapped" />
                                     </Label.GestureRecognizers>
                                     </Label>
                                 <HorizontalStackLayout 
-                                    Grid.Row="2"
+                                    Grid.Row="3"
                                     HorizontalOptions="End"
                                     Spacing="10">
                                     <Button 
@@ -188,7 +198,7 @@
                                     -->
                                 </HorizontalStackLayout>
 
-                                <BoxView Grid.Row="3" HeightRequest="0.5" BackgroundColor="LightGray" HorizontalOptions="FillAndExpand" Opacity="0.5"/>
+                                <BoxView Grid.Row="4" HeightRequest="1" BackgroundColor="Beige" HorizontalOptions="FillAndExpand" Opacity="0.5"/>
                             </Grid>
                         </DataTemplate>
                     </CollectionView.ItemTemplate>

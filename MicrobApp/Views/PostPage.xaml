@@ -16,22 +16,36 @@
         <VerticalStackLayout>
             <Frame BorderColor="{StaticResource PrimaryDark}" BackgroundColor="{StaticResource Primarylight}" Margin="5" VerticalOptions="StartAndExpand">
                 <StackLayout  Grid.Row="1">
+                    <Image x:Name="imgPhoto"/>
                     <Editor x:Name="TextEditor"
-                    
                             AutoSize="TextChanges"
                             Placeholder="Escribe tu mensaje..." 
                             PlaceholderColor="WhiteSmoke"
                             HeightRequest="250"
                             TextColor="WhiteSmoke"
                             />
-
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                    <HorizontalStackLayout>
+                        <Button ImageSource="photo_camera" 
+                                BackgroundColor="CornflowerBlue" 
+                                ScaleX="0.8" ScaleY="0.8"
+                                Clicked="Button_camera"/>
+                        <Button ImageSource="photo_library" 
+                                BackgroundColor="HotPink" 
+                                ScaleX="0.8" ScaleY="0.8"
+                                Clicked="Button_library"/>
+                    </HorizontalStackLayout>
                     <Button x:Name="btnPublicar" 
                             Clicked="Publicar"
-                            Grid.Row="2"
+                            Grid.Column="1"
                             Text="Publicar" 
                             HorizontalOptions="End"
-                            VerticalOptions="EndAndExpand"
                         />
+                        </Grid>
                 </StackLayout>
             </Frame>
         </VerticalStackLayout>

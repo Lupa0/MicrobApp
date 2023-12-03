@@ -1,24 +1,28 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:models="clr-namespace:MicrobApp.Models"
              x:Class="MicrobApp.Views.HomePage"
+             BackgroundColor="#06214F"
              >
-
+   
     <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Add" Clicked="Add_Clicked" IconImageSource="add.svg"></ToolbarItem>
+       
         <ToolbarItem Text="Settings" Clicked="Redirect_to_settings" IconImageSource="settings_icon.svg"></ToolbarItem>
+        <ToolbarItem Text="Add" Clicked="Add_Clicked" IconImageSource="add.svg"></ToolbarItem>
     </ContentPage.ToolbarItems>
 
     <StackLayout>
-        <ActivityIndicator x:Name="loaderInit" Color="#45858C"/>
+        <ActivityIndicator x:Name="loaderInit"/>
+        
         <CollectionView x:Name="postListView" VerticalOptions="FillAndExpand" RemainingItemsThresholdReached="LoadMorePosts">
             <CollectionView.ItemTemplate>
                 <DataTemplate x:DataType="{x:Type models:Post}">
-                    <Grid BackgroundColor="White" 
-                          Padding="10"
-                          RowSpacing="10">
+                    <Grid Padding="2"
+                          Margin="5"
+                          RowSpacing="5">
                         <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
                             <RowDefinition Height="Auto" />
                             <RowDefinition Height="Auto" />
                             <RowDefinition Height="Auto" />
@@ -28,17 +32,20 @@
                             <ColumnDefinition/>
                         </Grid.ColumnDefinitions>
                         <Grid
+                            HeightRequest="80"
+                            Padding="10"
                             Grid.Row="0"
                             RowDefinitions="Auto, Auto"
                             ColumnDefinitions="Auto, Auto">
-                            <Frame Grid.Column="0"
-                                    Grid.Row="0"
-                                    BorderColor="Black"
-                                    CornerRadius="50"
-                                    HeightRequest="60"
-                                    WidthRequest="60"
-                                    IsClippedToBounds="True"
-                                    VerticalOptions="Start">
+                            <Frame 
+                                Grid.Column="0"
+                                Grid.Row="0"
+                                BorderColor="Black"
+                                CornerRadius="50"
+                                HeightRequest="60"
+                                WidthRequest="60"
+                                IsClippedToBounds="True"
+                                VerticalOptions="Start">
                                 <ImageButton Source="{Binding UserOwner.ProfileImage}"
                                      Clicked="GoToUserPerfil"
                                      CommandParameter="{Binding UserOwner.UserName}"
@@ -51,20 +58,24 @@
                                        FontSize="Medium">
                                     <Label.FormattedText>
                                         <FormattedString>
-                                            <Span Text="{Binding UserOwner.FirstName}"/>
+                                            <Span Text="{Binding UserOwner.FirstName}" TextColor="Beige"/>
                                             <Span Text=" "/>
-                                            <Span Text="{Binding UserOwner.LastName}"/>
+                                                <Span Text="{Binding UserOwner.LastName}" TextColor="Beige"/>
                                         </FormattedString>
                                     </Label.FormattedText>
                                 </Label>
                                 <Label x:Name="TextUser"
-                                       Text="{Binding UserOwner.UserName}" />
+                                       Text="{Binding UserOwner.UserName}" TextColor="Beige"/>
                             </VerticalStackLayout>
                         </Grid>
+                        <Image Grid.Row="1"
+                               x:Name="imgHomePost"
+                               Source="{Binding Attachment}"
+                               Margin="10"/>
                         <Label 
-                            Grid.Row="1"
-                            TextColor="Black"
-                            FontSize="Body"
+                            Grid.Row="2"
+                            TextColor="Beige"
+                            FontSize="Medium"
                             Text="{Binding Text}"
                             BackgroundColor="Transparent">
                             <Label.GestureRecognizers>
@@ -72,9 +83,10 @@
                             </Label.GestureRecognizers>
                         </Label>
                         <HorizontalStackLayout 
-                            Grid.Row="2"
+                            Grid.Row="3"
                             HorizontalOptions="End"
-                            Spacing="10">
+                            Spacing="10"
+                            Padding="4,5">
                             <Button 
                                 x:Name="btnLike"
                                 Grid.Row="2"
@@ -115,7 +127,10 @@
 
                             -->
                         </HorizontalStackLayout>
-                        <BoxView Grid.Row="3" HeightRequest="0.5" BackgroundColor="LightGray" HorizontalOptions="FillAndExpand" Opacity="0.5"/>
+                        <BoxView Grid.Row="4" 
+                                 HeightRequest="0.5"
+                                 Color="White" 
+                                 HorizontalOptions="FillAndExpand" />
                     </Grid>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
