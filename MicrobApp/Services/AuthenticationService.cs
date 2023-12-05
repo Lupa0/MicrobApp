@@ -26,7 +26,9 @@ namespace MicrobApp.Services
             HttpContent content = new StringContent(jsonRequest, Encoding.UTF8, "application/json");
 
             // Realiza la solicitud HTTP POST
-            return await _httpClient.PostAsync(apiUrl, content);
+            var httpResponse = await _httpClient.PostAsync(apiUrl, content);
+            _httpClient.DefaultRequestHeaders.Remove("tenant");
+            return httpResponse;
         }
     }
 }

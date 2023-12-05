@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MicrobApp.Views.PostPage"
              xmlns:models="clr-namespace:MicrobApp.Models"
+             Shell.TabBarIsVisible="False"
              Title="{Binding TitleText}"
              >
     <Grid>

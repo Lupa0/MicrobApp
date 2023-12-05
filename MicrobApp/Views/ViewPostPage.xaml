@@ -4,9 +4,13 @@
              xmlns:models="clr-namespace:MicrobApp.Models"
              xmlns:toolkit="clr-namespace:CommunityToolkit.Maui.Views;assembly=CommunityToolkit.Maui"
              x:Class="MicrobApp.Views.ViewPostPage"
+             Shell.TabBarIsVisible="False"
              Title="Post"
              x:DataType="{x:Type models:Post}"
              >
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Reportar Post" Clicked="Reportar_Post" IconImageSource="a" ></ToolbarItem>
+    </ContentPage.ToolbarItems>
     <VerticalStackLayout BackgroundColor="#06214F">
         <ScrollView>
             <Grid BackgroundColor="Transparent" 
@@ -24,17 +28,17 @@
                     <ColumnDefinition />
                 </Grid.ColumnDefinitions>
                 <Grid
-                Grid.Row="0"
-                RowDefinitions="Auto, Auto"
-                ColumnDefinitions="Auto, Auto">
-                    <Frame Grid.Column="0"
                     Grid.Row="0"
-                    BorderColor="Black"
-                    CornerRadius="50"
-                    HeightRequest="60"
-                    WidthRequest="60"
-                    IsClippedToBounds="True"
-                    VerticalOptions="Start">
+                    RowDefinitions="Auto, Auto"
+                    ColumnDefinitions="Auto, Auto">
+                    <Frame Grid.Column="0"
+                            Grid.Row="0"
+                            BorderColor="Black"
+                            CornerRadius="50"
+                            HeightRequest="60"
+                            WidthRequest="60"
+                            IsClippedToBounds="True"
+                            VerticalOptions="Start">
                         <ImageButton Source="{Binding UserOwner.ProfileImage}"
                                 Clicked="GoToUserPerfil"
                                 Aspect="AspectFill"

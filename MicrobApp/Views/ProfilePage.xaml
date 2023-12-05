@@ -177,11 +177,11 @@
                                             </DataTrigger>
                                         </Button.Triggers>
                                     </Button>
-                                    <Label  x:Name="countComment"
-                                    FontSize="Small"
-                                     Text="{Binding Comments.Count}" 
-                                    TextColor="Beige"
-                                    Padding="0,4"/>
+                                    <Label x:Name="countLike"
+                                           FontSize="Small"
+                                           Text="{Binding Likes.Count}" 
+                                           TextColor="Beige"
+                                           Padding="0,4"/>
                                     <Button 
                                         BackgroundColor="Aquamarine"
                                         HeightRequest="30"
@@ -190,11 +190,11 @@
                                         CommandParameter="{Binding PostId}"
                                         Clicked="AnswerPost"
                                         ImageSource="forum.svg"/>
-                                    <Label  x:Name="countLike"
-                                       FontSize="Small"
-                                       Text="{Binding Likes.Count}" 
-                                       TextColor="Beige"
-                                       Padding="0,4"/>
+                                    <Label  x:Name="countComment"
+                                            FontSize="Small"
+                                            Text="{Binding Comments.Count}" 
+                                            TextColor="Beige"
+                                            Padding="0,4"/>
                                     <!--
                                     
                                     <Button 

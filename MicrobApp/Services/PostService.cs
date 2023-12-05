@@ -51,7 +51,7 @@ namespace MicrobApp.Services
             return await _httpClient.PostAsync(apiUrl, content);
         }
 
-        public async Task LikePost(String postId)
+        public async Task LikePost(string postId)
         {
          
             string username = SecureStorage.GetAsync("username").Result;
@@ -74,6 +74,30 @@ namespace MicrobApp.Services
 
             // Realiza la solicitud HTTP POST
             await _httpClient.PostAsync(apiUrl, content);
+            _httpClient.DefaultRequestHeaders.Remove("tenant");
+        }
+
+        public async Task ReportPost(int postId)
+        {
+
+            string username = SecureStorage.GetAsync("username").Result;
+            string apiUrl = $"/Post/ReportPost?postId={postId}&userName={username}";
+
+            string tenantId = SecureStorage.GetAsync("tenantId").Result;
+
+            _httpClient.DefaultRequestHeaders.Add("tenant", tenantId);
+            Post post = new Post
+            {
+                PostId = postId
+            };
+
+            string jsonRequest = JsonSerializer.Serialize(post);
+
+            // Contenido de la solicitud
+            HttpContent content = new StringContent(jsonRequest, Encoding.UTF8, "application/json");
+
+            // Realiza la solicitud HTTP POST
+            await _httpClient.PutAsync(apiUrl, content);
             _httpClient.DefaultRequestHeaders.Remove("tenant");
         }
 
@@ -108,7 +132,6 @@ namespace MicrobApp.Services
             }
         }
 
-        //no se esta usando, se creo para una funcinalidad y ya no es necesaria. En caso de no reutilizar, hay q borrarla.
         public async Task<Post> GetPostById(String postId)
 
         {

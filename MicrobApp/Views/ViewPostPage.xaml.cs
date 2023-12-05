@@ -18,7 +18,9 @@ public partial class ViewPostPage : ContentPage
     }
     private void GoToUserPerfil(object sender, EventArgs e)
     {
-
+        var ListItem = sender as ImageButton;
+        string userName = ListItem.CommandParameter.ToString(); //Username del usuario del post seleccionado
+        Navigation.PushAsync(new ProfilePage(new UserService(), new PostService(), userName));
     }
 
     protected override void OnAppearing()
@@ -51,5 +53,12 @@ public partial class ViewPostPage : ContentPage
         ListItem.BorderColor = Color.FromRgb(255, 255, 255);
         String idPost = ListItem.CommandParameter.ToString();
         await _postService.LikePost(idPost);
+    }
+
+    private async void Reportar_Post(object sender, EventArgs e)
+    {
+        await _postService.ReportPost(_post.PostId);
+        await DisplayAlert("Hecho", "Este post ha sido reportado", "OK");
+        await Shell.Current.GoToAsync("..");
     }
 }

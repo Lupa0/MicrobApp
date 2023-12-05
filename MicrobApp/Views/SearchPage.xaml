@@ -42,13 +42,13 @@
                         Grid.Row="1">
             <CollectionView.ItemTemplate>
                 <DataTemplate>
-                    <Grid Padding="10" Margin="5">
+                    <Grid Padding="10" Margin="5" BackgroundColor="#566D8C">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="Auto" />
                             <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
 
-                        <Label Text="{Binding}" VerticalOptions="Center" HorizontalOptions="Start" Margin="10,0,0,0" Grid.Column="1" />
+                        <Label Text="{Binding}" TextColor="White" VerticalOptions="Center" HorizontalOptions="Start" Margin="10,0,0,0" Grid.Column="1" />
 
                         <VisualStateManager.VisualStateGroups>
                             <VisualStateGroup Name="CommonStates">
