@@ -111,8 +111,7 @@ public partial class HomePage : ContentPage
 
     private void OnLabelTapped(object sender, TappedEventArgs e)
     {
-        //var ListItem = sender as TapGestureRecognizer;
-        //String idPost = ListItem.CommandParameter.ToString();
+
         Label label = (Label)sender;
 
         // Obtén el BindingContext de la Label, que debe ser un objeto Post

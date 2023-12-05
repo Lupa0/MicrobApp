@@ -58,23 +58,24 @@
                                        FontSize="Medium">
                                     <Label.FormattedText>
                                         <FormattedString>
-                                            <Span Text="{Binding UserOwner.FirstName}" TextColor="Beige"/>
+                                            <Span Text="{Binding UserOwner.FirstName}" TextColor="White"/>
                                             <Span Text=" "/>
-                                                <Span Text="{Binding UserOwner.LastName}" TextColor="Beige"/>
+                                                <Span Text="{Binding UserOwner.LastName}" TextColor="White"/>
                                         </FormattedString>
                                     </Label.FormattedText>
                                 </Label>
                                 <Label x:Name="TextUser"
-                                       Text="{Binding UserOwner.UserName}" TextColor="Beige"/>
+                                       Text="{Binding UserOwner.UserName}" TextColor="White"/>
                             </VerticalStackLayout>
                         </Grid>
                         <Image Grid.Row="1"
                                x:Name="imgHomePost"
+                               Aspect="AspectFit"
                                Source="{Binding Attachment}"
                                Margin="10"/>
                         <Label 
                             Grid.Row="2"
-                            TextColor="Beige"
+                            TextColor="White"
                             FontSize="Medium"
                             Text="{Binding Text}"
                             BackgroundColor="Transparent">
