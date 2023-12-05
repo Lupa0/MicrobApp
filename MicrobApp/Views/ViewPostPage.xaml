@@ -8,19 +8,13 @@
              x:DataType="{x:Type models:Post}"
              >
     <VerticalStackLayout BackgroundColor="#06214F">
-        <Grid Grid.Row="0">
-            <Frame VerticalOptions="Start" HeightRequest="100" Padding="0" CornerRadius="0">
-                <Image 
-                       Source="galaxi.jpg"  
-                        Aspect="AspectFill"/>
-            </Frame>
-        </Grid>
         <ScrollView>
             <Grid BackgroundColor="Transparent" 
                               Padding="10"
                   Margin="20,5"
               >
                 <Grid.RowDefinitions>
+                    <RowDefinition />
                     <RowDefinition />
                     <RowDefinition />
                     <RowDefinition />
@@ -62,44 +56,53 @@
                                            Text="{Binding UserOwner.UserName}" TextColor="White"/>
                     </VerticalStackLayout>
                 </Grid>
+                <Image Grid.Row="1"
+                        x:Name="imgHomePost"
+                        Source="{Binding Attachment}"
+                        Margin="10"/>
                 <Label Text="{Binding Text}"
-                    Grid.Row="1"
+                    Grid.Row="2"
                     TextColor="White"
                     FontSize="Body"
                     BackgroundColor="Transparent"/>
 
 
                 <HorizontalStackLayout 
-                    Grid.Row="2"
+                    Grid.Row="3"
                     HorizontalOptions="End"
                     Spacing="10">
                     <Button 
-                x:Name="btnLike"
-                Grid.Row="2"
-                BackgroundColor="Beige"
-                BorderColor="#5E5B5B"
-                BorderWidth="1"
-                HeightRequest="30"
-                WidthRequest="30"
-                HorizontalOptions="Start"
-                CommandParameter="{Binding PostId}"
-                Clicked="Button_Clicked"
-                ImageSource="heart_post.svg"/>
+                        x:Name="btnLike"
+                        Grid.Row="2"
+                        BackgroundColor="Beige"
+                        BorderColor="#5E5B5B"
+                        BorderWidth="1"
+                        HeightRequest="30"
+                        WidthRequest="30"
+                        HorizontalOptions="Start"
+                        CommandParameter="{Binding PostId}"
+                        Clicked="Button_Clicked"
+                        ImageSource="heart_post.svg"/>
+                    <Label  x:Name="countLike"
+                        FontSize="Small"
+                        Text="{Binding Likes.Count}" 
+                        TextColor="Beige"
+                        Padding="0,4"/>
                     <Button 
-                BackgroundColor="Aquamarine"
-                HeightRequest="30"
-                WidthRequest="30"
-                HorizontalOptions="Center"
-                    ImageSource="forum.svg"/>
-                    <Button 
-                BackgroundColor="Coral"
-                HeightRequest="30"
-                WidthRequest="30"
-                ImageSource="repost_icon.svg"
-                HorizontalOptions="End"/>
+                        BackgroundColor="Aquamarine"
+                        HeightRequest="30"
+                        WidthRequest="30"
+                        HorizontalOptions="Center"
+                            ImageSource="forum.svg"/>
+                    <Label  x:Name="countComment"
+                        FontSize="Small"
+                        Text="{Binding Comments.Count}" 
+                        TextColor="Beige"
+                        Padding="0,4"/>
+
                 </HorizontalStackLayout>
 
-                <ListView x:Name="commentListView"  BackgroundColor="#06214F" HasUnevenRows="True" Grid.Row="3" Margin="30,10" >
+                <ListView x:Name="commentListView"  BackgroundColor="#06214F" HasUnevenRows="True" Grid.Row="4" Margin="30,10" >
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <ViewCell>
@@ -107,6 +110,7 @@
                                       Padding="10"
                                       Margin="5">
                                     <Grid.RowDefinitions>
+                                        <RowDefinition />
                                         <RowDefinition />
                                         <RowDefinition />
                                         <RowDefinition />
@@ -134,7 +138,7 @@
                                         </Frame>
                                         <VerticalStackLayout Grid.Column="1" Margin="20,0,0,0" >
                                             <Label x:Name="TextName"
-                                    FontSize="Medium">
+                                                    FontSize="Medium">
                                                 <Label.FormattedText>
                                                     <FormattedString>
                                                         <Span Text="{Binding UserOwner.FirstName}" TextColor="White"/>
@@ -147,42 +151,39 @@
                                     Text="{Binding UserOwner.UserName}" TextColor="White"/>
                                         </VerticalStackLayout>
                                     </Grid>
+                                    <Image Grid.Row="1"
+                                           x:Name="imgHomePost"
+                                           Source="{Binding Attachment}"
+                                           Margin="10"/>
                                     <Label 
-                                         Grid.Row="1"
+                                         Grid.Row="2"
                                         TextColor="White"
                                         FontSize="Body"
                                         Text="{Binding Text}"
                                         BackgroundColor="Transparent"/>
 
                                     <HorizontalStackLayout 
-                             Grid.Row="2"
+                             Grid.Row="3"
                              HorizontalOptions="End"
                              Spacing="10">
-                                        <Button 
-                             x:Name="btnLike"
-                             Grid.Row="2"
-                             BackgroundColor="Beige"
-                             BorderColor="#5E5B5B"
-                             BorderWidth="1"
-                             HeightRequest="30"
-                             WidthRequest="30"
-                             HorizontalOptions="Start"
-                             CommandParameter="{Binding PostId}"
-                             Clicked="Button_Clicked"
-                             ImageSource="heart_post.svg"/>
-                                        <Button 
-                             BackgroundColor="Aquamarine"
-                             HeightRequest="30"
-                             WidthRequest="30"
-                             HorizontalOptions="Center"
-                             ImageSource="forum.svg"/>
-                                        <Button 
- 
-                             BackgroundColor="Coral"
-                             HeightRequest="30"
-                             WidthRequest="30"
-                             ImageSource="repost_icon.svg"
-                             HorizontalOptions="End"/>
+                             <Button 
+                                         x:Name="btnLike"
+                                         Grid.Row="2"
+                                         BackgroundColor="Beige"
+                                         BorderColor="#5E5B5B"
+                                         BorderWidth="1"
+                                         HeightRequest="30"
+                                         WidthRequest="30"
+                                         HorizontalOptions="Start"
+                                         CommandParameter="{Binding PostId}"
+                                         Clicked="Button_Clicked"
+                                         ImageSource="heart_post.svg"/>
+                                        <Label  x:Name="countLike"
+                                       FontSize="Small"
+                                       Text="{Binding Likes.Count}" 
+                                       TextColor="Beige"
+                                       Padding="0,4"/>
+                                        
                                     </HorizontalStackLayout>
                                 </Grid>
                             </ViewCell>

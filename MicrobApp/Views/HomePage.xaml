@@ -5,16 +5,14 @@
              x:Class="MicrobApp.Views.HomePage"
              BackgroundColor="#06214F"
              >
-   
+
     <ContentPage.ToolbarItems>
-       
         <ToolbarItem Text="Settings" Clicked="Redirect_to_settings" IconImageSource="settings_icon.svg"></ToolbarItem>
         <ToolbarItem Text="Add" Clicked="Add_Clicked" IconImageSource="add.svg"></ToolbarItem>
     </ContentPage.ToolbarItems>
 
     <StackLayout>
         <ActivityIndicator x:Name="loaderInit"/>
-        
         <CollectionView x:Name="postListView" VerticalOptions="FillAndExpand" RemainingItemsThresholdReached="LoadMorePosts">
             <CollectionView.ItemTemplate>
                 <DataTemplate x:DataType="{x:Type models:Post}">
@@ -108,6 +106,11 @@
                                     </DataTrigger>
                                 </Button.Triggers>
                             </Button>
+                            <Label  x:Name="countLike"
+                                       FontSize="Small"
+                                       Text="{Binding Likes.Count}" 
+                                       TextColor="Beige"
+                                       Padding="0,4"/>
                             <Button 
                                 BackgroundColor="Aquamarine"
                                 HeightRequest="30"
@@ -116,17 +119,11 @@
                                 CommandParameter="{Binding PostId}"
                                 Clicked="AnswerPost"
                                 ImageSource="forum.svg"/>
-                            <!--
-
-                            <Button 
-                                CommandParameter="{Binding PostId}"
-                                BackgroundColor="Coral"
-                                HeightRequest="30"
-                                WidthRequest="30"
-                                ImageSource="repost_icon.svg"
-                                HorizontalOptions="End"/>
-
-                            -->
+                            <Label  x:Name="countComment"
+                                    FontSize="Small"
+                                     Text="{Binding Comments.Count}" 
+                                    TextColor="Beige"
+                                    Padding="0,4"/>
                         </HorizontalStackLayout>
                         <BoxView Grid.Row="4" 
                                  HeightRequest="0.5"
