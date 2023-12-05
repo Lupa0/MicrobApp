@@ -15,6 +15,9 @@ namespace MicrobApp.Services
         public async Task<HttpResponseMessage> Login(UserLogin user)
         {
             string apiUrl = "/Account/Login";
+            string tenantId = SecureStorage.GetAsync("tenantId").Result;
+
+            _httpClient.DefaultRequestHeaders.Add("tenant", tenantId);
 
             // Serializa el objeto UserLogin a JSON
             string jsonRequest = JsonSerializer.Serialize(user);

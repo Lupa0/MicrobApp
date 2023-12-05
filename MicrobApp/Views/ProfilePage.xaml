@@ -45,22 +45,22 @@
             <Label Grid.Row="2" FontAttributes="Bold" TextColor="#141619" HorizontalTextAlignment="Start" Margin="15,0,0,0" FontSize="22">
                 <Label.FormattedText>
                     <FormattedString>
-                        <Span Text="{Binding FirstName}" TextColor="Beige"/>
+                        <Span Text="{Binding FirstName}" TextColor="White"/>
                         <Span Text=" "/>
-                        <Span Text="{Binding LastName}" TextColor="Beige"/>
+                        <Span Text="{Binding LastName}" TextColor="White"/>
                     </FormattedString>
                 </Label.FormattedText>
             </Label>
-            <Label Grid.Row="3" Text="{Binding UserName}" TextColor="Beige" HorizontalTextAlignment="Start" Margin="15,0,0,0" FontSize="16"/>
-            <Label Grid.Row="4" Text="{Binding Biography}" FontSize="15" TextColor="Beige" LineBreakMode="WordWrap" Margin="15,10,0,0" HorizontalOptions="StartAndExpand"/>
+            <Label Grid.Row="3" Text="{Binding UserName}" TextColor="White" HorizontalTextAlignment="Start" Margin="15,0,0,0" FontSize="16"/>
+            <Label Grid.Row="4" Text="{Binding Biography}" FontSize="15" TextColor="White" LineBreakMode="WordWrap" Margin="15,10,0,0" HorizontalOptions="StartAndExpand"/>
 
             <Grid Grid.Row="5" ColumnDefinitions="Auto,Auto" HorizontalOptions="Start" Margin="15,10,0,0">
-                <Image Grid.Column="0" Source="calendar_icon.svg" WidthRequest="18" HeightRequest="18" HorizontalOptions="Center"/>
+                <Image Grid.Column="0" Source="calendar_icon.svg" BackgroundColor="White" WidthRequest="18" HeightRequest="18" HorizontalOptions="Center"/>
                 <Label Grid.Column="1">
                     <Label.FormattedText>
                         <FormattedString>
-                            <Span Text=" Se unió " FontSize="15" TextColor="Beige" />
-                            <Span Text="{Binding CreationDate}" FontSize="15" TextColor="Beige" />
+                            <Span Text=" Se unió " FontSize="15" TextColor="WhiteSmoke" />
+                            <Span x:Name="CreatedIn" FontSize="15" TextColor="WhiteSmoke" />
                         </FormattedString>
                     </Label.FormattedText>
                 </Label>
@@ -70,16 +70,16 @@
                 <Label Grid.Column="0" Margin="0,0,10,0">
                     <Label.FormattedText>
                         <FormattedString>
-                            <Span Text="{Binding FollowersNumber}" FontAttributes="Bold" FontSize="15" TextColor="Beige" />
-                            <Span Text=" Seguidores" FontSize="15" TextColor="#288CDE" />
+                            <Span Text="{Binding FollowersNumber}" FontAttributes="Bold" FontSize="15" TextColor="White" />
+                            <Span Text=" Seguidores" FontSize="15" TextColor="White" />
                         </FormattedString>
                     </Label.FormattedText>
                 </Label>
                 <Label Grid.Column="1" Margin="10,0,0,0">
                     <Label.FormattedText>
                         <FormattedString>
-                            <Span Text="{Binding FollowingNumber}" FontAttributes="Bold" FontSize="15" TextColor="Beige" />
-                            <Span Text=" Seguidos" FontSize="15" TextColor="#288CDE" />
+                            <Span Text="{Binding FollowingNumber}" FontAttributes="Bold" FontSize="15" TextColor="White" />
+                            <Span Text=" Seguidos" FontSize="15" TextColor="White" />
                         </FormattedString>
                     </Label.FormattedText>
                 </Label>
@@ -90,8 +90,8 @@
                     <CollectionView.ItemTemplate >
                         <DataTemplate x:DataType="models:Post" >
                             <Grid 
-                                  Margin="20,0"
-                                  Padding="10,0"
+                                  Margin="10,0"
+                                  Padding="5,0"
                                   RowSpacing="10">
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="Auto" />
@@ -121,7 +121,7 @@
                                         <ImageButton Source="{Binding UserOwner.ProfileImage}"
                                                      Clicked="GoToUserPerfil"
                                                      CommandParameter="{Binding UserOwner.UserName}"
-                                                     Aspect="AspectFill"
+                                                     Aspect="AspectFit"
                                                      HeightRequest="100"
                                                      WidthRequest="100" />
                                     </Frame>
@@ -130,14 +130,14 @@
                                                FontSize="Medium">
                                             <Label.FormattedText>
                                                 <FormattedString>
-                                                    <Span Text="{Binding UserOwner.FirstName}" TextColor="Beige"/>
+                                                    <Span Text="{Binding UserOwner.FirstName}" TextColor="White"/>
                                                     <Span Text=" "/>
-                                                    <Span Text="{Binding UserOwner.LastName}" TextColor="Beige"/>
+                                                    <Span Text="{Binding UserOwner.LastName}" TextColor="White"/>
                                                 </FormattedString>
                                             </Label.FormattedText>
                                         </Label>
                                         <Label x:Name="TextUser"
-                                               Text="{Binding UserOwner.UserName}" TextColor="Beige"/>
+                                               Text="{Binding UserOwner.UserName}" TextColor="White"/>
                                     </VerticalStackLayout>
                                 </Grid>
                                 <Image Grid.Row="1"
@@ -146,7 +146,7 @@
                                        Margin="5"/>
                                 <Label Text="{Binding Text}"
                                        Grid.Row="2"
-                                       TextColor="Beige"
+                                       TextColor="White"
                                        FontSize="Body"
                                        >
                                     <Label.GestureRecognizers>
@@ -168,7 +168,15 @@
                                         HorizontalOptions="Start"
                                         CommandParameter="{Binding PostId}"
                                         Clicked="Button_Clicked"
-                                        ImageSource="heart_post.svg"/>
+                                        ImageSource="heart_post.svg">
+                                        <Button.Triggers>
+                                            <DataTrigger TargetType="Button" Binding="{Binding IsLiked}" Value="true">
+                                                <Setter Property="BackgroundColor" Value="#ea5c55"/>
+                                                <Setter Property="BorderColor" Value="#ffffff"/>
+                                                <Setter Property="IsEnabled" Value="False"/>
+                                            </DataTrigger>
+                                        </Button.Triggers>
+                                    </Button>
                                     <Button 
                                         BackgroundColor="Aquamarine"
                                         HeightRequest="30"
@@ -177,10 +185,20 @@
                                         CommandParameter="{Binding PostId}"
                                         Clicked="AnswerPost"
                                         ImageSource="forum.svg"/>
+                                    <!--
                                     
+                                    <Button 
+                                        CommandParameter="{Binding PostId}"
+                                        BackgroundColor="Coral"
+                                        HeightRequest="30"
+                                        WidthRequest="30"
+                                        ImageSource="repost_icon.svg"
+                                        HorizontalOptions="End"/>
+                                    
+                                    -->
                                 </HorizontalStackLayout>
 
-                                <BoxView Grid.Row="4" HeightRequest="1" BackgroundColor="Beige" HorizontalOptions="FillAndExpand" Opacity="0.5"/>
+                                <BoxView Grid.Row="4" HeightRequest="1" BackgroundColor="White" HorizontalOptions="FillAndExpand" Opacity="0.5"/>
                             </Grid>
                         </DataTemplate>
                     </CollectionView.ItemTemplate>
@@ -188,10 +206,11 @@
                         <ContentView>
                             <StackLayout>
                                 <Label Text="Sin posts para mostrar."
-                                           Margin="10,25,10,10"
-                                           FontSize="18"
-                                           HorizontalOptions="Fill"
-                                           HorizontalTextAlignment="Center" />
+                                       TextColor="White"
+                                        Margin="10,25,10,10"
+                                        FontSize="18"
+                                        HorizontalOptions="Fill"
+                                        HorizontalTextAlignment="Center" />
                             </StackLayout>
                         </ContentView>
                     </CollectionView.EmptyView>

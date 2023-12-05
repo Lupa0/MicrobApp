@@ -1,5 +1,6 @@
 ﻿using MicrobApp.Models;
 using System.Collections.ObjectModel;
+using System.Net;
 using System.Text;
 using System.Text.Json;
 
@@ -11,7 +12,7 @@ namespace MicrobApp.Services
 
         public PostService() 
         {
-            _httpClient = HttpClientFactory.CreateHttpClient();
+            _httpClient = HttpClientFactory.CreateHttpClientWithToken();
         }
 
         public async Task<HttpResponseMessage> DoPost(Post post)

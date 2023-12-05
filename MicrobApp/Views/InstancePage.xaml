@@ -3,27 +3,38 @@
               xmlns:models="clr-namespace:MicrobApp.Models"
              x:Class="MicrobApp.Views.InstancePage"
              x:DataType="{x:Type models:Instance}"
+             Shell.NavBarIsVisible="False"
              Shell.TabBarIsVisible="False"
              Title="Instancias">
     <Grid>
         <Grid.Background>
             <LinearGradientBrush StartPoint="1,0"
-             EndPoint="0,0.45">
+                                 EndPoint="0,0.45">
                 <GradientStop Color="#2E4159" Offset="0.0" />
                 <GradientStop Color="#0F1926" Offset="0.75" />
             </LinearGradientBrush>
         </Grid.Background>
         <ScrollView>
             <ListView x:Uid="listViewId"  x:Name="stackList" ItemSelected="stackList_ItemSelected">
-                        <ListView.ItemTemplate>
-                            <DataTemplate>
-                                <TextCell 
-                                    TextColor="Beige"
-                                    Height="25"
-                                    Text="{Binding Nombre}"/>
-                            </DataTemplate>
-                        </ListView.ItemTemplate>
-                    </ListView>
+                <ListView.Header>
+                    <StackLayout BackgroundColor="#3f5a7b">
+                        <Label Margin="10,10"
+                               Text="Seleccione una instancia para iniciar sesion"
+                               HorizontalOptions="Center"
+                               FontSize="Subtitle"
+                               TextColor="White"
+                               FontAttributes="Bold" />
+                    </StackLayout>
+                </ListView.Header>
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <TextCell 
+                            TextColor="Beige"
+                            Height="25"
+                            Text="{Binding Nombre}"/>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
         </ScrollView>
     </Grid>
 </ContentPage>
