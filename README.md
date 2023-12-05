@@ -32,10 +32,6 @@ El proyecto sigue el patrón MVU (Model-View-Update), una arquitectura que organ
 ## Instalación: 
 - Abra una terminal y clone el repositorio "MicrobApp" dentro de la carpeta donde lo desee instalar con el comando git clone https://github.com/Lupa0/MicrobApp.git
 
-## Uso
-
-Explica cómo utilizar la aplicación, cómo iniciar sesión, y proporciona ejemplos de código si es necesario.
-
 ## Capturas de Pantalla
 
 <img src="https://github.com/Lupa0/MicrobApp/blob/b487b78406f1770e33f0f71089229b2153e26e63/MicrobApp/Resources/Images/captura_login.png" width="400">
