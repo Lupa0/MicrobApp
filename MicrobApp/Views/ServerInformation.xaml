@@ -4,13 +4,16 @@
              x:Class="MicrobApp.Views.ServerInformation"
              xmlns:models="clr-namespace:MicrobApp.Models"
              x:DataType="{x:Type models:Instance}"
-             Shell.TabBarIsVisible="False">
+             Shell.TabBarIsVisible="False"
+             BackgroundColor="LightGray">
     <VerticalStackLayout>
         <Image x:Name="Logo"
            Aspect="AspectFill"
            HeightRequest="200"/>
         <Label x:Name="PageTitle"
             FontSize="Title"
+            TextColor="#06214F"
+            FontAttributes="Bold"
             VerticalOptions="Center" 
             HorizontalOptions="Center" 
             Margin="0,20,0,20"/>
@@ -20,14 +23,18 @@
         <Label 
             x:Name="Description"
             FontSize="Body" 
+            TextColor="#06214F"
+            FontAttributes="Bold"
             LineBreakMode="WordWrap"
             HorizontalOptions="FillAndExpand"
             Margin="20,20,20,0"/>
         <Label Margin="20,20,20,0">
             <Label.FormattedText>
                 <FormattedString>
-                    <Span Text=" Se unió " FontSize="15"/>
-                    <Span x:Name="CreatedIn" FontSize="15" />
+                    <Span Text=" Se unió " FontSize="15"  TextColor="#06214F"
+                                FontAttributes="Bold"/>
+                    <Span x:Name="CreatedIn" FontSize="15"  TextColor="#06214F"
+                                FontAttributes="Bold"/>
                 </FormattedString>
             </Label.FormattedText>
         </Label>

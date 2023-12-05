@@ -3,7 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MicrobApp.Views.SettingsPage"
              Title="Ajustes"
-             Shell.TabBarIsVisible="False">
+             Shell.TabBarIsVisible="False"
+             BackgroundColor="#06214F">
     <VerticalStackLayout>
         <CollectionView x:Name="menuCollectionView"
                         SelectionMode="Single"
@@ -16,14 +17,14 @@
                             <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
 
-                        <Image Source="{Binding IconImageSource}" WidthRequest="20" HeightRequest="20" />
-                        <Label Text="{Binding Text}" VerticalOptions="Center" HorizontalOptions="Start" Margin="10,0,0,0" Grid.Column="1" />
+                        <Image Source="{Binding IconImageSource}" WidthRequest="20" HeightRequest="20" BackgroundColor="Gray"/>
+                        <Label Text="{Binding Text}" VerticalOptions="Center" HorizontalOptions="Start" Margin="10,0,0,0" Grid.Column="1" TextColor="Beige"/>
                         
                         <VisualStateManager.VisualStateGroups>
                             <VisualStateGroup Name="CommonStates">
                                 <VisualState Name="Selected">
                                     <VisualState.Setters>
-                                        <Setter Property="BackgroundColor" Value="LightGray" />
+                                        <Setter Property="BackgroundColor" Value="Black" />
                                     </VisualState.Setters>
                                 </VisualState>
                             </VisualStateGroup>
