@@ -23,7 +23,6 @@ El proyecto sigue el patrón MVU (Model-View-Update), una arquitectura que organ
 ## Tecnologías Utilizadas
 
 - [.NET Maui](https://learn.microsoft.com/es-es/dotnet/maui/what-is-maui?view=net-maui-8.0)
-- [Firebase](https://firebase.google.com/)
 
 ## Pre-requisitos
 
@@ -40,6 +39,8 @@ Explica cómo utilizar la aplicación, cómo iniciar sesión, y proporciona ejem
 ## Capturas de Pantalla
 
 <img src="https://github.com/Lupa0/MicrobApp/blob/b487b78406f1770e33f0f71089229b2153e26e63/MicrobApp/Resources/Images/captura_login.png" width="400">
+<img src="https://github.com/Lupa0/MicrobApp/blob/095652360d3fd8d41bd251def7143afe8b68373d/MicrobApp/Resources/Images/profile_captura.png" width="400">
+<img src="https://github.com/Lupa0/MicrobApp/blob/095652360d3fd8d41bd251def7143afe8b68373d/MicrobApp/Resources/Images/post_captura.png" width="400">
 
 
 
