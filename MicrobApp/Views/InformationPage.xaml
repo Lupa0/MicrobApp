@@ -2,26 +2,32 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MicrobApp.Views.InformationPage"
-             Shell.TabBarIsVisible="False">
+             Shell.TabBarIsVisible="False"
+             BackgroundColor="LightGray">
     <VerticalStackLayout>
         <Image Source="principal.png"
                Aspect="AspectFill"
                HeightRequest="200"/>
+
         <Label 
-            Text="Acerca de Microb.uy"
-            FontSize="Title"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" 
-            Margin="0,20,0,20"/>
+           Text="Acerca de Microb.uy"
+           FontAttributes="Bold"
+           FontSize="Title"
+           TextColor="#06214F"
+           VerticalOptions="Center" 
+           HorizontalOptions="Center" 
+           Margin="0,20,0,20"/>
         <Line HorizontalOptions="CenterAndExpand"
               Stroke="#919191"
               X1="150"/>
         <ScrollView>
             <Label 
+                TextColor="#06214F"
                 Text="Somos una plataforma social que te brinda la libertad de compartir tus pensamientos,
                 ideas y momentos con el mundo. Al igual que en Twitter, aquí puedes crear publicaciones,
                 seguir a otros usuarios, recibir notificaciones de las últimas actualizaciones y mucho más."
-                FontSize="Body" 
+                FontSize="Body"
+                FontAttributes="Bold"
                 LineBreakMode="WordWrap"
                 HorizontalOptions="FillAndExpand"
                 Margin="20,20,20,0"/>

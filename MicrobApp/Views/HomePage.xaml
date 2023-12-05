@@ -14,7 +14,11 @@
 
     <StackLayout>
         <ActivityIndicator x:Name="loaderInit"/>
-        
+        <Frame VerticalOptions="Start" HeightRequest="100" Padding="0" CornerRadius="0">
+            <Image 
+                       Source="galaxi.jpg"  
+                        Aspect="AspectFill"/>
+        </Frame>
         <CollectionView x:Name="postListView" VerticalOptions="FillAndExpand" RemainingItemsThresholdReached="LoadMorePosts">
             <CollectionView.ItemTemplate>
                 <DataTemplate x:DataType="{x:Type models:Post}">
@@ -107,6 +111,11 @@
                                     </DataTrigger>
                                 </Button.Triggers>
                             </Button>
+                            <Label  x:Name="countLike"
+                                       FontSize="Small"
+                                       Text="{Binding Likes.Count}" 
+                                       TextColor="Beige"
+                                       Padding="0,4"/>
                             <Button 
                                 BackgroundColor="Aquamarine"
                                 HeightRequest="30"
@@ -115,6 +124,11 @@
                                 CommandParameter="{Binding PostId}"
                                 Clicked="AnswerPost"
                                 ImageSource="forum.svg"/>
+                            <Label  x:Name="countComment"
+                                    FontSize="Small"
+                                     Text="{Binding Comments.Count}" 
+                                    TextColor="Beige"
+                                    Padding="0,4"/>
                         </HorizontalStackLayout>
                         <BoxView Grid.Row="4" 
                                  HeightRequest="0.5"
