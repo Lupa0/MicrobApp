@@ -4,6 +4,7 @@
              xmlns:models="clr-namespace:MicrobApp.Models"
              x:Class="MicrobApp.Views.HomePage"
              BackgroundColor="#06214F"
+             Title="Home"
              >
    
     <ContentPage.ToolbarItems>
@@ -99,6 +100,12 @@
                                 CommandParameter="{Binding PostId}"
                                 Clicked="Button_Clicked"
                                 ImageSource="heart_post.svg"/>
+                            <Label 
+                            TextColor="Beige"
+                            FontSize="Small"
+                            Text="{Binding Likes.Count}"
+                            BackgroundColor="Transparent">
+                            </Label>
                             <Button 
                                 BackgroundColor="Aquamarine"
                                 HeightRequest="30"
@@ -107,13 +114,12 @@
                                 CommandParameter="{Binding PostId}"
                                 Clicked="AnswerPost"
                                 ImageSource="forum.svg"/>
-                            <Button 
-                                CommandParameter="{Binding PostId}"
-                                BackgroundColor="Coral"
-                                HeightRequest="30"
-                                WidthRequest="30"
-                                ImageSource="repost_icon.svg"
-                                HorizontalOptions="End"/>
+                            <Label 
+                                TextColor="Beige"
+                                FontSize="Small"
+                                Text="{Binding Comments.Count}"
+                                BackgroundColor="Transparent">
+                            </Label>
                         </HorizontalStackLayout>
                         <BoxView Grid.Row="4" 
                                  HeightRequest="0.5"

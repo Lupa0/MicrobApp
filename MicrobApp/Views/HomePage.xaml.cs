@@ -103,10 +103,15 @@ public partial class HomePage : ContentPage
     private async void Button_Clicked(object sender, EventArgs e)
     {
         var ListItem = sender as Button;
-        ListItem.BackgroundColor = Color.FromRgb(234,92,85);
-        ListItem.BorderColor = Color.FromRgb(255, 255, 255);
-        String idPost = ListItem.CommandParameter.ToString();
-        await _postService.LikePost(idPost);
+        if (ListItem.BackgroundColor == Color.FromRgb(234, 92, 85))
+        {
+            ListItem.BorderColor = Color.FromRgb(255, 255, 255);
+            String idPost = ListItem.CommandParameter.ToString();
+            await _postService.LikePost(idPost);
+        }
+            
+        else
+            ListItem.BackgroundColor = Color.FromRgb(234,92,85);
     }
 
     private void OnLabelTapped(object sender, TappedEventArgs e)
