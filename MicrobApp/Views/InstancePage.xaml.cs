@@ -41,6 +41,7 @@ public partial class InstancePage : ContentPage
             await Shell.Current.GoToAsync("//LoginPage");
 
             // Realizar las operaciones necesarias con la instancia seleccionada
+            stackList.SelectedItem = null;
         }
     }
 }

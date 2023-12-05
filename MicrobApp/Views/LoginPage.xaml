@@ -18,17 +18,18 @@
         </Grid.Background>
         <ScrollView>
             <StackLayout x:Name="stackParentOfAll" Opacity="0">
+                <ImageButton Source="arrow_back.svg"
+                             Clicked="ImageButton_Clicked"
+                             HorizontalOptions="Start"
+                             Padding="5"/>
                 <VerticalStackLayout
                     BackgroundColor="Transparent"
                     MaximumWidthRequest="300"
                     Spacing="10"
                     >
+                    
                     <VerticalStackLayout x:Name="stackTop">
-                        <ImageButton Source="arrow_back.svg"
-                                     Clicked="ImageButton_Clicked"
-                                     HorizontalOptions="Start"
-                                     Padding="5"/>
-                                     
+                                                             
                         <Image
                             Margin="0,15,0,15"
                             MinimumHeightRequest="250"
@@ -100,25 +101,25 @@
                             </Button.Background>
                         </Button>
 
+                        <!-- <Line
+                        HorizontalOptions="CenterAndExpand"
+                        Stroke="#919191"
+                        X1="150"
+                        />
 
-                        <Line
-                            HorizontalOptions="CenterAndExpand"
-                            Stroke="#919191"
-                            X1="150"
-                            />
-
-                        <Label
-                            HorizontalOptions="CenterAndExpand"
-                            Text="o inicia sesión con " 
-                            TextColor="White"
-                            FontFamily="InterBold"
-                            FontSize="Subtitle"
-                            Padding="10"/>
-                        <ImageButton Aspect="AspectFit"
-                                     HeightRequest="40"
-                                     Source="https://www.freepnglogos.com/uploads/google-logo-png/google-logo-icon-png-transparent-background-osteopathy-16.png"
-                                     WidthRequest="40" 
-                                     Clicked="OnGoogleLoginClicked"/>
+                    <Label
+                        HorizontalOptions="CenterAndExpand"
+                        Text="o inicia sesión con " 
+                        TextColor="White"
+                        FontFamily="InterBold"
+                        FontSize="Subtitle"
+                        Padding="10"/>
+                    <ImageButton Aspect="AspectFit"
+                                 HeightRequest="40"
+                                 Source="https://www.freepnglogos.com/uploads/google-logo-png/google-logo-icon-png-transparent-background-osteopathy-16.png"
+                                 WidthRequest="40" 
+                                 Clicked="OnGoogleLoginClicked"/> -->
+                        
                         
                     </VerticalStackLayout>
                 </VerticalStackLayout>

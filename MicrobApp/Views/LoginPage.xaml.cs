@@ -23,8 +23,6 @@ public partial class LoginPage : ContentPage
     private void LoginPage_Loaded(object sender, EventArgs e)
     {
         _ = StartAnimation();
-        string domain = SecureStorage.GetAsync("instanceDomain").Result;
-        UsernameEntry.Placeholder = $"Usuario@{domain}";
     }
 
     private async Task StartAnimation()
@@ -37,6 +35,20 @@ public partial class LoginPage : ContentPage
         animations.Add(stackBottom.TranslateTo(0, 0, 1000));
 
         await Task.WhenAll(animations);
+    }
+
+    protected override void OnAppearing()
+    {
+        base.OnAppearing();
+        string domain = SecureStorage.GetAsync("instanceDomain").Result;
+        UsernameEntry.Placeholder = $"Usuario@{domain}";
+    }
+
+    protected override void OnDisappearing()
+    {
+        base.OnDisappearing();
+        UsernameEntry.Text = null;
+        PasswordEntry.Text = null;
     }
 
     async void OnLoginButtonClicked(object sender, EventArgs e)
@@ -102,6 +114,7 @@ public partial class LoginPage : ContentPage
 
     private async void ImageButton_Clicked(object sender, EventArgs e)
     {
+        SecureStorage.RemoveAll();
         await Shell.Current.GoToAsync("//InstancePage");
     }
 }
