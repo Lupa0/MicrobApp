@@ -66,7 +66,6 @@ public partial class ProfilePage : ContentPage
                 if (followingUsers.Count > 0 && followingUsers.Exists(aUser => Equals(aUser.UserName, username)))
                 {
                     SeguirButton.Text = "Siguiendo";
-                    SeguirButton.IsEnabled = false;
                 }
                 else
                 {
@@ -100,6 +99,18 @@ public partial class ProfilePage : ContentPage
             {
                 _userService.FollowUser(username);
                 SeguirButton.Text = "Siguiendo";
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error al seguir usuario: " + username + ". " + ex.Message);
+                await DisplayAlert("Error", "Ha ocurrido un problema. Por favor vuelve a intentar mas tarde.", "OK");
+            }
+        } else if (SeguirButton.Text == "Siguiendo")
+        {
+            try
+            {
+                _userService.UnFollowUser(username);
+                SeguirButton.Text = "Seguir";
             }
             catch (Exception ex)
             {

@@ -53,7 +53,7 @@ namespace MicrobApp.Services
         public async void FollowUser(string userNameToFollow)
         {
             string username = SecureStorage.GetAsync("username").Result;
-            string apiUrl = $"/Account/FollowUser?&userName={username}&userNameToFollow={userNameToFollow}";
+            string apiUrl = $"/Account/FollowUser?userName={username}&userNameToFollow={userNameToFollow}";
 
             string tenantId = SecureStorage.GetAsync("tenantId").Result;
 
@@ -66,6 +66,23 @@ namespace MicrobApp.Services
             await _httpClient.PutAsync(apiUrl, content);
             _httpClient.DefaultRequestHeaders.Remove("tenant");
 
+        }
+
+        public async void UnFollowUser(string userNameToUnFollow)
+        {
+            string username = SecureStorage.GetAsync("username").Result;
+            string apiUrl = $"/Account/UnFollowUser?userName={username}&userNameToUnFollow={userNameToUnFollow}";
+
+            string tenantId = SecureStorage.GetAsync("tenantId").Result;
+
+            _httpClient.DefaultRequestHeaders.Add("tenant", tenantId);
+
+            string jsonRequest = JsonSerializer.Serialize("");
+
+            HttpContent content = new StringContent(jsonRequest, Encoding.UTF8, "application/json");
+
+            await _httpClient.PutAsync(apiUrl, content);
+            _httpClient.DefaultRequestHeaders.Remove("tenant");
         }
 
         public async Task<int> GetFollowedUsersCount(string username)
