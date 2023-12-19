@@ -18,7 +18,7 @@ public class HttpClientFactory
         httpClient.BaseAddress = new Uri(DeviceInfo.Platform == DevicePlatform.Android ? "https://10.0.2.2:7131" : "https://localhost:7131");
 
         //Url Base para Backend en la nube
-        //httpClient.BaseAddress = new Uri("http://microbuyapi.azurewebsites.net");
+        //httpClient.BaseAddress = new Uri("https://microbuyapi.azurewebsites.net");
 
         return httpClient;
     }

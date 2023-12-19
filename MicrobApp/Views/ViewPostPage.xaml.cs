@@ -54,6 +54,12 @@ public partial class ViewPostPage : ContentPage
         String idPost = ListItem.CommandParameter.ToString();
         await _postService.LikePost(idPost);
     }
+    private void AnswerPost(object sender, EventArgs e)
+    {
+        var ListItem = sender as Button;
+        string inResponseTo = ListItem.CommandParameter.ToString();
+        Navigation.PushAsync(new PostPage(inResponseTo, true));
+    }
 
     private async void Reportar_Post(object sender, EventArgs e)
     {

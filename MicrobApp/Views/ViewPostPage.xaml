@@ -14,7 +14,7 @@
     <VerticalStackLayout BackgroundColor="#06214F">
         <ScrollView>
             <Grid BackgroundColor="Transparent" 
-                              Padding="10"
+                  Padding="10"
                   Margin="20,5"
               >
                 <Grid.RowDefinitions>
@@ -57,7 +57,7 @@
                             </Label.FormattedText>
                         </Label>
                         <Label x:Name="TextUser"
-                                           Text="{Binding UserOwner.UserName}" TextColor="White"/>
+                               Text="{Binding UserOwner.UserName}" TextColor="White"/>
                     </VerticalStackLayout>
                 </Grid>
                 <Image Grid.Row="1"
@@ -69,7 +69,6 @@
                     TextColor="White"
                     FontSize="Body"
                     BackgroundColor="Transparent"/>
-
 
                 <HorizontalStackLayout 
                     Grid.Row="3"
@@ -86,7 +85,15 @@
                         HorizontalOptions="Start"
                         CommandParameter="{Binding PostId}"
                         Clicked="Button_Clicked"
-                        ImageSource="heart_post.svg"/>
+                        ImageSource="heart_post.svg">
+                        <Button.Triggers>
+                            <DataTrigger TargetType="Button" Binding="{Binding IsLiked}" Value="true">
+                                <Setter Property="BackgroundColor" Value="#ea5c55"/>
+                                <Setter Property="BorderColor" Value="#ffffff"/>
+                                <Setter Property="IsEnabled" Value="False"/>
+                            </DataTrigger>
+                        </Button.Triggers>
+                    </Button>
                     <Label  x:Name="countLike"
                         FontSize="Small"
                         Text="{Binding Likes.Count}" 
@@ -97,7 +104,9 @@
                         HeightRequest="30"
                         WidthRequest="30"
                         HorizontalOptions="Center"
-                            ImageSource="forum.svg"/>
+                        CommandParameter="{Binding PostId}"
+                        Clicked="AnswerPost"
+                        ImageSource="forum.svg"/>
                     <Label  x:Name="countComment"
                         FontSize="Small"
                         Text="{Binding Comments.Count}" 
